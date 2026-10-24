@@ -2159,6 +2159,16 @@
           "status": "closed",
           "source": "https://www.tusenfryd.no/planlegg-besoket/arstider/halloween",
           "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-24": {
+          "status": "open",
+          "source": "https://www.tusenfryd.no/planlegg-besoket/arstider/halloween",
+          "source_type": "official_published_operating_day"
+        },
+        "2026-10-25": {
+          "status": "open",
+          "source": "https://www.tusenfryd.no/planlegg-besoket/arstider/halloween",
+          "source_type": "official_published_operating_day"
         }
       }
     },
@@ -2200,6 +2210,16 @@
           "source": "https://www.bonbonland.dk/halloween",
           "source_type": "official",
           "valid_through": "2026-10-31"
+        },
+        "2026-10-24": {
+          "status": "open",
+          "source": "https://www.bonbonland.dk/halloween",
+          "source_type": "official_published_operating_day"
+        },
+        "2026-10-25": {
+          "status": "open",
+          "source": "https://www.bonbonland.dk/halloween",
+          "source_type": "official_published_operating_day"
         }
       },
       "official_season_source": "https://www.bonbonland.dk/halloween"
@@ -2352,12 +2372,20 @@
     "PC007": {
       "name": "Tusenfryd",
       "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "message": "No unique provider match; normal weather display retained",
+      "verified_halloween_open_dates": [
+        "2026-10-24",
+        "2026-10-25"
+      ]
     },
     "PC008": {
       "name": "BonBon-Land",
       "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "message": "No unique provider match; normal weather display retained",
+      "verified_halloween_open_dates": [
+        "2026-10-24",
+        "2026-10-25"
+      ]
     },
     "PC009": {
       "name": "Tropical Islands",
