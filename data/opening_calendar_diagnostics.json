@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T12:23:36.788486+00:00",
+  "updated_at": "2026-10-24T12:33:17.515390+00:00",
   "parks": {
     "PC001": {
       "name": "Parque Warner Madrid",
@@ -63,8 +63,12 @@
     },
     "PC011": {
       "name": "Aquopolis Villanueva",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://villanueva.aquopolis.es/",
+      "evidence": "Official site explicitly states return in 2027",
+      "valid_through": "2026-12-31"
     },
     "PC012": {
       "name": "Aquopolis Costa Dorada",
@@ -88,8 +92,12 @@
     },
     "PC016": {
       "name": "Warner Beach",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 102,
+      "conflicts_with_provider": 0,
+      "source": "https://parquewarnerbeach.parquewarner.com/",
+      "evidence": "Official site states season runs until 20 September 2026",
+      "valid_through": "2026-12-31"
     },
     "PC017": {
       "name": "Madrid Zoo",
@@ -133,6 +141,7 @@
     }
   },
   "provider_matches": 5,
+  "official_off_season_parks": 2,
   "year_round_defaults": 7,
-  "not_connected": 12
+  "not_connected": 10
 }
