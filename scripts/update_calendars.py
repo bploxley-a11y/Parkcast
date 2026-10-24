@@ -77,27 +77,34 @@ def main():
  try:entities=catalog()
  except Exception as exc:
   print('Directory unavailable; preserving previous data:',exc,file=sys.stderr);return 0
- result={};checked=0
+ result={};checked=0; diagnostics={}; explicit_closed=0
  for row in PARKS:
   pid,name,*_=row; entity=locate(row,entities)
   if not entity:
+   diagnostics[pid]={'name':name,'state':'not_matched','message':'No unique provider match; normal weather display retained'}
    print(pid,'not uniquely matched; no inferred closure');continue
   eid=entity.get('id')
   try:
    days=parse_schedule(fetch(f'{API}/entity/{eid}/schedule'))
-   if not days:print(pid,'no explicit schedule records');continue
+   if not days:
+    diagnostics[pid]={'name':name,'state':'empty_schedule','message':'Provider returned no dated operating records'}
+    print(pid,'no explicit schedule records');continue
    # Drop old dates when a successful current schedule supersedes them.
    result[pid]={'name':name,'source':f'https://api.themeparks.wiki/v1/entity/{eid}/schedule','checked_at':now.isoformat(),'days':days}
    checked+=1
+   nclosed=sum(d.get('status')=='closed' for d in days.values());explicit_closed+=nclosed
+   diagnostics[pid]={'name':name,'state':'updated','published_open_days':sum(d.get('status')=='open' for d in days.values()),'explicit_closed_days':nclosed,'note':'Unlisted dates are not verified closures'}
   except Exception as exc:
+   diagnostics[pid]={'name':name,'state':'fetch_error','message':str(exc)[:180]}
    print(pid,'schedule error',exc,file=sys.stderr)
    previous=oldparks.get(pid)
    if previous and previous.get('days'):result[pid]=previous
  # Preserve only previously sourced entries for unmatched parks; never synthesize.
  for pid,entry in oldparks.items():
   if pid not in result and entry.get('days'):result[pid]=entry
- payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'configured_parks':len(PARKS)}
+ payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'interpretation':'Missing provider dates are unknown, not closed. Only explicit closure records grey out tiles.'}
  OUT.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
- print('Updated',checked,'of',len(PARKS),'parks. No missing days inferred closed.')
+ print('Updated',checked,'of',len(PARKS),'parks; explicit closed dates:',explicit_closed)
+ print('Not connected:',', '.join(r[0] for r in PARKS if diagnostics.get(r[0],{}).get('state')!='updated'))
  return 0
 if __name__=='__main__':sys.exit(main())
