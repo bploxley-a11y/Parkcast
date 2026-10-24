@@ -596,8 +596,14 @@ function details(p,d,x){
    // reduced rainfall as the reason for a worse outdoor-park assessment.
    const sign=c.verdict==='BETTER'?1:c.verdict==='WORSE'?-1:0;
    const aligned=factors.filter(q=>q.impact===sign).sort((u,v)=>v.weight-u.weight);
-   const names=aligned.slice(0,2).map(q=>q.label);
-   climateText.textContent=labels[c.verdict]+(names.length?' · Driven by '+names.join(' and '):'');
+   const names=aligned.slice(0,2).map(q=>{
+    if(q.label==='rain')return rain<r.rain?'less rain':'more rain';
+    if(q.label==='wind')return wind<r.wind?'lighter winds':'stronger winds';
+    if(q.label==='cloud cover')return cloud<r.cloud?'less cloud cover':'more cloud cover';
+    if(q.label==='temperature')return temp<r.temp?'cooler temperatures':'warmer temperatures';
+    return q.label;
+   });
+   climateText.textContent=labels[c.verdict]+(names.length?' · '+names.join(' and '):'');
 
   }else climateText.textContent='Comparison unavailable';
   el.append(climateText);
