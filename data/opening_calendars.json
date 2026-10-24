@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T13:11:31.661Z",
+  "updated_at": "2026-10-24T13:16:54.424Z",
   "provider": "ThemeParks.wiki",
   "parks": {
     "PC001": {
@@ -265,6 +265,26 @@
         },
         "2026-11-01": {
           "status": "open"
+        },
+        "2026-10-26": {
+          "status": "closed",
+          "source": "https://www.mirabilandia.it/calendario-e-tariffe/calendario-di-apertura",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-27": {
+          "status": "closed",
+          "source": "https://www.mirabilandia.it/calendario-e-tariffe/calendario-di-apertura",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-28": {
+          "status": "closed",
+          "source": "https://www.mirabilandia.it/calendario-e-tariffe/calendario-di-apertura",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-29": {
+          "status": "closed",
+          "source": "https://www.mirabilandia.it/calendario-e-tariffe/calendario-di-apertura",
+          "source_type": "secondary_dated_calendar"
         }
       }
     },
@@ -2112,6 +2132,35 @@
         }
       },
       "official_season_source": "https://mirabeach.mirabilandia.it/en"
+    },
+    "PC007": {
+      "days": {
+        "2026-10-26": {
+          "status": "closed",
+          "source": "https://www.tusenfryd.no/planlegg-besoket/arstider/halloween",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-27": {
+          "status": "closed",
+          "source": "https://www.tusenfryd.no/planlegg-besoket/arstider/halloween",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-28": {
+          "status": "closed",
+          "source": "https://www.tusenfryd.no/planlegg-besoket/arstider/halloween",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-29": {
+          "status": "closed",
+          "source": "https://www.tusenfryd.no/planlegg-besoket/arstider/halloween",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-30": {
+          "status": "closed",
+          "source": "https://www.tusenfryd.no/planlegg-besoket/arstider/halloween",
+          "source_type": "secondary_dated_calendar"
+        }
+      }
     }
   },
   "matched_and_updated": 5,
