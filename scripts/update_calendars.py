@@ -79,6 +79,7 @@ def parse_schedule(data):
 # 'From' is conservative (today or the verified start), not a guessed season-end date.
 # Ticketing pages are labelled secondary; they are not represented as official websites.
 OFFICIAL_SEASON_SOURCES={
+ 'PC008':('https://www.bonbonland.dk/halloween',r'alle weekender frem til den 25\\. oktober|alle weekender frem til den 25. oktober','official'),
  'PC020':('https://www.sommarland.no/priser-og-apningstider/apningstider',r'f[øo]rste [åa]pningsdag i 2026 er 6\. juni.*siste dag er 16\. august','official'),
  'PC011':('https://villanueva.aquopolis.es/',r'nos vemos en 2027|volvemos en 2027','official'),
  'PC012':('https://costa-dorada.aquopolis.es/',r'nos vemos en 2027','official'),
@@ -97,10 +98,11 @@ def official_season(pid,now):
    raw=response.read(900000).decode('utf-8','replace')
   clean=html.unescape(re.sub(r'<[^>]+>',' ',raw))
   clean=re.sub(r'\s+',' ',clean).lower()
+  if pid=='PC008' and not re.search(r'2026',clean):return None
   if not re.search(pattern,clean,re.I):return None
   # Conservative: don't retrospectively claim closure dates without a precise boundary.
-  start='2026-08-17' if pid=='PC020' else ('2026-09-21' if pid=='PC016' else now.date().isoformat())
-  return {'from':start,'through':'2026-12-31','url':url,
+  start='2026-10-26' if pid=='PC008' else ('2026-08-17' if pid=='PC020' else ('2026-09-21' if pid=='PC016' else now.date().isoformat()))
+  return {'from':start,'through':'2026-10-31' if pid=='PC008' else '2026-12-31','url':url,
           'evidence':'Verified 2026 season-end/2027 return statement',
           'source_type':source_type}
  except Exception as exc:print('Season check unavailable:',pid,exc,file=sys.stderr)
