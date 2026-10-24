@@ -1,0 +1,23 @@
+name: Validate ParkCast calendar logic
+on:
+  push:
+    branches: [parkcast-v28-calendar-quality]
+  pull_request:
+    paths:
+      - 'scripts/update_calendars.py'
+      - 'tests/test_calendar_safety.py'
+      - '.github/workflows/validate-calendars.yml'
+permissions:
+  contents: read
+jobs:
+  calendar-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run calendar safety tests
+        run: python -m unittest discover -s tests -p 'test_calendar_safety.py' -v
+      - name: Verify Python syntax
+        run: python -m py_compile scripts/update_calendars.py
