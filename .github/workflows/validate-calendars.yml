@@ -22,3 +22,15 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_calendar_safety.py' -v
       - name: Verify Python syntax
         run: python -m py_compile scripts/update_calendars.py
+      - name: Probe live calendar sources without publishing
+        run: |
+          python - <<'PY'
+          import datetime, json
+          from scripts import update_calendars as c
+          now=datetime.datetime.now(datetime.timezone.utc)
+          result={}; diag={}
+          c.apply_secondary_calendars(result,diag,now)
+          dates=['2026-10-26','2026-10-27','2026-10-28','2026-10-29','2026-10-30']
+          for pid in c.SECONDARY_CALENDARS:
+           print(json.dumps({'park':pid,'dates':{d:result.get(pid,{}).get('days',{}).get(d,{}).get('status','unknown') for d in dates},'diagnostics':diag.get(pid,{})}))
+          PY
