@@ -531,7 +531,19 @@ function details(p,d,x){
   const climateText=document.createElement('p');climateText.style.margin='0 0 8px';
   if(x.comparison){
    const labels={BETTER:'Better than average',SAME:'Same as average',WORSE:'Worse than average'};
-   climateText.textContent=labels[x.comparison.verdict];
+   const c=x.comparison,r=c.ref,month=Number(d.slice(5,7));
+   const daily=p.forecast?.daily,di=daily?.time?.indexOf(d)??-1;
+   const reasons=[];
+   const indoor=p.type==='indoor'||p.type==='aquarium';
+   const tempDiff=x.temp-r.temp;
+   const rainDiff=x.rain-r.rain;
+   const windDiff=x.wind-r.wind;
+   if(Math.abs(tempDiff)>=3)reasons.push('temperature');
+   if(Math.abs(rainDiff)>=2)reasons.push('rain');
+   if(Math.abs(windDiff)>=18)reasons.push('wind');
+   if(x.snow>=2||x.residualSnow>=5)reasons.push('snow');
+   if(Math.abs(x.cloud-r.cloud)>=25)reasons.push('cloud cover');
+   climateText.textContent=labels[c.verdict]+(reasons.length?' · '+reasons.slice(0,3).join(', '):' · typical conditions');
   }else climateText.textContent='Comparison unavailable';
   el.append(climateText);
   const explanation=practicalExplanation(p,{...x,day:d});
