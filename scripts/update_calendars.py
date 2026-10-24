@@ -8,7 +8,7 @@ from html.parser import HTMLParser
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=ROOT/'data/opening_calendars.json'
 DIAGNOSTICS=ROOT/'data/opening_calendar_diagnostics.json'
-YEAR_ROUND={'PC009','PC010','PC017','PC018','PC022','PC023','PC024'}
+YEAR_ROUND={'PC009','PC010','PC017','PC018','PC022','PC023','PC024','PC026','PC027'}
 API='https://api.themeparks.wiki/v1'
 PARKS=[
  ('PC001','Parque Warner Madrid',40.229,-3.593,['parque warner madrid','parque warner']),
@@ -36,6 +36,8 @@ PARKS=[
  ('PC023','Lakes Aquarium',54.27816,-2.95591,['lakes aquarium']),
  ('PC024','Atlantis Madrid Xanadu',40.29947,-3.92401,['atlantis aquarium madrid','atlantis aquarium']),
  ('PC025','Weltvogelpark Walsrode',52.866,9.598,['weltvogelpark walsrode','weltvogelpark','vogelpark walsrode']),
+ ('PC026','Selwo Aventura',36.455,-5.074,['selwo aventura']),
+ ('PC027','Faunia',40.392,-3.613,['faunia']),
 ]
 def fetch(url):
  req=urllib.request.Request(url,headers={'User-Agent':'ParkCast-Calendar/1.0 (schedule monitoring)','Accept':'application/json'})
