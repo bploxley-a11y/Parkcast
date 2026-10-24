@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#102137"><title>ParkCast | Weather & Attendance</title><style>
-:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e9f2fb;background:#0b1728}*{box-sizing:border-box}body{margin:0}header{padding:22px 18px 15px;background:#102137;border-bottom:1px solid #30445c}h1{font-size:29px;letter-spacing:-1px;margin:0}header p{margin:5px 0;color:#a9c0d5;font-size:13px}.wrap{max-width:1150px;margin:auto}.toolbar{display:flex;gap:9px;flex-wrap:wrap;padding:15px 12px}select,button,input{font:inherit}select,button{border:1px solid #3d546c;border-radius:10px;padding:10px 12px;background:#172a40;color:#fff;min-height:44px}button{cursor:pointer}button:disabled{opacity:.55}.status{font-size:13px;color:#b8c7d8;padding:0 15px 10px}.legend{display:flex;flex-wrap:wrap;gap:12px;padding:0 15px 15px;font-size:12px;color:#b6c9d9}.dot{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px}.good{background:#168f62}.mid{background:#dd8e28}.bad{background:#c84950}.closed{background:#586779}.unknown{background:#354861}.scroll{overflow-x:auto;margin:0 10px;border:1px solid #33475c;border-radius:13px}.matrix{border-collapse:separate;border-spacing:0;min-width:850px;width:100%;font-size:13px}.matrix th,.matrix td{padding:10px 5px;border-bottom:1px solid #283c50;text-align:center}.matrix thead th{background:#1a2e45;position:sticky;top:0}.matrix th:first-child,.matrix td:first-child{position:sticky;left:0;text-align:left;min-width:190px;max-width:190px;background:#14263b;padding-left:12px;z-index:2}.matrix thead th:first-child{z-index:3;background:#1a2e45}.matrix tr:last-child td{border-bottom:0}.parkname{font-weight:650}.type{font-size:11px;color:#9fb6ca;margin-top:3px}.tile{display:block;width:100%;border:0;border-radius:8px;min-height:47px;padding:5px 2px;font-weight:700;color:#fff}.tile.good{background:#168f62}.tile.mid{background:#a86919}.tile.bad{background:#aa333e}.tile.closed{background:#45556b}.tile.unknown{background:#30445a}.weather-icon{display:block;font-size:19px;line-height:1.15;font-weight:400;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI Emoji",sans-serif}.wind-indicator{display:block;font-size:12px;line-height:1.3;font-weight:650;white-space:nowrap}.wind-indicator .wind-symbol{font-size:14px}.tile small{display:block;font-size:10px;font-weight:500;margin-top:3px}.note{font-size:12px;line-height:1.5;color:#aabfd1;padding:14px 16px}.detail{margin:15px 10px 30px;padding:17px;background:#162b42;border:1px solid #38516a;border-radius:14px}.detail h2{font-size:19px;margin:0 0 8px}.detail p{color:#c5d5e5;line-height:1.5}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px}.metric{background:#213951;border-radius:9px;padding:12px}.metric strong{display:block;font-size:20px;margin-top:6px}.metric span{font-size:11px;color:#b7c9da}.tag{font-size:12px;padding:5px 9px;border-radius:6px;background:#31475e;display:inline-block}.foot{border-top:1px solid #2d435a;padding:20px 16px;color:#9eb2c4;font-size:12px;line-height:1.6}a{color:#a7d7ff}.warning{color:#ffd59a}.refresh{background:#276c9a;border:0}.empty{padding:20px;color:#bcd0e0} @media(max-width:500px){header{padding:18px 13px}.toolbar{padding:12px 10px}.matrix th:first-child,.matrix td:first-child{min-width:153px;max-width:153px}.matrix{min-width:800px}.detail{padding:13px}}
-.eventpanel{margin:0 12px 15px;padding:14px;border:1px solid #39536b;border-radius:12px;background:#14263b}.eventpanel h2{font-size:16px;margin:0 0 5px}.eventpanel p{font-size:12px;color:#b8c9da;line-height:1.5}.eventfields{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:9px}.eventfields label{font-size:12px;color:#c3d2e0}.eventfields input,.eventfields select{width:100%;margin-top:4px;min-height:44px;padding:9px;border-radius:8px;background:#1c344e;color:#fff;border:1px solid #476079;font-size:16px}.eventitem{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #30455d;font-size:12px;flex-wrap:wrap}.eventitem button{font-size:12px;min-height:38px}.eventitem a{overflow-wrap:anywhere}.filterpanel{position:relative;min-width:170px;flex:1 1 200px}.filterpanel summary{cursor:pointer;list-style:none;border:1px solid #3d546c;border-radius:10px;padding:12px;background:#172a40;color:#fff;min-height:44px;font-size:14px}.filterpanel summary::-webkit-details-marker{display:none}.filterpanel summary:after{content:' ▾';float:right}.filterpanel[open] summary:after{content:' ▴'}.filterbody{position:absolute;top:calc(100% + 4px);left:0;z-index:15;min-width:100%;width:max-content;max-width:min(92vw,330px);max-height:350px;overflow-y:auto;padding:12px;border:1px solid #49617b;border-radius:12px;background:#172a40;box-shadow:0 10px 22px #0007}.filteroptions{display:grid;gap:2px}.filteroptions label{display:flex;align-items:center;gap:10px;min-height:42px;padding:6px 3px;cursor:pointer;font-size:14px}.filteroptions input{width:19px;height:19px;accent-color:#67b8e8}.filteractions{display:flex;gap:8px;padding-bottom:8px;border-bottom:1px solid #39536b;margin-bottom:5px}.filteractions button{min-height:38px;font-size:12px;padding:7px 10px}@media(max-width:500px){.filterpanel{flex:1 1 calc(50% - 8px);min-width:0}.filterbody{width:min(84vw,300px)}#typePanel .filterbody{left:auto;right:0}}</style></head><body><header><div class="wrap"><h1>☁ ParkCast</h1><p>24 European attractions · portfolio weather → potential attendance impact · saved filters · seasonal scoring · cable-car wind indicator</p></div></header><main class="wrap"><div class="toolbar"><details class="filterpanel" id="countryPanel"><summary id="countrySummary">Countries · All (8)</summary><div class="filterbody"><div class="filteractions"><button type="button" id="allCountries">Select all</button><button type="button" id="noneCountries">Clear</button></div><div id="countryOptions" class="filteroptions"></div></div></details><details class="filterpanel" id="typePanel"><summary id="typeSummary">Attraction types · All (5)</summary><div class="filterbody"><div class="filteractions"><button type="button" id="allTypes">Select all</button><button type="button" id="noneTypes">Clear</button></div><div id="typeOptions" class="filteroptions"></div></div></details><select id="days" aria-label="Forecast days"><option value="7">7 days</option><option value="14">14 days</option></select><button id="refresh" class="refresh">↻ Refresh forecasts</button></div><section class="eventpanel"><h2>Madrid access intelligence · automatic</h2><p>Official Madrid City Council traffic incidents and nearby event listings. Only dated, relevant road-closure reports can affect Parque de Atracciones Madrid and Madrid Zoo. A listed event alone does not change attendance colours.</p><div id="eventList" aria-live="polite"><p>Checking municipal data…</p></div></section><div class="status" id="status" role="status">Preparing forecast…</div><div id="errorbox" class="note" style="display:none;background:#442c32;border:1px solid #a85b60;border-radius:9px;margin:0 12px 12px"></div><div class="legend"><span><i class="dot good"></i>Favourable</span><span><i class="dot mid"></i>Moderate / neutral</span><span><i class="dot bad"></i>Unfavourable</span><span><i class="dot closed"></i>Closed*</span><span><i class="dot unknown"></i>Hours unverified / unavailable</span></div><div class="scroll"><table class="matrix"><thead id="thead"></thead><tbody id="tbody"><tr><td class="empty">Waiting for forecasts…</td></tr></tbody></table></div><p class="note">*Opening schedules are <strong>not yet connected</strong> to official park calendars. No park is marked closed without verified hours. Select any coloured cell for its hourly weather assessment. Dates use each park’s local time.</p><section class="detail" id="detail" aria-live="polite"><h2>Select a park and date</h2><p>Tap a forecast cell to see what is driving the attendance-impact indicator.</p></section></main><footer class="foot wrap">Prototype v9 · 24 European attractions. Weather: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (live forecasts when connected). <span class="warning">Its free API is restricted to non-commercial use; company deployment requires a compliant free commercial-use source or an appropriate licence.</span> Seasonal thresholds are provisional regional assumptions, not statistically calibrated attendance forecasts. Weather icons use hourly WMO forecast conditions. No attendance percentages are inferred. Madrid access alerts are sourced from an automated GitHub Actions municipal-data feed; unavailable or stale data never implies roads are clear. New coordinates are approximate attraction locations; validate before operational use. Official opening-calendar integration remains outstanding.</footer><script>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e9f2fb;background:#0b1728}*{box-sizing:border-box}body{margin:0}header{padding:22px 18px 15px;background:#102137;border-bottom:1px solid #30445c}h1{font-size:29px;letter-spacing:-1px;margin:0}header p{margin:5px 0;color:#a9c0d5;font-size:13px}.wrap{max-width:1150px;margin:auto}.toolbar{display:flex;gap:9px;flex-wrap:wrap;padding:15px 12px}select,button,input{font:inherit}select,button{border:1px solid #3d546c;border-radius:10px;padding:10px 12px;background:#172a40;color:#fff;min-height:44px}button{cursor:pointer}button:disabled{opacity:.55}.status{font-size:13px;color:#b8c7d8;padding:0 15px 10px}.legend{display:flex;flex-wrap:wrap;gap:12px;padding:0 15px 15px;font-size:12px;color:#b6c9d9}.dot{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px}.good{background:#168f62}.fair{background:#9bbd3c}.mid{background:#dd8e28}.bad{background:#c84950}.closed{background:#586779}.unknown{background:#354861}.scroll{overflow-x:auto;margin:0 10px;border:1px solid #33475c;border-radius:13px}.matrix{border-collapse:separate;border-spacing:0;min-width:850px;width:100%;font-size:13px}.matrix th,.matrix td{padding:10px 5px;border-bottom:1px solid #283c50;text-align:center}.matrix thead th{background:#1a2e45;position:sticky;top:0}.matrix th:first-child,.matrix td:first-child{position:sticky;left:0;text-align:left;min-width:190px;max-width:190px;background:#14263b;padding-left:12px;z-index:2}.matrix thead th:first-child{z-index:3;background:#1a2e45}.matrix tr:last-child td{border-bottom:0}.parkname{font-weight:650}.type{font-size:11px;color:#9fb6ca;margin-top:3px}.tile{display:block;width:100%;border:0;border-radius:8px;min-height:47px;padding:5px 2px;font-weight:700;color:#fff}.tile.good{background:#168f62}.tile.fair{background:#819d27}.tile.mid{background:#a86919}.tile.bad{background:#aa333e}.tile.closed{background:#45556b}.tile.unknown{background:#30445a}.weather-icon{display:block;font-size:19px;line-height:1.15;font-weight:400;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI Emoji",sans-serif}.closure-flag{display:inline-flex;align-items:center;justify-content:center;margin-left:5px;background:#ffcf54;color:#352300;border:1px solid #fff5;border-radius:50%;width:18px;height:18px;font-size:14px;font-weight:900;vertical-align:middle}.review-banner{margin:16px 0 8px;padding:13px 15px;border-radius:10px;background:#4a3424;border:1px solid #dba653;color:#ffe8ba}.review-banner strong{display:block;margin-bottom:5px;color:#ffe8ba}.wind-indicator{display:block;font-size:12px;line-height:1.3;font-weight:650;white-space:nowrap}.wind-indicator .wind-symbol{font-size:14px}.tile small{display:block;font-size:10px;font-weight:500;margin-top:3px}.note{font-size:12px;line-height:1.5;color:#aabfd1;padding:14px 16px}.detail{margin:15px 10px 30px;padding:17px;background:#162b42;border:1px solid #38516a;border-radius:14px}.detail h2{font-size:19px;margin:0 0 8px}.detail p{color:#c5d5e5;line-height:1.5}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px}.metric{background:#213951;border-radius:9px;padding:12px}.metric strong{display:block;font-size:20px;margin-top:6px}.metric span{font-size:11px;color:#b7c9da}.tag{font-size:12px;padding:5px 9px;border-radius:6px;background:#31475e;display:inline-block}.foot{border-top:1px solid #2d435a;padding:20px 16px;color:#9eb2c4;font-size:12px;line-height:1.6}a{color:#a7d7ff}.warning{color:#ffd59a}.refresh{background:#276c9a;border:0}.empty{padding:20px;color:#bcd0e0} @media(max-width:500px){header{padding:18px 13px}.toolbar{padding:12px 10px}.matrix th:first-child,.matrix td:first-child{min-width:153px;max-width:153px}.matrix{min-width:800px}.detail{padding:13px}}
+.eventpanel{margin:0 12px 15px;padding:14px;border:1px solid #39536b;border-radius:12px;background:#14263b}.eventpanel h2{font-size:16px;margin:0 0 5px}.eventpanel p{font-size:12px;color:#b8c9da;line-height:1.5}.eventfields{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:9px}.eventfields label{font-size:12px;color:#c3d2e0}.eventfields input,.eventfields select{width:100%;margin-top:4px;min-height:44px;padding:9px;border-radius:8px;background:#1c344e;color:#fff;border:1px solid #476079;font-size:16px}.eventitem{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #30455d;font-size:12px;flex-wrap:wrap}.eventitem button{font-size:12px;min-height:38px}.eventitem a{overflow-wrap:anywhere}.filterpanel{position:relative;min-width:170px;flex:1 1 200px}.filterpanel summary{cursor:pointer;list-style:none;border:1px solid #3d546c;border-radius:10px;padding:12px;background:#172a40;color:#fff;min-height:44px;font-size:14px}.filterpanel summary::-webkit-details-marker{display:none}.filterpanel summary:after{content:' ▾';float:right}.filterpanel[open] summary:after{content:' ▴'}.filterbody{position:absolute;top:calc(100% + 4px);left:0;z-index:15;min-width:100%;width:max-content;max-width:min(92vw,330px);max-height:350px;overflow-y:auto;padding:12px;border:1px solid #49617b;border-radius:12px;background:#172a40;box-shadow:0 10px 22px #0007}.filteroptions{display:grid;gap:2px}.filteroptions label{display:flex;align-items:center;gap:10px;min-height:42px;padding:6px 3px;cursor:pointer;font-size:14px}.filteroptions input{width:19px;height:19px;accent-color:#67b8e8}.filteractions{display:flex;gap:8px;padding-bottom:8px;border-bottom:1px solid #39536b;margin-bottom:5px}.filteractions button{min-height:38px;font-size:12px;padding:7px 10px}@media(max-width:500px){.filterpanel{flex:1 1 calc(50% - 8px);min-width:0}.filterbody{width:min(84vw,300px)}#typePanel .filterbody{left:auto;right:0}}</style></head><body><header><div class="wrap"><h1>☁ ParkCast</h1><p>24 European attractions · portfolio weather → potential attendance impact · saved filters · seasonal scoring · cable-car wind indicator · forecast perception · relaxed optimal threshold · snow access risk · clear impact explanations · operational weather alerts · consistent Madrid city scoring · management review alerts</p></div></header><main class="wrap"><div class="toolbar"><details class="filterpanel" id="countryPanel"><summary id="countrySummary">Countries · All (8)</summary><div class="filterbody"><div class="filteractions"><button type="button" id="allCountries">Select all</button><button type="button" id="noneCountries">Clear</button></div><div id="countryOptions" class="filteroptions"></div></div></details><details class="filterpanel" id="typePanel"><summary id="typeSummary">Attraction types · All (5)</summary><div class="filterbody"><div class="filteractions"><button type="button" id="allTypes">Select all</button><button type="button" id="noneTypes">Clear</button></div><div id="typeOptions" class="filteroptions"></div></div></details><select id="days" aria-label="Forecast days"><option value="7">7 days</option><option value="14">14 days</option></select><button id="refresh" class="refresh">↻ Refresh forecasts</button></div><section class="eventpanel"><h2>Madrid access intelligence · automatic</h2><p>Official Madrid City Council traffic incidents and nearby event listings. Only dated, relevant road-closure reports can affect Parque de Atracciones Madrid and Madrid Zoo. A listed event alone does not change attendance colours.</p><div id="eventList" aria-live="polite"><p>Checking municipal data…</p></div></section><div class="status" id="status" role="status">Preparing forecast…</div><div id="errorbox" class="note" style="display:none;background:#442c32;border:1px solid #a85b60;border-radius:9px;margin:0 12px 12px"></div><div class="legend"><span><i class="dot good"></i>Optimal</span><span><i class="dot fair"></i>Favourable</span><span><i class="dot mid"></i>Marginal / negative</span><span><i class="dot bad"></i>Unfavourable</span><span>⚠ Management review</span><span><i class="dot closed"></i>Closed*</span><span><i class="dot unknown"></i>Hours unverified / unavailable</span></div><div class="scroll"><table class="matrix"><thead id="thead"></thead><tbody id="tbody"><tr><td class="empty">Waiting for forecasts…</td></tr></tbody></table></div><p class="note">*Opening schedules are <strong>not yet connected</strong> to official park calendars. No park is marked closed without verified hours. Select any coloured cell for its hourly weather assessment. Dates use each park’s local time.</p><section class="detail" id="detail" aria-live="polite"><h2>Select a park and date</h2><p>Tap a forecast cell to see what is driving the attendance-impact indicator.</p></section></main><footer class="foot wrap">Prototype v18 · 24 European attractions. Weather: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (live forecasts when connected). <span class="warning">Its free API is restricted to non-commercial use; company deployment requires a compliant free commercial-use source or an appropriate licence.</span> Perceived forecast is a proxy based on daily weather codes, not Apple Weather data. Earlier forecasts influence the colour only when at least two distinct earlier-day snapshots exist and most were adverse; missing history does not prevent green. Seasonal thresholds are provisional regional assumptions, not statistically calibrated attendance forecasts. Weather icons use hourly WMO forecast conditions, including snow. Snow-depth estimates are not verified road conditions. No attendance percentages are inferred. Madrid access alerts are sourced from an automated GitHub Actions municipal-data feed; unavailable or stale data never implies roads are clear. New coordinates are approximate attraction locations; validate before operational use. Parque Warner Madrid and Parque de Atracciones Madrid use the same Madrid metropolitan reference forecast and prior forecast history to keep weather-impact ratings consistent; park-specific road-access alerts can still differ. Official opening-calendar integration remains outstanding.</footer><script>
 const parks=[{"id":"PC001","name":"Parque Warner Madrid","country":"Spain","type":"theme","lat":40.229,"lon":-3.593,"forecast":null,"error":null},{"id":"PC002","name":"Parque de Atracciones Madrid","country":"Spain","type":"theme","lat":40.413,"lon":-3.75,"forecast":null,"error":null},{"id":"PC003","name":"Movie Park Germany","country":"Germany","type":"theme","lat":51.622,"lon":6.972,"forecast":null,"error":null},{"id":"PC004","name":"Slagharen","country":"Netherlands","type":"theme","lat":52.626,"lon":6.555,"forecast":null,"error":null},{"id":"PC005","name":"Bobbejaanland","country":"Belgium","type":"theme","lat":51.2,"lon":4.904,"forecast":null,"error":null},{"id":"PC006","name":"Mirabilandia","country":"Italy","type":"theme","lat":44.338,"lon":12.263,"forecast":null,"error":null},{"id":"PC007","name":"Tusenfryd","country":"Norway","type":"theme","lat":59.748,"lon":10.779,"forecast":null,"error":null},{"id":"PC008","name":"BonBon-Land","country":"Denmark","type":"theme","lat":55.263,"lon":11.862,"forecast":null,"error":null},{"id":"PC009","name":"Tropical Islands","country":"Germany","type":"indoor","lat":52.039,"lon":13.748,"forecast":null,"error":null},{"id":"PC010","name":"Blackpool Zoo","country":"United Kingdom","type":"zoo","lat":53.82,"lon":-3.012,"forecast":null,"error":null},{"id":"PC011","name":"Aquopolis Villanueva","country":"Spain","type":"water","lat":40.45,"lon":-4.005,"forecast":null,"error":null},{"id":"PC012","name":"Aquopolis Costa Dorada","country":"Spain","type":"water","lat":41.077,"lon":1.147,"forecast":null,"error":null},{"id":"PC013","name":"Aquopolis Cullera","country":"Spain","type":"water","lat":39.185,"lon":-0.245,"forecast":null,"error":null},{"id":"PC014","name":"Aquopolis Torrevieja","country":"Spain","type":"water","lat":37.99,"lon":-0.683,"forecast":null,"error":null},{"id":"PC015","name":"Aquopolis Cartaya","country":"Spain","type":"water","lat":37.283,"lon":-7.155,"forecast":null,"error":null},{"id":"PC016","name":"Warner Beach","country":"Spain","type":"water","lat":40.229,"lon":-3.593,"forecast":null,"error":null},{"id":"PC017","name":"Madrid Zoo","country":"Spain","type":"zoo","lat":40.40941,"lon":-3.76268,"forecast":null,"error":null},{"id":"PC018","name":"Selwo Marina","country":"Spain","type":"zoo","lat":36.59238,"lon":-4.53221,"forecast":null,"error":null},{"id":"PC019","name":"Teleferico Benalmadena","country":"Spain","type":"zoo","lat":36.59886,"lon":-4.53982,"forecast":null,"error":null},{"id":"PC020","name":"Bo Sommerland","country":"Norway","type":"water","lat":59.447249,"lon":9.07274,"forecast":null,"error":null},{"id":"PC021","name":"Mirabeach","country":"Italy","type":"water","lat":44.338,"lon":12.263,"forecast":null,"error":null},{"id":"PC022","name":"Bournemouth Oceanarium","country":"United Kingdom","type":"aquarium","lat":50.71592,"lon":-1.87681,"forecast":null,"error":null},{"id":"PC023","name":"Lakes Aquarium","country":"United Kingdom","type":"aquarium","lat":54.27816,"lon":-2.95591,"forecast":null,"error":null},{"id":"PC024","name":"Atlantis Madrid, Xanadu","country":"Spain","type":"aquarium","lat":40.29947,"lon":-3.92401,"forecast":null,"error":null}];
 const $=id=>document.getElementById(id);const typeName={theme:'Outdoor theme park',water:'Outdoor water park',indoor:'Indoor water park',zoo:'Zoo / nature / cable car',aquarium:'Indoor aquarium'};let loading=false;let madridEvents=[];let madridFeed={updated_at:null,sources:{traffic:'not_yet_run',agenda:'not_yet_run'},nearby_events:[]};const previewMode=location.protocol==='file:'||location.hostname==='';
 const countryNames=[...new Set(parks.map(p=>p.country))].sort();const typeCodes=['theme','water','indoor','zoo','aquarium'];const typeLabels={theme:'Theme parks',water:'Outdoor water parks',indoor:'Indoor water parks',zoo:'Zoos / nature / cable car',aquarium:'Indoor aquariums'};const PREF_KEY='parkcast-filters-v1';
@@ -20,7 +20,7 @@ function weatherIcon(hourly,indices){
   if(!codes.length)return {symbol:'?',label:'Weather condition unavailable'};
   const count=pred=>codes.filter(pred).length;
   if(count(c=>c>=95)>0)return {symbol:'⛈️',label:'Thunderstorm'};
-  if(count(c=>c>=71&&c<=86)>=2)return {symbol:'🌨️',label:'Snow or sleet'};
+  if(count(c=>c>=71&&c<=86)>=1)return {symbol:'🌨️',label:'Snow or sleet'};
   if(count(c=>c>=61&&c<=67||c>=80&&c<=82)>=2)return {symbol:'🌧️',label:'Rain'};
   if(count(c=>c>=51&&c<=57)>=2)return {symbol:'🌦️',label:'Drizzle'};
   if(count(c=>c===45||c===48)>=3)return {symbol:'🌫️',label:'Fog'};
@@ -38,19 +38,74 @@ function seasonalColdAllowance(p,day){
   if(p.country==='Spain'||p.country==='Italy')return 2;
   return 0;
 }
+// Forecast history is recorded on this device when the app is opened or refreshed.
+// It is NOT a historical Apple Weather archive; never fabricate earlier forecasts.
+const HISTORY_KEY='parkcast-forecast-history-v1';
+function readHistory(){try{const x=JSON.parse(localStorage.getItem(HISTORY_KEY)||'{}');return x&&typeof x==='object'?x:{}}catch(e){return {}}}
+let forecastHistory=readHistory();
+function dailyOutlook(code){if(!Number.isFinite(code))return false;return (code>=51&&code<=67)||(code>=71&&code<=86)||(code>=80&&code<=82)||code>=95;}
+function saveForecastSnapshot(p){
+ if(!p.forecast?.daily?.time)return;
+ const stamp=new Date().toISOString(), today=stamp.slice(0,10);
+ const rows=forecastHistory[p.id]||[];
+ for(let i=0;i<p.forecast.daily.time.length;i++){
+  const date=p.forecast.daily.time[i];if(date<=today)continue;
+  const day=p.forecast.hourly;const ix=day.time.map((t,j)=>t.startsWith(date)&&Number(t.slice(11,13))>=10&&Number(t.slice(11,13))<18?j:-1).filter(j=>j>=0);
+  if(!ix.length)continue;
+  const mean=key=>ix.reduce((v,j)=>v+(day[key]?.[j]??0),0)/ix.length;
+  const rain=ix.reduce((v,j)=>v+(day.precipitation?.[j]??0),0);
+  const code=p.forecast.daily.weather_code?.[i];
+  rows.push({captured:stamp,date,rain,prob:mean('precipitation_probability'),cloud:mean('cloud_cover'),temp:mean('temperature_2m'),dailyRainIcon:dailyOutlook(code)});
+ }
+ forecastHistory[p.id]=rows.filter(r=>r.captured>=new Date(Date.now()-16*86400000).toISOString()).slice(-250);
+ try{localStorage.setItem(HISTORY_KEY,JSON.stringify(forecastHistory))}catch(e){}
+}
+function priorOutlook(p,day){
+ const now=Date.now();const entries=(forecastHistory[p.id]||[]).filter(r=>r.date===day&&r.captured&&now-Date.parse(r.captured)>=18*3600000&&now-Date.parse(r.captured)<=8*86400000);
+ if(!entries.length)return null;
+ // One representative snapshot per earlier calendar day, preventing refreshes from overweighting a day.
+ const perDay=new Map();for(const r of entries)perDay.set(r.captured.slice(0,10),r);
+ const arr=[...perDay.values()];
+ const concerning=arr.filter(r=>r.dailyRainIcon||r.prob>=55||r.rain>=2).length;
+ return {count:arr.length,concerning,ratio:concerning/arr.length, snapshots:arr};
+}
 function score(p,day){
-const f=p.forecast;if(!f)return null;
+// Parque Warner and Parque de Atracciones share a metropolitan visitor catchment.
+// Use one reference forecast and forecast-history record to prevent small spatial
+// weather-model differences creating contradictory attendance colours. Local
+// access alerts are still applied only to the park actually affected.
+const madridShared=(p.id==='PC001'||p.id==='PC002');
+const reference=madridShared?(parks.find(q=>q.id==='PC002')||p):p;
+const f=reference.forecast || p.forecast;if(!f)return null;
 const hourly=f.hourly;
 const indices=hourly.time.map((t,i)=>t.startsWith(day)&&Number(t.slice(11,13))>=10&&Number(t.slice(11,13))<18?i:-1).filter(i=>i>=0);
 if(!indices.length)return null;
 const avg=k=>indices.reduce((s,i)=>s+(hourly[k]?.[i]??0),0)/indices.length;
 const temp=avg('temperature_2m'),cloud=avg('cloud_cover'),rain=indices.reduce((s,i)=>s+(hourly.precipitation?.[i]??0),0),prob=avg('precipitation_probability'),wind=Math.max(...indices.map(i=>hourly.wind_gusts_10m?.[i]??0));
 const condition=weatherIcon(hourly,indices);
+const weatherCodes=indices.map(i=>Number(hourly.weather_code?.[i])).filter(Number.isFinite);
+// Snowfall is in centimetres; snow_depth is in metres in Open-Meteo.
+const snow=indices.reduce((sum,i)=>sum+(Number(hourly.snowfall?.[i])||0),0);
+const snowDepth=Math.max(0,...indices.map(i=>(Number(hourly.snow_depth?.[i])||0)*100));
+const previous=hourly.time.map((t,i)=>t.slice(0,10)<day&&t.slice(0,10)>=new Date(Date.parse(day+'T12:00:00Z')-2*86400000).toISOString().slice(0,10)?i:-1).filter(i=>i>=0);
+const recentSnow=previous.reduce((sum,i)=>sum+(Number(hourly.snowfall?.[i])||0),0);
+const recentDepth=Math.max(0,...previous.map(i=>(Number(hourly.snow_depth?.[i])||0)*100));
+const residualSnow=snowDepth; // current modelled ground snow; prior snow alone does not prove roads remain snowy
+
+const dayIndex=f.daily?.time?.indexOf(day)??-1;
+const allDayRainIcon=dayIndex>=0&&dailyOutlook(f.daily.weather_code?.[dayIndex]);
+const prior=priorOutlook(madridShared?reference:p,day);
 // Each weather dimension is assessed once; W07/W08 and W04/W05/W06 are mutually exclusive.
 let penalty=0;const reasons=[];const add=(points,reason)=>{penalty+=points;reasons.push(reason)};
 if(p.type==='indoor'||p.type==='aquarium'){
-  if(temp>20&&rain<1&&prob<40)add(1,'Sunny, pleasant outdoor weather may draw guests to outdoor activities');
-  if(rain>=2||prob>=65)add(-1,'Rain may favour indoor visits');
+  // Mild, sunny winter days are especially competitive for indoor leisure.
+  const month=Number(day.slice(5,7));
+  const winter=[10,11,12,1,2,3].includes(month);
+  const bright=cloud<=40&&rain<0.5&&prob<40;
+  if(bright&&temp>=(winter?8:18))add(winter?2:1,'Bright, pleasant outdoor weather competes with indoor leisure, especially in winter');
+  else if(temp>20&&rain<1&&prob<40)add(1,'Pleasant outdoor weather competes with indoor visits');
+  if((rain>=1||prob>=55)&&cloud>=60)add(-1,'Gloomy or rainy weather may favour indoor visits');
+  else if(cloud>=80&&temp<=15)add(-1,'Overcast, cool weather may favour indoor visits');
 }else{
   if(p.type==='water'){
     const south=p.country==='Spain'||p.country==='Italy';const nordic=p.id==='PC020';
@@ -101,27 +156,274 @@ if(p.type==='indoor'||p.type==='aquarium'){
   if(wind>=65)add(2,'Strong wind gusts could disrupt attractions');
   else if(wind>=45)add(1,'Wind gusts may affect comfort or operations');
 }
+// Snow is an ACCESSIBILITY risk, including snow remaining from preceding days.
+// Grid-cell snow depth is NOT proof that roads are snow-covered or impassable.
+const snowConcern=snow>=0.5||residualSnow>=2||(recentSnow>=2&&temp<=2);
+const snowSevere=snow>=4||residualSnow>=8;
+if(snowSevere)add(3,'Snowfall or accumulated snow may seriously restrict road access and discourage travel');
+else if(snowConcern)add(1,'Forecast or recently accumulated snow may discourage drivers even if today is dry');
+// Public forecast perception: a daily rain symbol can discourage plans even if
+// rainfall falls outside park hours. This is NOT a live Apple Weather icon.
+if(p.type!=='indoor'&&p.type!=='aquarium'&&allDayRainIcon&&rain<2&&prob<65){
+  add(1,'Daily forecast shows a rain-related symbol despite limited daytime rain; possible perception effect');
+}
+// Earlier forecasts may influence bookings/plans; only actual recorded snapshots count.
+if(prior&&prior.ratio>=0.5){
+  add(p.type==='indoor'||p.type==='aquarium'?-1:1,'Earlier forecasts looked rainy ('+prior.concerning+'/'+prior.count+' recorded days); advance plans may have been influenced');
+}
 // Cable-car operating-risk override based on peak hourly gust during indicative hours.
 // Strict thresholds: >12 m/s orange, >15 m/s red; exactly 12/15 do not cross the respective threshold.
-let cls=penalty>=3?'bad':penalty>=1?'mid':'good';
+// v11: Green represents clearly favourable conditions, not perfect weather.
+// Missing earlier snapshots are neutral, rather than an automatic disqualification.
+// Only recorded, materially adverse earlier forecasts can hold a day at light green.
+const indoors=p.type==='indoor'||p.type==='aquarium';
+const outdoorOptimal=p.type==='theme'||p.type==='zoo'||p.id==='PC019';
+const comfortablyDry=rain<0.5&&prob<40&&cloud<=65;
+const optimal=penalty<0 || (penalty===0 && (
+  indoors ? (cloud>=65 || rain>=0.5 || prob>=45) :
+  p.type==='water' ? (rain<0.5&&prob<35&&cloud<=45) :
+  outdoorOptimal&&comfortablyDry
+));
+// Prior forecasts matter only when at least two distinct earlier-day observations
+// exist and a majority were adverse to this particular attraction type.
+const adversePrior=!!prior&&prior.count>=2&&prior.snapshots.filter(r=>
+  indoors ? (r.cloud<=35&&r.rain<0.5&&r.prob<35&&r.temp>=8) :
+  (r.dailyRainIcon||r.prob>=55||r.rain>=2)
+).length>prior.count/2;
+let cls=penalty>=3?'bad':penalty>=1?'mid':optimal&&!adversePrior?'good':'fair';
+if(optimal&&adversePrior)reasons.push('Light green: most recorded earlier forecasts were unfavourable for this attraction and may have affected advance planning');
+if(optimal&&!prior?.count)reasons.push('Earlier forecasts unavailable: rated on current conditions without inventing forecast history');
+if(snowSevere)cls='bad';
+else if(snowConcern&&(cls==='good'||cls==='fair'))cls='mid';
 if(p.id==='PC019'){
   if(wind>54){cls='bad';reasons.unshift('CABLE CAR WIND ALERT: peak gust exceeds 15 m/s; red operational-disruption risk');}
-  else if(wind>43.2){if(cls==='good')cls='mid';reasons.unshift('CABLE CAR WIND ALERT: peak gust exceeds 12 m/s; at least orange operational-disruption risk');}
+  else if(wind>43.2){if(cls==='good'||cls==='fair')cls='mid';reasons.unshift('CABLE CAR WIND ALERT: peak gust exceeds 12 m/s; at least orange operational-disruption risk');}
 }
 // Confirmed Madrid city events can worsen the attendance indicator; never improve it.
 // Park-specific access impacts require further validation; this is a cautious portfolio alert.
 const relevant=(p.id==='PC002'||p.id==='PC017')?madridEvents.filter(e=>e.from<=day&&e.to>=day&&Array.isArray(e.parks)&&e.parks.includes(p.id)):[];
 for(const event of relevant){
   if(event.severity==='bad')cls='bad';
-  else if(cls==='good')cls='mid';
+  else if(cls==='good'||cls==='fair')cls='mid';
   reasons.unshift('MADRID ACCESS ALERT: '+event.name+' ('+(event.severity==='bad'?'major verified disruption':'potential disruption')+')');
 }
-return{cls,temp,rain,prob,wind,cloud,condition,penalty,reasons:reasons.length?reasons:['Conditions broadly favourable for this attraction type'],events:relevant,hours:'10:00–18:00 (indicative only; official hours unverified)'};
+return{cls,temp,rain,prob,wind,cloud,weatherCodes,snow,snowDepth,recentSnow,residualSnow,snowConcern,snowSevere,condition,penalty,allDayRainIcon,prior,reasons:reasons.length?reasons:['Conditions broadly favourable for this attraction type'],events:relevant,sharedMadridForecast:madridShared,hours:'10:00–18:00 (indicative only; official hours unverified)'};
 }
-function render(){const days=Number($('days').value);const selected=parks.filter(p=>chosenCountries.has(p.country)&&chosenTypes.has(p.type));const base=parks.find(p=>p.forecast)?.forecast?.daily?.time||Array.from({length:days},(_,i)=>{const d=new Date();d.setUTCDate(d.getUTCDate()+i);return d.toISOString().slice(0,10)});$('thead').innerHTML='<tr><th>Attraction</th>'+base.slice(0,days).map(d=>'<th>'+new Date(d+'T12:00:00Z').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'UTC'})+'</th>').join('')+'</tr>';
-$('tbody').innerHTML='';for(const p of selected){const tr=document.createElement('tr');const td=document.createElement('td');td.innerHTML='<div class="parkname"></div><div class="type"></div>';td.querySelector('.parkname').textContent=p.name;td.querySelector('.type').textContent=p.country+' · '+typeName[p.type];tr.append(td);for(const d of base.slice(0,days)){const x=score(p,d),cell=document.createElement('td'),b=document.createElement('button');b.className='tile '+(x?.cls||'unknown');const icon=document.createElement('span');icon.className='weather-icon';icon.textContent=x?x.condition.symbol:'—';b.append(icon);const small=document.createElement('small');small.textContent=x?Math.round(x.temp)+'°C':'No data';b.append(small);if(p.id==='PC019'&&x){const gust=document.createElement('span');gust.className='wind-indicator';const sym=document.createElement('span');sym.className='wind-symbol';sym.textContent='🌬️ ';gust.append(sym,document.createTextNode((x.wind/3.6).toFixed(1)+' m/s'));gust.title='Maximum forecast wind gust during indicative 10:00–18:00 hours';b.append(gust);}b.setAttribute('aria-label',p.name+', '+d+', '+(x?.cls||'forecast unavailable')+(x?', '+x.condition.label:'')+(p.id==='PC019'&&x?', peak wind gust '+(x.wind/3.6).toFixed(1)+' metres per second':'') );b.addEventListener('click',()=>details(p,d,x));cell.append(b);tr.append(cell)}$('tbody').append(tr)}if(!selected.length)$('tbody').innerHTML='<tr><td class="empty">No parks match your selected countries and attraction types. Choose at least one of each.</td></tr>'}
-function details(p,d,x){const el=$('detail');el.replaceChildren();const h=document.createElement('h2');h.textContent=p.name+' · '+d;el.append(h);const badge=document.createElement('span');badge.className='tag';badge.textContent=x?({good:'GREEN · Favourable',mid:'ORANGE · Moderate / neutral',bad:'RED · Unfavourable'}[x.cls]):'Forecast unavailable';el.append(badge);const desc=document.createElement('p');desc.textContent=x?x.reasons.join('. ')+'.':'Weather data could not be retrieved for this park. Try refreshing.';el.append(desc);if(x?.events?.length){for(const event of x.events){if(event.source){const a=document.createElement('a');a.href=event.source;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Event source: '+event.name;el.append(a)}}}if(x){const m=document.createElement('div');m.className='metrics';for(const [label,val] of [['Conditions',x.condition.symbol+' '+x.condition.label],['Mean temp',x.temp.toFixed(1)+'°C'],['Rain 10–18h',x.rain.toFixed(1)+' mm'],['Rain probability',Math.round(x.prob)+'%'],['Peak gust',Math.round(x.wind)+' km/h'+(p.id==='PC019'?' ('+(x.wind/3.6).toFixed(1)+' m/s)':'')]]){const div=document.createElement('div');div.className='metric';const span=document.createElement('span');span.textContent=label;const strong=document.createElement('strong');strong.textContent=val;div.append(span,strong);m.append(div)}el.append(m)}const caveat=document.createElement('p');caveat.className='note';caveat.textContent='Official operating calendar not yet verified. Weather assessment uses indicative 10:00–18:00 local time; opening status unknown. This is a qualitative heuristic, not a quantified attendance forecast.';el.append(caveat);el.scrollIntoView({behavior:'smooth',block:'nearest'})}
-async function load(){if(loading)return;$('errorbox').style.display='none';loading=true;$('refresh').disabled=true;$('status').textContent='Loading live weather forecasts…';let done=0;const queue=[...parks];async function worker(){while(queue.length){const p=queue.shift();try{const u=new URL('https://api.open-meteo.com/v1/forecast');for(const [k,v] of Object.entries({latitude:p.lat,longitude:p.lon,hourly:'temperature_2m,precipitation_probability,precipitation,wind_gusts_10m,cloud_cover,weather_code',daily:'weather_code',forecast_days:14,timezone:'auto'}))u.searchParams.set(k,v);const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),8000);try{const r=await fetch(u,{signal:controller.signal});if(!r.ok)throw Error('HTTP '+r.status);p.forecast=await r.json();p.error=null}finally{clearTimeout(timer)}}catch(e){p.error=String(e);p.forecast=null}done++;$('status').textContent=`Forecasts loaded: ${done}/${parks.length} · ${parks.filter(p=>p.forecast).length} successful`;if(done%4===0||done===parks.length)render()}}await Promise.all(Array.from({length:8},worker));loading=false;$('refresh').disabled=false;const success=parks.filter(p=>p.forecast).length;$('status').textContent=success?`Updated ${new Date().toLocaleTimeString()} · ${success}/${parks.length} parks with live weather · Official hours not connected`:'Live forecasts unavailable in this viewer';if(!success){$('errorbox').style.display='block';$('errorbox').textContent='This file viewer may block external weather requests. To load live forecasts, publish index.html as a website and open its HTTPS address in Safari. Refreshing inside this preview may not help. No weather values have been invented.';}render()}
+// Escalation flags are review prompts, not closure recommendations or verified safety limits.
+// Keep them separate from attendance colours and ordinary operational alerts.
+function closureReview(p,x){
+ if(!x)return [];
+ const flags=[];
+ const codes=x.weatherCodes||[];
+ const thunder=codes.some(c=>c>=95&&c<=99);
+ const outdoor=!['indoor','aquarium'].includes(p.type);
+ const extremeSnow=x.snow>=4||x.residualSnow>=8;
+ // High-consequence weather: ask the GM to verify actual conditions and park-specific procedures.
+ if(outdoor&&thunder)flags.push({kind:'safety',title:'Severe-weather operating review',reason:'Thunderstorms are forecast during the visiting period.',action:'Check official weather alerts, lightning procedures, ride restrictions and evacuation arrangements before opening and throughout the day.'});
+ if(outdoor&&x.wind>=75&&p.id!=='PC019')flags.push({kind:'safety',title:'High-wind operating review',reason:'Peak gusts are forecast at '+Math.round(x.wind)+' km/h.',action:'Review ride-by-ride wind limits, tree exposure and outdoor guest areas. Consider partial or full closure only under site-approved procedures.'});
+ if(p.id==='PC019'&&x.wind>54)flags.push({kind:'safety',title:'Cable-car operating review',reason:'Forecast gusts exceed 15 m/s ('+(x.wind/3.6).toFixed(1)+' m/s).',action:'Verify measured and forecast winds against the cable-car operating procedures and decide whether service can safely run.'});
+ if(outdoor&&extremeSnow)flags.push({kind:'safety',title:'Snow and access review',reason:'Significant snowfall or modelled snow accumulation is forecast.',action:'Verify local road access, paths, evacuation routes and safe operating conditions with the site team and road authorities.'});
+ // Low-demand signals require unusually poor conditions. Weather alone cannot establish
+ // whether closing makes financial sense: no budget, booking or attendance inputs exist.
+ if(p.type==='water'&&x.temp<15)flags.push({kind:'commercial',title:'Low-demand opening review',reason:'Mean daytime temperature is '+x.temp.toFixed(1)+'°C, exceptionally cold for an outdoor water park.',action:'Compare expected bookings and walk-up demand with minimum operating costs before deciding whether to open.'});
+ else if(outdoor&&p.id!=='PC019'&&x.cls==='bad'&&x.rain>=10)flags.push({kind:'commercial',title:'Low-demand opening review',reason:'At least '+x.rain.toFixed(1)+' mm of rain is forecast during visiting hours.',action:'Review bookings, advance sales, staffing and the break-even attendance level; consider reduced operations before full closure.'});
+ return flags;
+}
+function render(){const days=Number($('days').value);const selected=parks.filter(p=>chosenCountries.has(p.country)&&chosenTypes.has(p.type));const base=(parks.find(p=>p.forecast)?.forecast?.daily?.time||[]).filter(d=>d>=new Date().toLocaleDateString('en-CA',{timeZone:'Europe/Madrid'}))||Array.from({length:days},(_,i)=>{const d=new Date();d.setUTCDate(d.getUTCDate()+i);return d.toISOString().slice(0,10)});$('thead').innerHTML='<tr><th>Attraction</th>'+base.slice(0,days).map(d=>'<th>'+new Date(d+'T12:00:00Z').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'UTC'})+'</th>').join('')+'</tr>';
+$('tbody').innerHTML='';for(const p of selected){const tr=document.createElement('tr');const td=document.createElement('td');td.innerHTML='<div class="parkname"></div><div class="type"></div>';td.querySelector('.parkname').textContent=p.name;td.querySelector('.type').textContent=p.country+' · '+typeName[p.type];tr.append(td);for(const d of base.slice(0,days)){const x=score(p,d),cell=document.createElement('td'),b=document.createElement('button');b.className='tile '+(x?.cls||'unknown');const icon=document.createElement('span');icon.className='weather-icon';icon.textContent=x?x.condition.symbol:'—';b.append(icon);const small=document.createElement('small');small.textContent=x?Math.round(x.temp)+'°C':'No data';b.append(small);const review=closureReview(p,x);if(review.length){const flag=document.createElement('span');flag.className='closure-flag';flag.textContent='!';flag.setAttribute('aria-label','Management review recommended');flag.title=review.map(r=>r.title+': '+r.reason).join(' | ');b.append(flag);}if(p.id==='PC019'&&x){const gust=document.createElement('span');gust.className='wind-indicator';const sym=document.createElement('span');sym.className='wind-symbol';sym.textContent='🌬️ ';gust.append(sym,document.createTextNode((x.wind/3.6).toFixed(1)+' m/s'));gust.title='Maximum forecast wind gust during indicative 10:00–18:00 hours';b.append(gust);}b.setAttribute('aria-label',p.name+', '+d+', '+(x?.cls||'forecast unavailable')+(x?', '+x.condition.label:'')+(p.id==='PC019'&&x?', peak wind gust '+(x.wind/3.6).toFixed(1)+' metres per second':'') );b.addEventListener('click',()=>details(p,d,x));cell.append(b);tr.append(cell)}$('tbody').append(tr)}if(!selected.length)$('tbody').innerHTML='<tr><td class="empty">No parks match your selected countries and attraction types. Choose at least one of each.</td></tr>'}
+function practicalExplanation(p,x){
+ // All statements are based on the same weather inputs that produced the colour.
+ // Explain the strongest relevant driver first; never substitute generic risk copy.
+ const indoor=p.type==='indoor'||p.type==='aquarium';
+ const water=p.type==='water';
+ const zoo=p.type==='zoo';
+ const cable=p.id==='PC019';
+ const name=water?'outdoor water park':indoor?(p.type==='aquarium'?'indoor aquarium':'indoor attraction'):cable?'cable car':zoo?'zoo':'theme park';
+ const t=x.temp.toFixed(1)+'°C';
+ const wind=Math.round(x.wind)+' km/h';
+ const what=[];const why=[];
+ const add=(fact,behaviour)=>{what.push(fact);if(behaviour)why.push(behaviour)};
+ // Actual access alerts and forecast snow take priority over leisure comfort.
+ if(x.events?.length){
+  const major=x.events.some(e=>e.severity==='bad');
+  add((major?'Major':'Potential')+' road-access disruption reported near this park.',
+    'Travel times and access routes may be unreliable. Some guests will avoid the journey or postpone their visit.');
+ }
+ if(x.snowSevere){
+  add('Significant snow risk: '+x.snow.toFixed(1)+' cm forecast and '+x.residualSnow.toFixed(1)+' cm estimated on the ground.',
+    'Guests may be reluctant or unable to drive, even if the weather improves later. Road conditions have not been confirmed.');
+ }else if(x.snowConcern){
+  add('Snowfall or remaining snow may affect access to the park.',
+    'Concern about icy or snowy roads may discourage families from travelling. Road conditions have not been confirmed.');
+ }
+ // Cable car: operational wind exposure is unique and not tied to temperature.
+ if(cable&&x.wind>54){
+  add('Forecast wind gusts of '+(x.wind/3.6).toFixed(1)+' m/s exceed the 15 m/s red threshold for the cable car.',
+    'Guests may avoid booking or travelling if they expect the cable car to be suspended. This is a risk indicator, not a confirmed closure.');
+ }else if(cable&&x.wind>43.2){
+  add('Forecast wind gusts of '+(x.wind/3.6).toFixed(1)+' m/s exceed the 12 m/s caution threshold for the cable car.',
+    'Uncertainty about whether the cable car will operate may lead guests to postpone their trip.');
+ }else if(x.wind>=65){
+  add('Strong gusts of up to '+wind+' are forecast'+(indoor?' and may affect travel.':'.'),
+    indoor?'Windy conditions may make the journey less appealing, even though activities are indoors.':
+    zoo?'Strong winds can make a zoo visit unpleasant, particularly for families with children.':'Strong winds make a full day outdoors less comfortable and may restrict exposed rides.');
+ }else if(x.wind>=45&&!indoor){
+  add('Gusts of up to '+wind+' may make exposed areas uncomfortable.',
+    'Guests may shorten their visit or choose somewhere more sheltered.');
+ }
+ if(water){
+  // A water park must NEVER inherit generic 'comfortable outdoors' messaging.
+  const south=p.country==='Spain'||p.country==='Italy';
+  const cold=south?22:(p.id==='PC020'?17:19);
+  const marginal=south?26:(p.id==='PC020'?20:23);
+  if(x.temp<cold){
+   add('At '+t+', it is too cold for an outdoor water park'+(south?' in Spain or Italy':'')+'.'+(x.rain<0.5?' The lack of rain does not change that.':''),
+    'Swimming and waterslides will not appeal to most families at this temperature. Many will choose another activity or postpone their visit.');
+  }else if(x.temp<marginal){
+   add('At '+t+', conditions are cool for an outdoor water park; demand is likely to be softer than on a warm day.',
+    'Guests who are undecided may prefer an activity that does not involve getting wet.');
+  }else if(x.temp>40){
+   add('At '+t+', extreme heat may make even a water-park visit less comfortable.',
+    'Some families may avoid the hottest part of the day or stay at home.');
+  }else if(x.temp>=30&&x.temp<=37&&south){
+   add('At '+t+', the heat is well suited to swimming and water attractions.',null);
+  }else{
+   add('At '+t+', the temperature is reasonably suited to outdoor water activities.',null);
+  }
+ }else if(indoor){
+  const month=Number(x.day?.slice(5,7)||0);const winter=[10,11,12,1,2,3].includes(month);
+  if(x.cloud>=65||x.rain>=0.5||x.prob>=55){
+   add('Grey skies'+(x.rain>=0.5?' and wet weather':'')+' make an indoor visit more attractive than outdoor alternatives.',
+    'Guests looking for a weather-proof day out may favour this attraction.');
+  }else if(x.cloud<=40&&x.rain<0.5&&x.temp>=(winter?8:18)){
+   add('Dry, bright weather at '+t+' offers appealing outdoor alternatives.',
+    'Some families may use the pleasant weather for outdoor activities instead of visiting an indoor attraction.');
+  }else{
+   add('The forecast is broadly suitable for an indoor visit, with no major weather-related barrier to demand.',null);
+  }
+ }else if(!cable){
+  const north=p.country!=='Spain'&&p.country!=='Italy';
+  const extremeLow=p.id==='PC010'?0:north?5:7;
+  const extremeHigh=p.id==='PC007'||p.id==='PC008'?30:north?32:36;
+  const allowance=[10,11,12,1,2,3].includes(Number(x.day?.slice(5,7)))?(north?3:2):0;
+  const moderateLow=(p.id==='PC010'?7:(p.id==='PC007'||p.id==='PC008'?11:north?12:13))-allowance;
+  const moderateHigh=p.id==='PC007'||p.id==='PC008'?28:north?30:33;
+  const nordicOct=(p.id==='PC007'||p.id==='PC008')&&x.day?.slice(5,7)==='10'&&x.cloud<=35&&x.rain<0.5&&x.prob<40&&x.temp>=2&&x.temp<11;
+  if(nordicOct){
+   add('Sunny, dry weather at '+t+' is a good October day for this park despite the cool temperature.',null);
+  }else if(x.temp<extremeLow){
+   add('At '+t+', it is unusually cold for this '+name+'.',
+    'Families may shorten or postpone an outdoor visit because of the cold.');
+  }else if(x.temp>extremeHigh){
+   add('At '+t+', heat is likely to make a full day outdoors uncomfortable.',
+    'Guests may avoid the hottest hours or choose a cooler activity.');
+  }else if(x.temp<moderateLow){
+   add('At '+t+', conditions are cooler than ideal for this '+name+', even allowing for the season.',
+    'Some visitors may prefer a warmer day, particularly for a long outdoor visit.');
+  }else if(x.temp>moderateHigh){
+   add('At '+t+', it may be uncomfortably hot for a full outdoor visit.',
+    'Guests may shorten their stay or look for an indoor alternative.');
+  }
+ }
+ // Rain is assessed during visiting hours, not only from a 24-hour icon.
+ if(!indoor){
+  if(x.rain>=6){
+   add('Heavy rain is expected during visiting hours ('+x.rain.toFixed(1)+' mm).',
+    'Wet conditions can deter advance bookings and spontaneous visits, especially from families.');
+  }else if(x.rain>=2){
+   add(x.rain.toFixed(1)+' mm of rain is expected during visiting hours.',
+    'Guests may expect a wet visit and choose another day.');
+  }else if(x.rain>=0.5&&p.id!=='PC010'){
+   add('Some rain is forecast during visiting hours ('+x.rain.toFixed(1)+' mm).',
+    'Even light rain can discourage visitors deciding whether to travel.');
+  }else if(x.prob>=65&&p.id!=='PC010'){
+   add('Rain is uncertain, but the daytime forecast gives a '+Math.round(x.prob)+'% average chance of precipitation.',
+    'Guests may avoid committing to an outdoor visit when rain seems likely.');
+  }else if(x.allDayRainIcon&&x.rain<2){
+   add('The full-day forecast suggests rain, even though only '+x.rain.toFixed(1)+' mm is expected during visiting hours.',
+    'Some guests may see a rain symbol when planning and choose another day without checking the hourly forecast.');
+  }
+ }
+ if(x.prior?.count>=2){
+  const adverse=x.prior.snapshots.filter(r=>indoor?
+   (r.cloud<=35&&r.rain<0.5&&r.prob<35&&r.temp>=8):
+   (r.dailyRainIcon||r.prob>=55||r.rain>=2)).length;
+  if(adverse>x.prior.count/2){
+   add('Earlier forecasts were less favourable on '+adverse+' of '+x.prior.count+' recorded days.',
+    'Some guests may already have made other plans before the forecast improved.');
+  }
+ }
+ if(!what.length){
+  add(cable?'Wind conditions are within the cable-car weather thresholds.':
+    zoo?'Weather is suitable for a visit to the zoo.':
+    'Weather conditions are suitable for an outdoor theme-park visit.',null);
+ }
+ // The colour is derived from the score; describe it without inventing a cause.
+ const intro={
+  good:'Conditions are well suited to attracting visitors.',
+  fair:'Conditions are favourable overall, although not quite optimal.',
+  mid:'Weather is likely to hold back some attendance.',
+  bad:'Weather is likely to significantly reduce demand.'
+ }[x.cls];
+ // Prevent a reassuring opening when the rating is red due to an override.
+ return {what:intro+' '+what.join(' '),why:why.join(' '),classification:''};
+}
+// Operational awareness is distinct from the attendance score. These are
+// potential equipment/comfort constraints, not verified site-specific limits.
+function operationalAlerts(p,x){
+ const alerts=[];
+ const rideOrCable=p.type==='theme'||p.id==='PC019';
+ if(p.type==='theme'&&x.temp<5){
+  alerts.push({title:'Potential cold-weather ride restrictions',
+   body:'The forecast mean temperature during the assessment window is '+x.temp.toFixed(1)+'°C, below 5°C. Some rides or mechanical systems may have minimum operating-temperature requirements. Individual attractions could be unavailable even if the park remains open. Check each ride’s manufacturer limits and local operating procedures; the forecast mean does not establish the temperature at every ride or hour.'});
+ }
+ if(rideOrCable&&x.wind>54){
+  alerts.push({title:'Potential wind-related attraction restrictions',
+   body:'Peak forecast gusts reach '+(x.wind/3.6).toFixed(1)+' m/s, exceeding the 15 m/s awareness threshold. Some rides or the cable car may need to suspend operations, depending on equipment-specific limits and measured on-site conditions. This is a risk alert, not a confirmed closure.'});
+ }
+ if(p.id==='PC009'&&x.temp< -2){
+  alerts.push({title:'Tropical Islands — indoor climate monitoring',
+   body:'The forecast mean outdoor temperature is '+x.temp.toFixed(1)+'°C, below −2°C. Very cold external conditions may challenge dome heating and indoor thermal comfort. This is an operational guest-experience alert, not an attendance penalty. Verify actual indoor temperature, HVAC capacity and guest comfort on site.'});
+ }
+ return alerts;
+}
+function details(p,d,x){
+ const el=$('detail');el.replaceChildren();
+ const h=document.createElement('h2');h.textContent=p.name+' · '+d;el.append(h);
+ const badge=document.createElement('span');badge.className='tag';badge.textContent=x?({good:'GREEN · Optimal',fair:'LIME · Favourable',mid:'ORANGE · Marginal / negative',bad:'RED · Unfavourable'}[x.cls]):'Forecast unavailable';el.append(badge);
+ if(x){
+  const reviews=closureReview(p,x);
+  for(const review of reviews){
+    const panel=document.createElement('div');panel.className='review-banner';
+    const heading=document.createElement('strong');heading.textContent='⚠ MANAGEMENT REVIEW — '+review.title;
+    const reason=document.createElement('div');reason.textContent=review.reason;
+    const action=document.createElement('div');action.style.marginTop='5px';action.textContent=review.action;
+    panel.append(heading,reason,action);el.append(panel);
+  }
+  const explanation=practicalExplanation(p,{...x,day:d});
+  const sections=[['WHY THIS COLOUR',explanation.what]];
+  if((x.cls==='mid'||x.cls==='bad')&&explanation.why)sections.push(['WHY GUESTS MAY CHANGE THEIR PLANS',explanation.why]);
+  for(const [label,body] of sections){
+   const heading=document.createElement('h3');heading.textContent=label;heading.style.cssText='font-size:12px;letter-spacing:.06em;color:#9bc8e9;margin:18px 0 4px';el.append(heading);
+   const para=document.createElement('p');para.textContent=body;para.style.margin='0 0 8px';el.append(para);
+  }
+  const ops=operationalAlerts(p,x);
+  if(ops.length){
+   const heading=document.createElement('h3');heading.textContent='OPERATIONAL CONSIDERATIONS';heading.style.cssText='font-size:12px;letter-spacing:.06em;color:#ffd59a;margin:18px 0 6px';el.append(heading);
+   for(const alert of ops){
+    const title=document.createElement('p');title.style.cssText='font-weight:700;margin:8px 0 2px;color:#f8e4c4';title.textContent='⚠ '+alert.title;el.append(title);
+    const body=document.createElement('p');body.style.margin='0 0 9px';body.textContent=alert.body;el.append(body);
+   }
+  }
+  if(x.events?.length){for(const event of x.events){if(event.source){const a=document.createElement('a');a.href=event.source;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Official access report: '+event.name;el.append(a)}}}
+  const m=document.createElement('div');m.className='metrics';m.style.marginTop='18px';
+  const values=[['Conditions',x.condition.symbol+' '+x.condition.label],['Mean temp',x.temp.toFixed(1)+'°C'],['Rain 10–18h',x.rain.toFixed(1)+' mm'],['Rain probability',Math.round(x.prob)+'%'],['Peak gust',Math.round(x.wind)+' km/h'+(p.id==='PC019'?' ('+(x.wind/3.6).toFixed(1)+' m/s)':'')],['Snow 10–18h',x.snow.toFixed(1)+' cm'],['Estimated snow depth',x.residualSnow.toFixed(1)+' cm']];
+  for(const [label,val] of values){const div=document.createElement('div');div.className='metric';const span=document.createElement('span');span.textContent=label;const strong=document.createElement('strong');strong.textContent=val;div.append(span,strong);m.append(div)}el.append(m);
+ }else{const para=document.createElement('p');para.textContent='Weather data unavailable. Try refreshing forecasts.';el.append(para)}
+ const caveat=document.createElement('p');caveat.className='note';caveat.textContent='Opening calendar not yet verified; assessment uses indicative 10:00–18:00. Snow accumulation is a forecast/model estimate, not verified road access. Operational alerts are advisory, not verified ride limits or confirmed closures. Colours are qualitative attendance indicators. Management-review flags are advisory and never confirm that a park should close.';el.append(caveat);el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+async function load(){if(loading)return;$('errorbox').style.display='none';loading=true;$('refresh').disabled=true;$('status').textContent='Loading live weather forecasts…';let done=0;const queue=[...parks];async function worker(){while(queue.length){const p=queue.shift();try{const u=new URL('https://api.open-meteo.com/v1/forecast');for(const [k,v] of Object.entries({latitude:p.lat,longitude:p.lon,hourly:'temperature_2m,precipitation_probability,precipitation,wind_gusts_10m,cloud_cover,weather_code,snowfall,snow_depth',daily:'weather_code',forecast_days:14,past_days:2,timezone:'auto'}))u.searchParams.set(k,v);const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),8000);try{const r=await fetch(u,{signal:controller.signal});if(!r.ok)throw Error('HTTP '+r.status);p.forecast=await r.json();p.error=null;saveForecastSnapshot(p)}finally{clearTimeout(timer)}}catch(e){p.error=String(e);p.forecast=null}done++;$('status').textContent=`Forecasts loaded: ${done}/${parks.length} · ${parks.filter(p=>p.forecast).length} successful`;if(done%4===0||done===parks.length)render()}}await Promise.all(Array.from({length:8},worker));loading=false;$('refresh').disabled=false;const success=parks.filter(p=>p.forecast).length;$('status').textContent=success?`Updated ${new Date().toLocaleTimeString()} · ${success}/${parks.length} parks with live weather · Official hours not connected`:'Live forecasts unavailable in this viewer';if(!success){$('errorbox').style.display='block';$('errorbox').textContent='This file viewer may block external weather requests. To load live forecasts, publish index.html as a website and open its HTTPS address in Safari. Refreshing inside this preview may not help. No weather values have been invented.';}render()}
 function renderEvents(){
  const list=$('eventList');list.replaceChildren();
  const line=(message)=>{const el=document.createElement('p');el.textContent=message;list.append(el)};
