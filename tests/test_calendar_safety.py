@@ -39,6 +39,15 @@ class CalendarSafetyTests(unittest.TestCase):
         self.assertEqual(parsed["2026-10-25"]["status"], "open")
         self.assertEqual(calendars.parse_secondary_month("<h1>October 2026</h1><p>Mon 26 Closed</p>", 2026, 10), {})
 
+    def test_walsrode_is_zoo_with_explicit_2026_dates(self):
+        park = next(row for row in calendars.PARKS if row[0] == "PC025")
+        self.assertEqual(park[1], "Weltvogelpark Walsrode")
+        result, diagnostics = {}, {}
+        calendars.apply_walsrode_2026(result, diagnostics)
+        self.assertEqual(result["PC025"]["days"]["2026-10-30"]["status"], "open")
+        self.assertEqual(result["PC025"]["days"]["2026-11-01"]["status"], "open")
+        self.assertNotIn("2026-11-02", result["PC025"]["days"])
+
     def test_2026_season_rule_never_rolls_into_2027(self):
         self.assertIsNone(calendars.official_season("PC020", datetime.datetime(2027, 1, 1)))
 
