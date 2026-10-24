@@ -79,7 +79,7 @@ def parse_schedule(data):
 # 'From' is conservative (today or the verified start), not a guessed season-end date.
 # Ticketing pages are labelled secondary; they are not represented as official websites.
 OFFICIAL_SEASON_SOURCES={
- 'PC008':('https://www.bonbonland.dk/halloween',r'alle weekender frem til den 25\\. oktober|alle weekender frem til den 25. oktober','official'),
+ 'PC008':('https://www.bonbonland.dk/halloween',r'alle weekender frem til den 25. oktober','official'),
  'PC020':('https://www.sommarland.no/priser-og-apningstider/apningstider',r'f[øo]rste [åa]pningsdag i 2026 er 6\. juni.*siste dag er 16\. august','official'),
  'PC011':('https://villanueva.aquopolis.es/',r'nos vemos en 2027|volvemos en 2027','official'),
  'PC012':('https://costa-dorada.aquopolis.es/',r'nos vemos en 2027','official'),
