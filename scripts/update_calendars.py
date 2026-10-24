@@ -183,8 +183,7 @@ VERIFIED_DATED_CLOSURES={
 DATED_SOURCES={
  'PC001':'https://queue-times.com/parks/298/calendar',
 }
-def apply_dated_closures(result,diagnostics)
- apply_secondary_calendars(result,diagnostics,now):
+def apply_dated_closures(result,diagnostics):
  for pid,dates in VERIFIED_DATED_CLOSURES.items():
   entry=result.setdefault(pid,{'name':next(row[1] for row in PARKS if row[0]==pid),'days':{}})
   conflicts=[]
