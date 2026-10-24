@@ -156,7 +156,13 @@ def apply_secondary_calendars(result,diagnostics,now):
   try:
    req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; ParkCast/1.0)','Accept':'text/html'})
    with urllib.request.urlopen(req,timeout=20) as response:page=response.read(1200000).decode('utf-8','replace')
-   days=parse_secondary_month(page,now.year,now.month)
+   months=[(now.year,now.month)]
+   future=now.date()+datetime.timedelta(days=14)
+   if (future.year,future.month)!=(now.year,now.month):months.append((future.year,future.month))
+   days={}
+   for year,month in months:
+    parsed=parse_secondary_month(page,year,month)
+    if parsed:days.update(parsed)
    if not days:raise ValueError('Monthly calendar parser returned insufficient dated records')
    entry=result.setdefault(pid,{'name':next(p[1] for p in PARKS if p[0]==pid),'days':{}})
    conflicts=[];added=0
@@ -170,7 +176,8 @@ def apply_secondary_calendars(result,diagnostics,now):
      added+=1
    diag=diagnostics.setdefault(pid,{'name':entry['name']})
    diag['secondary_calendar_url']=url
-   diag['secondary_month']=f'{now.year:04d}-{now.month:02d}'
+   diag['secondary_months_checked']=[f'{year:04d}-{month:02d}' for year,month in months]
+   diag['secondary_months_parsed']=[f'{year:04d}-{month:02d}' for year,month in months if any(date.startswith(f'{year:04d}-{month:02d}') for date in days)]
    diag['secondary_dated_days']=len(days)
    diag['secondary_new_days']=added
    diag['secondary_conflicts']=conflicts
