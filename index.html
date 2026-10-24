@@ -530,9 +530,9 @@ function details(p,d,x){
   const climateTitle=document.createElement('h3');climateTitle.textContent='VERSUS TYPICAL WEATHER FOR THIS MONTH';climateTitle.style.cssText='font-size:12px;letter-spacing:.06em;color:#9bc8e9;margin:18px 0 4px';el.append(climateTitle);
   const climateText=document.createElement('p');climateText.style.margin='0 0 8px';
   if(x.comparison){
-   const c=x.comparison,labels={BETTER:'Better than average',SAME:'About average',WORSE:'Worse than average'};
-   climateText.textContent=labels[c.verdict]+' for visitor demand · '+c.years+' historical monthly weather ('+c.ref.count+' daily observations). Typical daily conditions: '+c.ref.temp.toFixed(1)+'°C, '+c.ref.rain.toFixed(1)+' mm rain, '+Math.round(c.ref.wind)+' km/h peak gust. Comparison accounts for indoor versus outdoor demand. Both use full-day weather aggregates; visitor-demand interpretation is indicative.';
-  }else climateText.textContent='Five-year historical weather comparison loading or unavailable; no adjustment applied.';
+   const labels={BETTER:'Better than average',SAME:'Same as average',WORSE:'Worse than average'};
+   climateText.textContent=labels[x.comparison.verdict];
+  }else climateText.textContent='Comparison unavailable';
   el.append(climateText);
   const explanation=practicalExplanation(p,{...x,day:d});
   const sections=[['WHY THIS COLOUR',explanation.what]];
