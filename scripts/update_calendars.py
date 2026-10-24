@@ -278,6 +278,7 @@ def main():
   diagnostics[pid]['automatic_day_by_day_coverage']=False
  diagnostics['PC020']['source_note']='Official Bø Sommarland 2026 season boundary checked against published opening-hours page.'
  apply_dated_closures(result,diagnostics)
+ apply_secondary_calendars(result,diagnostics,now)
  payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'official_off_season_parks':official_count,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'year_round_park_ids':sorted(YEAR_ROUND),'interpretation':'Missing dates are UNKNOWN, not OPEN. Seven user-confirmed year-round parks default OPEN. Only explicit verified closure records grey out tiles.'}
  OUT.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
  DIAGNOSTICS.write_text(json.dumps({'updated_at':now.isoformat(),'parks':diagnostics,'provider_matches':checked,'official_off_season_parks':official_count,'year_round_defaults':len(YEAR_ROUND),'not_connected':sum(d.get('state') not in ('updated','year_round_default','official_off_season') for d in diagnostics.values())},indent=2,ensure_ascii=False)+'\n')
