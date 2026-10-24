@@ -110,13 +110,9 @@ def official_season(pid,now):
 # Official source for independent confirmation: https://www.parquewarner.com/horarios-y-precios/horarios
 VERIFIED_DATED_CLOSURES={
  'PC001':{'2026-10-26','2026-10-27'},
- 'PC007':{'2026-10-19','2026-10-20','2026-10-21','2026-10-22'},
- 'PC008':{'2026-10-19','2026-10-20','2026-10-21','2026-10-22','2026-10-23'},
 }
 DATED_SOURCES={
  'PC001':'https://queue-times.com/parks/298/calendar',
- 'PC007':'https://deeparrival.com/theme-parks/tusenfryd/park-hours/',
- 'PC008':'https://deeparrival.com/theme-parks/bonbon-land/park-hours/',
 }
 def apply_dated_closures(result,diagnostics):
  for pid,dates in VERIFIED_DATED_CLOSURES.items():
@@ -203,7 +199,7 @@ def main():
  official_calendar_pages={
   'PC004':'https://www.slagharen.com/en/prijzen---openingstijden/openingstijden',
   'PC007':'https://www.tusenfryd.no/en/apningstider-og-priser/apningstider',
-  'PC008':'https://www.bonbonland.dk/en/billetter-og-saesonkort/normal-billet/select-month',
+  'PC008':'https://www.bonbonland.dk/en/abningstider-og-priser/abningstider',
   'PC019':'https://www.telefericobenalmadena.com/horarios-y-precios/horarios',
  }
  for pid,url in official_calendar_pages.items():
