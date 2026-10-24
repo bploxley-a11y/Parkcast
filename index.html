@@ -191,7 +191,12 @@ const adversePrior=!!prior&&prior.count>=2&&prior.snapshots.filter(r=>
   (r.dailyRainIcon||r.prob>=55||r.rain>=2)
 ).length>prior.count/2;
 let cls=penalty>=3?'bad':penalty>=1?'mid':optimal&&!adversePrior?'good':'fair';
-const comparison=climateComparison(p,day,{temp,rain,wind,cloud});
+// Compare full-day forecast aggregates with full-day historical daily averages.
+const fullDayIndices=hourly.time.map((t,i)=>t.startsWith(day)?i:-1).filter(i=>i>=0);
+const fullAvg=k=>fullDayIndices.length?fullDayIndices.reduce((sum,i)=>sum+(Number(hourly[k]?.[i])||0),0)/fullDayIndices.length:0;
+const fullRain=fullDayIndices.reduce((sum,i)=>sum+(Number(hourly.precipitation?.[i])||0),0);
+const fullGust=Math.max(0,...fullDayIndices.map(i=>Number(hourly.wind_gusts_10m?.[i])||0));
+const comparison=climateComparison(p,day,{temp:fullAvg('temperature_2m'),rain:fullRain,wind:fullGust,cloud:fullAvg('cloud_cover')});
 // Adjust only a borderline weather classification, never override safety
 // hazards, severe snowfall, cable-car wind or confirmed access restrictions.
 if(comparison){
@@ -250,8 +255,7 @@ function climateComparison(p,day,x){
  const month=Number(day.slice(5,7));
  const ref=climate[key]?.months?.[month];
  if(!ref||ref.count<100)return null;
- // Forecast is assessed during guest hours; archive daily data are all-day
- // values. Comparisons are directional rather than exact like-for-like.
+ // Both forecast and archive use full-day aggregates; differences are directional.
  const forecast=visitorWeatherIndex(p,x.temp,x.rain,x.wind,x.cloud);
  const baseline=visitorWeatherIndex(p,ref.temp,ref.rain,ref.wind,ref.cloud);
  const diff=forecast-baseline;
@@ -527,7 +531,7 @@ function details(p,d,x){
   const climateText=document.createElement('p');climateText.style.margin='0 0 8px';
   if(x.comparison){
    const c=x.comparison,labels={BETTER:'Better than average',SAME:'About average',WORSE:'Worse than average'};
-   climateText.textContent=labels[c.verdict]+' for visitor demand · '+c.years+' historical monthly weather ('+c.ref.count+' daily observations). Typical daily conditions: '+c.ref.temp.toFixed(1)+'°C, '+c.ref.rain.toFixed(1)+' mm rain, '+Math.round(c.ref.wind)+' km/h peak gust. Comparison accounts for indoor versus outdoor demand. Historical all-day averages versus forecast visiting hours: indicative only.';
+   climateText.textContent=labels[c.verdict]+' for visitor demand · '+c.years+' historical monthly weather ('+c.ref.count+' daily observations). Typical daily conditions: '+c.ref.temp.toFixed(1)+'°C, '+c.ref.rain.toFixed(1)+' mm rain, '+Math.round(c.ref.wind)+' km/h peak gust. Comparison accounts for indoor versus outdoor demand. Both use full-day weather aggregates; visitor-demand interpretation is indicative.';
   }else climateText.textContent='Five-year historical weather comparison loading or unavailable; no adjustment applied.';
   el.append(climateText);
   const explanation=practicalExplanation(p,{...x,day:d});
