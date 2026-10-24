@@ -1,0 +1,138 @@
+{
+  "updated_at": "2026-10-24T12:23:36.788486+00:00",
+  "parks": {
+    "PC001": {
+      "name": "Parque Warner Madrid",
+      "state": "updated",
+      "published_open_days": 15,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC002": {
+      "name": "Parque de Atracciones Madrid",
+      "state": "updated",
+      "published_open_days": 12,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC003": {
+      "name": "Movie Park Germany",
+      "state": "updated",
+      "published_open_days": 12,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC004": {
+      "name": "Slagharen",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC005": {
+      "name": "Bobbejaanland",
+      "state": "updated",
+      "published_open_days": 13,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC006": {
+      "name": "Mirabilandia",
+      "state": "updated",
+      "published_open_days": 5,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC007": {
+      "name": "Tusenfryd",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC008": {
+      "name": "BonBon-Land",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC009": {
+      "name": "Tropical Islands",
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
+    },
+    "PC010": {
+      "name": "Blackpool Zoo",
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
+    },
+    "PC011": {
+      "name": "Aquopolis Villanueva",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC012": {
+      "name": "Aquopolis Costa Dorada",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC013": {
+      "name": "Aquopolis Cullera",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC014": {
+      "name": "Aquopolis Torrevieja",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC015": {
+      "name": "Aquopolis Cartaya",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC016": {
+      "name": "Warner Beach",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC017": {
+      "name": "Madrid Zoo",
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
+    },
+    "PC018": {
+      "name": "Selwo Marina",
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
+    },
+    "PC019": {
+      "name": "Teleferico Benalmadena",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC020": {
+      "name": "Bo Sommerland",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC021": {
+      "name": "Mirabeach",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC022": {
+      "name": "Bournemouth Oceanarium",
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
+    },
+    "PC023": {
+      "name": "Lakes Aquarium",
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
+    },
+    "PC024": {
+      "name": "Atlantis Madrid Xanadu",
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
+    }
+  },
+  "provider_matches": 5,
+  "year_round_defaults": 7,
+  "not_connected": 12
+}

@@ -1,269 +1,254 @@
 {
-  "updated_at": "2026-10-24T12:10:11.950140+00:00",
+  "updated_at": "2026-10-24T12:23:36.788486+00:00",
   "provider": "ThemeParks.wiki",
   "parks": {
     "PC001": {
       "name": "Parque Warner Madrid",
       "source": "https://api.themeparks.wiki/v1/entity/5adbd2f7-3694-4d23-aaec-4037a056573f/schedule",
-      "checked_at": "2026-10-24T12:10:11.950140+00:00",
+      "checked_at": "2026-10-24T12:23:36.788486+00:00",
       "days": {
         "2026-10-24": {
-          "status": "open",
-          "hours": "12:00–00:00"
+          "status": "open"
         },
         "2026-10-25": {
-          "status": "open",
-          "hours": "12:00–22:00"
+          "status": "open"
         },
         "2026-10-28": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-10-29": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-10-30": {
-          "status": "open",
-          "hours": "12:00–00:00"
+          "status": "open"
         },
         "2026-10-31": {
-          "status": "open",
-          "hours": "12:00–00:00"
+          "status": "open"
         },
         "2026-11-01": {
-          "status": "open",
-          "hours": "12:00–00:00"
+          "status": "open"
         },
         "2026-11-02": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-07": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-08": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-09": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-14": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-15": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-21": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-22": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         }
       }
     },
     "PC002": {
       "name": "Parque de Atracciones Madrid",
       "source": "https://api.themeparks.wiki/v1/entity/1ea86991-e2c2-4771-8a32-c6e14c8298a9/schedule",
-      "checked_at": "2026-10-24T12:10:11.950140+00:00",
+      "checked_at": "2026-10-24T12:23:36.788486+00:00",
       "days": {
         "2026-10-24": {
-          "status": "open",
-          "hours": "12:00–22:00"
+          "status": "open"
         },
         "2026-10-25": {
-          "status": "open",
-          "hours": "12:00–21:00"
+          "status": "open"
         },
         "2026-10-31": {
-          "status": "open",
-          "hours": "12:00–22:00"
+          "status": "open"
         },
         "2026-11-01": {
-          "status": "open",
-          "hours": "12:00–21:00"
+          "status": "open"
         },
         "2026-11-02": {
-          "status": "open",
-          "hours": "12:00–19:00"
+          "status": "open"
         },
         "2026-11-07": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-08": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-09": {
-          "status": "open",
-          "hours": "12:00–19:00"
+          "status": "open"
         },
         "2026-11-14": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-15": {
-          "status": "open",
-          "hours": "12:00–19:00"
+          "status": "open"
         },
         "2026-11-21": {
-          "status": "open",
-          "hours": "12:00–20:00"
+          "status": "open"
         },
         "2026-11-22": {
-          "status": "open",
-          "hours": "12:00–19:00"
+          "status": "open"
         }
       }
     },
     "PC003": {
       "name": "Movie Park Germany",
       "source": "https://api.themeparks.wiki/v1/entity/bb26f3ad-3cad-4565-81b1-1ced1ed802c4/schedule",
-      "checked_at": "2026-10-24T12:10:11.950140+00:00",
+      "checked_at": "2026-10-24T12:23:36.788486+00:00",
       "days": {
         "2026-10-24": {
-          "status": "open",
-          "hours": "10:00–22:00"
+          "status": "open"
         },
         "2026-10-25": {
-          "status": "open",
-          "hours": "10:00–21:00"
+          "status": "open"
         },
         "2026-10-26": {
-          "status": "open",
-          "hours": "10:00–18:00"
+          "status": "open"
         },
         "2026-10-27": {
-          "status": "open",
-          "hours": "10:00–18:00"
+          "status": "open"
         },
         "2026-10-28": {
-          "status": "open",
-          "hours": "10:00–18:00"
+          "status": "open"
         },
         "2026-10-29": {
-          "status": "open",
-          "hours": "10:00–22:00"
+          "status": "open"
         },
         "2026-10-30": {
-          "status": "open",
-          "hours": "10:00–22:00"
+          "status": "open"
         },
         "2026-10-31": {
-          "status": "open",
-          "hours": "10:00–22:00"
+          "status": "open"
         },
         "2026-11-01": {
-          "status": "open",
-          "hours": "10:00–21:00"
+          "status": "open"
         },
         "2026-11-06": {
-          "status": "open",
-          "hours": "10:00–22:00"
+          "status": "open"
         },
         "2026-11-07": {
-          "status": "open",
-          "hours": "10:00–22:00"
+          "status": "open"
         },
         "2026-11-08": {
-          "status": "open",
-          "hours": "10:00–21:00"
+          "status": "open"
         }
       }
     },
     "PC005": {
       "name": "Bobbejaanland",
       "source": "https://api.themeparks.wiki/v1/entity/b4c6ca41-1cf6-465b-9f65-aea736a308cb/schedule",
-      "checked_at": "2026-10-24T12:10:11.950140+00:00",
+      "checked_at": "2026-10-24T12:23:36.788486+00:00",
       "days": {
         "2026-10-24": {
-          "status": "open",
-          "hours": "10:00–17:00"
+          "status": "open"
         },
         "2026-10-25": {
-          "status": "open",
-          "hours": "10:00–17:00"
+          "status": "open"
         },
         "2026-10-31": {
-          "status": "open",
-          "hours": "10:00–21:00"
+          "status": "open"
         },
         "2026-11-01": {
-          "status": "open",
-          "hours": "10:00–18:00"
+          "status": "open"
         },
         "2026-11-02": {
-          "status": "open",
-          "hours": "10:00–21:00"
+          "status": "open"
         },
         "2026-11-03": {
-          "status": "open",
-          "hours": "10:00–18:00"
+          "status": "open"
         },
         "2026-11-04": {
-          "status": "open",
-          "hours": "10:00–21:00"
+          "status": "open"
         },
         "2026-11-05": {
-          "status": "open",
-          "hours": "10:00–18:00"
+          "status": "open"
         },
         "2026-11-06": {
-          "status": "open",
-          "hours": "10:00–21:00"
+          "status": "open"
         },
         "2026-11-07": {
-          "status": "open",
-          "hours": "10:00–21:00"
+          "status": "open"
         },
         "2026-11-08": {
-          "status": "open",
-          "hours": "10:00–18:00"
+          "status": "open"
         },
         "2026-11-14": {
-          "status": "open",
-          "hours": "10:00–17:00"
+          "status": "open"
         },
         "2026-11-15": {
-          "status": "open",
-          "hours": "10:00–17:00"
+          "status": "open"
         }
       }
     },
     "PC006": {
       "name": "Mirabilandia",
       "source": "https://api.themeparks.wiki/v1/entity/8bd6937c-71da-4c56-b780-600de69ba874/schedule",
-      "checked_at": "2026-10-24T12:10:11.950140+00:00",
+      "checked_at": "2026-10-24T12:23:36.788486+00:00",
       "days": {
         "2026-10-24": {
-          "status": "open",
-          "hours": "10:30–23:00"
+          "status": "open"
         },
         "2026-10-25": {
-          "status": "open",
-          "hours": "10:30–18:00"
+          "status": "open"
         },
         "2026-10-30": {
-          "status": "open",
-          "hours": "19:30–01:00"
+          "status": "open"
         },
         "2026-10-31": {
-          "status": "open",
-          "hours": "10:30–00:00"
+          "status": "open"
         },
         "2026-11-01": {
-          "status": "open",
-          "hours": "10:30–22:00"
+          "status": "open"
         }
       }
+    },
+    "PC009": {
+      "name": "Tropical Islands",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC010": {
+      "name": "Blackpool Zoo",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC017": {
+      "name": "Madrid Zoo",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC018": {
+      "name": "Selwo Marina",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC022": {
+      "name": "Bournemouth Oceanarium",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC023": {
+      "name": "Lakes Aquarium",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC024": {
+      "name": "Atlantis Madrid Xanadu",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
     }
   },
   "matched_and_updated": 5,
@@ -322,13 +307,13 @@
     },
     "PC009": {
       "name": "Tropical Islands",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
     },
     "PC010": {
       "name": "Blackpool Zoo",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
     },
     "PC011": {
       "name": "Aquopolis Villanueva",
@@ -362,13 +347,13 @@
     },
     "PC017": {
       "name": "Madrid Zoo",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
     },
     "PC018": {
       "name": "Selwo Marina",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
     },
     "PC019": {
       "name": "Teleferico Benalmadena",
@@ -387,19 +372,28 @@
     },
     "PC022": {
       "name": "Bournemouth Oceanarium",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
     },
     "PC023": {
       "name": "Lakes Aquarium",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
     },
     "PC024": {
       "name": "Atlantis Madrid Xanadu",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "year_round_default",
+      "message": "User-confirmed daily opening; only an explicit verified closure can override"
     }
   },
-  "interpretation": "Missing provider dates are unknown, not closed. Only explicit closure records grey out tiles."
+  "year_round_park_ids": [
+    "PC009",
+    "PC010",
+    "PC017",
+    "PC018",
+    "PC022",
+    "PC023",
+    "PC024"
+  ],
+  "interpretation": "Missing dates default to open. Seven user-confirmed year-round parks default open. Only explicit closure records grey out tiles."
 }
