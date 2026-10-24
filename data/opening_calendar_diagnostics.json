@@ -1,12 +1,15 @@
 {
-  "updated_at": "2026-10-24T12:48:33.382799+00:00",
+  "updated_at": "2026-10-24T12:53:44.860698+00:00",
   "parks": {
     "PC001": {
       "name": "Parque Warner Madrid",
       "state": "updated",
       "published_open_days": 15,
       "explicit_closed_days": 0,
-      "note": "Unlisted dates are not verified closures"
+      "note": "Unlisted dates are not verified closures",
+      "dated_secondary_closed_days": 2,
+      "dated_source": "https://queue-times.com/parks/298/calendar",
+      "dated_conflicts": []
     },
     "PC002": {
       "name": "Parque de Atracciones Madrid",
@@ -67,28 +70,49 @@
       "verified_closed_days": 69,
       "conflicts_with_provider": 0,
       "source": "https://villanueva.aquopolis.es/",
-      "evidence": "Official site explicitly states return in 2027",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
       "valid_through": "2026-12-31"
     },
     "PC012": {
       "name": "Aquopolis Costa Dorada",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://costa-dorada.aquopolis.es/",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC013": {
       "name": "Aquopolis Cullera",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://disfrutalia.tixalia.com/aquopoliscullera",
+      "source_type": "ticketing",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC014": {
       "name": "Aquopolis Torrevieja",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://disfrutalia.tixalia.com/conversionpath?entityId=8qrp56trmd3as&language=en",
+      "source_type": "ticketing",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC015": {
       "name": "Aquopolis Cartaya",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://disfrutalia.tixalia.com/aquopoliscartaya",
+      "source_type": "ticketing",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC016": {
       "name": "Warner Beach",
@@ -96,7 +120,8 @@
       "verified_closed_days": 102,
       "conflicts_with_provider": 0,
       "source": "https://parquewarnerbeach.parquewarner.com/",
-      "evidence": "Official site states season runs until 20 September 2026",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
       "valid_through": "2026-12-31"
     },
     "PC017": {
@@ -116,13 +141,23 @@
     },
     "PC020": {
       "name": "Bo Sommerland",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://www.sommarland.no/",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC021": {
       "name": "Mirabeach",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://mirabeach.mirabilandia.it/en",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC022": {
       "name": "Bournemouth Oceanarium",
@@ -141,7 +176,7 @@
     }
   },
   "provider_matches": 5,
-  "official_off_season_parks": 2,
+  "official_off_season_parks": 8,
   "year_round_defaults": 7,
-  "not_connected": 10
+  "not_connected": 4
 }

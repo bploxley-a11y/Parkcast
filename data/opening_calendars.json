@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-24T12:48:33.382799+00:00",
+  "updated_at": "2026-10-24T12:53:44.860698+00:00",
   "provider": "ThemeParks.wiki",
   "parks": {
     "PC001": {
       "name": "Parque Warner Madrid",
       "source": "https://api.themeparks.wiki/v1/entity/5adbd2f7-3694-4d23-aaec-4037a056573f/schedule",
-      "checked_at": "2026-10-24T12:48:33.382799+00:00",
+      "checked_at": "2026-10-24T12:53:44.860698+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -51,13 +51,23 @@
         },
         "2026-11-22": {
           "status": "open"
+        },
+        "2026-10-26": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/298/calendar",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-27": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/298/calendar",
+          "source_type": "secondary_dated_calendar"
         }
       }
     },
     "PC002": {
       "name": "Parque de Atracciones Madrid",
       "source": "https://api.themeparks.wiki/v1/entity/1ea86991-e2c2-4771-8a32-c6e14c8298a9/schedule",
-      "checked_at": "2026-10-24T12:48:33.382799+00:00",
+      "checked_at": "2026-10-24T12:53:44.860698+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -100,7 +110,7 @@
     "PC003": {
       "name": "Movie Park Germany",
       "source": "https://api.themeparks.wiki/v1/entity/bb26f3ad-3cad-4565-81b1-1ced1ed802c4/schedule",
-      "checked_at": "2026-10-24T12:48:33.382799+00:00",
+      "checked_at": "2026-10-24T12:53:44.860698+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -143,7 +153,7 @@
     "PC005": {
       "name": "Bobbejaanland",
       "source": "https://api.themeparks.wiki/v1/entity/b4c6ca41-1cf6-465b-9f65-aea736a308cb/schedule",
-      "checked_at": "2026-10-24T12:48:33.382799+00:00",
+      "checked_at": "2026-10-24T12:53:44.860698+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -189,7 +199,7 @@
     "PC006": {
       "name": "Mirabilandia",
       "source": "https://api.themeparks.wiki/v1/entity/8bd6937c-71da-4c56-b780-600de69ba874/schedule",
-      "checked_at": "2026-10-24T12:48:33.382799+00:00",
+      "checked_at": "2026-10-24T12:53:44.860698+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -207,6 +217,48 @@
           "status": "open"
         }
       }
+    },
+    "PC009": {
+      "name": "Tropical Islands",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC010": {
+      "name": "Blackpool Zoo",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC017": {
+      "name": "Madrid Zoo",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC018": {
+      "name": "Selwo Marina",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC022": {
+      "name": "Bournemouth Oceanarium",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC023": {
+      "name": "Lakes Aquarium",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC024": {
+      "name": "Atlantis Madrid Xanadu",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
     },
     "PC011": {
       "name": "Aquopolis Villanueva",
@@ -420,6 +472,858 @@
         }
       },
       "official_season_source": "https://villanueva.aquopolis.es/"
+    },
+    "PC012": {
+      "name": "Aquopolis Costa Dorada",
+      "days": {
+        "2026-10-24": {
+          "status": "closed"
+        },
+        "2026-10-25": {
+          "status": "closed"
+        },
+        "2026-10-26": {
+          "status": "closed"
+        },
+        "2026-10-27": {
+          "status": "closed"
+        },
+        "2026-10-28": {
+          "status": "closed"
+        },
+        "2026-10-29": {
+          "status": "closed"
+        },
+        "2026-10-30": {
+          "status": "closed"
+        },
+        "2026-10-31": {
+          "status": "closed"
+        },
+        "2026-11-01": {
+          "status": "closed"
+        },
+        "2026-11-02": {
+          "status": "closed"
+        },
+        "2026-11-03": {
+          "status": "closed"
+        },
+        "2026-11-04": {
+          "status": "closed"
+        },
+        "2026-11-05": {
+          "status": "closed"
+        },
+        "2026-11-06": {
+          "status": "closed"
+        },
+        "2026-11-07": {
+          "status": "closed"
+        },
+        "2026-11-08": {
+          "status": "closed"
+        },
+        "2026-11-09": {
+          "status": "closed"
+        },
+        "2026-11-10": {
+          "status": "closed"
+        },
+        "2026-11-11": {
+          "status": "closed"
+        },
+        "2026-11-12": {
+          "status": "closed"
+        },
+        "2026-11-13": {
+          "status": "closed"
+        },
+        "2026-11-14": {
+          "status": "closed"
+        },
+        "2026-11-15": {
+          "status": "closed"
+        },
+        "2026-11-16": {
+          "status": "closed"
+        },
+        "2026-11-17": {
+          "status": "closed"
+        },
+        "2026-11-18": {
+          "status": "closed"
+        },
+        "2026-11-19": {
+          "status": "closed"
+        },
+        "2026-11-20": {
+          "status": "closed"
+        },
+        "2026-11-21": {
+          "status": "closed"
+        },
+        "2026-11-22": {
+          "status": "closed"
+        },
+        "2026-11-23": {
+          "status": "closed"
+        },
+        "2026-11-24": {
+          "status": "closed"
+        },
+        "2026-11-25": {
+          "status": "closed"
+        },
+        "2026-11-26": {
+          "status": "closed"
+        },
+        "2026-11-27": {
+          "status": "closed"
+        },
+        "2026-11-28": {
+          "status": "closed"
+        },
+        "2026-11-29": {
+          "status": "closed"
+        },
+        "2026-11-30": {
+          "status": "closed"
+        },
+        "2026-12-01": {
+          "status": "closed"
+        },
+        "2026-12-02": {
+          "status": "closed"
+        },
+        "2026-12-03": {
+          "status": "closed"
+        },
+        "2026-12-04": {
+          "status": "closed"
+        },
+        "2026-12-05": {
+          "status": "closed"
+        },
+        "2026-12-06": {
+          "status": "closed"
+        },
+        "2026-12-07": {
+          "status": "closed"
+        },
+        "2026-12-08": {
+          "status": "closed"
+        },
+        "2026-12-09": {
+          "status": "closed"
+        },
+        "2026-12-10": {
+          "status": "closed"
+        },
+        "2026-12-11": {
+          "status": "closed"
+        },
+        "2026-12-12": {
+          "status": "closed"
+        },
+        "2026-12-13": {
+          "status": "closed"
+        },
+        "2026-12-14": {
+          "status": "closed"
+        },
+        "2026-12-15": {
+          "status": "closed"
+        },
+        "2026-12-16": {
+          "status": "closed"
+        },
+        "2026-12-17": {
+          "status": "closed"
+        },
+        "2026-12-18": {
+          "status": "closed"
+        },
+        "2026-12-19": {
+          "status": "closed"
+        },
+        "2026-12-20": {
+          "status": "closed"
+        },
+        "2026-12-21": {
+          "status": "closed"
+        },
+        "2026-12-22": {
+          "status": "closed"
+        },
+        "2026-12-23": {
+          "status": "closed"
+        },
+        "2026-12-24": {
+          "status": "closed"
+        },
+        "2026-12-25": {
+          "status": "closed"
+        },
+        "2026-12-26": {
+          "status": "closed"
+        },
+        "2026-12-27": {
+          "status": "closed"
+        },
+        "2026-12-28": {
+          "status": "closed"
+        },
+        "2026-12-29": {
+          "status": "closed"
+        },
+        "2026-12-30": {
+          "status": "closed"
+        },
+        "2026-12-31": {
+          "status": "closed"
+        }
+      },
+      "official_season_source": "https://costa-dorada.aquopolis.es/"
+    },
+    "PC013": {
+      "name": "Aquopolis Cullera",
+      "days": {
+        "2026-10-24": {
+          "status": "closed"
+        },
+        "2026-10-25": {
+          "status": "closed"
+        },
+        "2026-10-26": {
+          "status": "closed"
+        },
+        "2026-10-27": {
+          "status": "closed"
+        },
+        "2026-10-28": {
+          "status": "closed"
+        },
+        "2026-10-29": {
+          "status": "closed"
+        },
+        "2026-10-30": {
+          "status": "closed"
+        },
+        "2026-10-31": {
+          "status": "closed"
+        },
+        "2026-11-01": {
+          "status": "closed"
+        },
+        "2026-11-02": {
+          "status": "closed"
+        },
+        "2026-11-03": {
+          "status": "closed"
+        },
+        "2026-11-04": {
+          "status": "closed"
+        },
+        "2026-11-05": {
+          "status": "closed"
+        },
+        "2026-11-06": {
+          "status": "closed"
+        },
+        "2026-11-07": {
+          "status": "closed"
+        },
+        "2026-11-08": {
+          "status": "closed"
+        },
+        "2026-11-09": {
+          "status": "closed"
+        },
+        "2026-11-10": {
+          "status": "closed"
+        },
+        "2026-11-11": {
+          "status": "closed"
+        },
+        "2026-11-12": {
+          "status": "closed"
+        },
+        "2026-11-13": {
+          "status": "closed"
+        },
+        "2026-11-14": {
+          "status": "closed"
+        },
+        "2026-11-15": {
+          "status": "closed"
+        },
+        "2026-11-16": {
+          "status": "closed"
+        },
+        "2026-11-17": {
+          "status": "closed"
+        },
+        "2026-11-18": {
+          "status": "closed"
+        },
+        "2026-11-19": {
+          "status": "closed"
+        },
+        "2026-11-20": {
+          "status": "closed"
+        },
+        "2026-11-21": {
+          "status": "closed"
+        },
+        "2026-11-22": {
+          "status": "closed"
+        },
+        "2026-11-23": {
+          "status": "closed"
+        },
+        "2026-11-24": {
+          "status": "closed"
+        },
+        "2026-11-25": {
+          "status": "closed"
+        },
+        "2026-11-26": {
+          "status": "closed"
+        },
+        "2026-11-27": {
+          "status": "closed"
+        },
+        "2026-11-28": {
+          "status": "closed"
+        },
+        "2026-11-29": {
+          "status": "closed"
+        },
+        "2026-11-30": {
+          "status": "closed"
+        },
+        "2026-12-01": {
+          "status": "closed"
+        },
+        "2026-12-02": {
+          "status": "closed"
+        },
+        "2026-12-03": {
+          "status": "closed"
+        },
+        "2026-12-04": {
+          "status": "closed"
+        },
+        "2026-12-05": {
+          "status": "closed"
+        },
+        "2026-12-06": {
+          "status": "closed"
+        },
+        "2026-12-07": {
+          "status": "closed"
+        },
+        "2026-12-08": {
+          "status": "closed"
+        },
+        "2026-12-09": {
+          "status": "closed"
+        },
+        "2026-12-10": {
+          "status": "closed"
+        },
+        "2026-12-11": {
+          "status": "closed"
+        },
+        "2026-12-12": {
+          "status": "closed"
+        },
+        "2026-12-13": {
+          "status": "closed"
+        },
+        "2026-12-14": {
+          "status": "closed"
+        },
+        "2026-12-15": {
+          "status": "closed"
+        },
+        "2026-12-16": {
+          "status": "closed"
+        },
+        "2026-12-17": {
+          "status": "closed"
+        },
+        "2026-12-18": {
+          "status": "closed"
+        },
+        "2026-12-19": {
+          "status": "closed"
+        },
+        "2026-12-20": {
+          "status": "closed"
+        },
+        "2026-12-21": {
+          "status": "closed"
+        },
+        "2026-12-22": {
+          "status": "closed"
+        },
+        "2026-12-23": {
+          "status": "closed"
+        },
+        "2026-12-24": {
+          "status": "closed"
+        },
+        "2026-12-25": {
+          "status": "closed"
+        },
+        "2026-12-26": {
+          "status": "closed"
+        },
+        "2026-12-27": {
+          "status": "closed"
+        },
+        "2026-12-28": {
+          "status": "closed"
+        },
+        "2026-12-29": {
+          "status": "closed"
+        },
+        "2026-12-30": {
+          "status": "closed"
+        },
+        "2026-12-31": {
+          "status": "closed"
+        }
+      },
+      "official_season_source": "https://disfrutalia.tixalia.com/aquopoliscullera"
+    },
+    "PC014": {
+      "name": "Aquopolis Torrevieja",
+      "days": {
+        "2026-10-24": {
+          "status": "closed"
+        },
+        "2026-10-25": {
+          "status": "closed"
+        },
+        "2026-10-26": {
+          "status": "closed"
+        },
+        "2026-10-27": {
+          "status": "closed"
+        },
+        "2026-10-28": {
+          "status": "closed"
+        },
+        "2026-10-29": {
+          "status": "closed"
+        },
+        "2026-10-30": {
+          "status": "closed"
+        },
+        "2026-10-31": {
+          "status": "closed"
+        },
+        "2026-11-01": {
+          "status": "closed"
+        },
+        "2026-11-02": {
+          "status": "closed"
+        },
+        "2026-11-03": {
+          "status": "closed"
+        },
+        "2026-11-04": {
+          "status": "closed"
+        },
+        "2026-11-05": {
+          "status": "closed"
+        },
+        "2026-11-06": {
+          "status": "closed"
+        },
+        "2026-11-07": {
+          "status": "closed"
+        },
+        "2026-11-08": {
+          "status": "closed"
+        },
+        "2026-11-09": {
+          "status": "closed"
+        },
+        "2026-11-10": {
+          "status": "closed"
+        },
+        "2026-11-11": {
+          "status": "closed"
+        },
+        "2026-11-12": {
+          "status": "closed"
+        },
+        "2026-11-13": {
+          "status": "closed"
+        },
+        "2026-11-14": {
+          "status": "closed"
+        },
+        "2026-11-15": {
+          "status": "closed"
+        },
+        "2026-11-16": {
+          "status": "closed"
+        },
+        "2026-11-17": {
+          "status": "closed"
+        },
+        "2026-11-18": {
+          "status": "closed"
+        },
+        "2026-11-19": {
+          "status": "closed"
+        },
+        "2026-11-20": {
+          "status": "closed"
+        },
+        "2026-11-21": {
+          "status": "closed"
+        },
+        "2026-11-22": {
+          "status": "closed"
+        },
+        "2026-11-23": {
+          "status": "closed"
+        },
+        "2026-11-24": {
+          "status": "closed"
+        },
+        "2026-11-25": {
+          "status": "closed"
+        },
+        "2026-11-26": {
+          "status": "closed"
+        },
+        "2026-11-27": {
+          "status": "closed"
+        },
+        "2026-11-28": {
+          "status": "closed"
+        },
+        "2026-11-29": {
+          "status": "closed"
+        },
+        "2026-11-30": {
+          "status": "closed"
+        },
+        "2026-12-01": {
+          "status": "closed"
+        },
+        "2026-12-02": {
+          "status": "closed"
+        },
+        "2026-12-03": {
+          "status": "closed"
+        },
+        "2026-12-04": {
+          "status": "closed"
+        },
+        "2026-12-05": {
+          "status": "closed"
+        },
+        "2026-12-06": {
+          "status": "closed"
+        },
+        "2026-12-07": {
+          "status": "closed"
+        },
+        "2026-12-08": {
+          "status": "closed"
+        },
+        "2026-12-09": {
+          "status": "closed"
+        },
+        "2026-12-10": {
+          "status": "closed"
+        },
+        "2026-12-11": {
+          "status": "closed"
+        },
+        "2026-12-12": {
+          "status": "closed"
+        },
+        "2026-12-13": {
+          "status": "closed"
+        },
+        "2026-12-14": {
+          "status": "closed"
+        },
+        "2026-12-15": {
+          "status": "closed"
+        },
+        "2026-12-16": {
+          "status": "closed"
+        },
+        "2026-12-17": {
+          "status": "closed"
+        },
+        "2026-12-18": {
+          "status": "closed"
+        },
+        "2026-12-19": {
+          "status": "closed"
+        },
+        "2026-12-20": {
+          "status": "closed"
+        },
+        "2026-12-21": {
+          "status": "closed"
+        },
+        "2026-12-22": {
+          "status": "closed"
+        },
+        "2026-12-23": {
+          "status": "closed"
+        },
+        "2026-12-24": {
+          "status": "closed"
+        },
+        "2026-12-25": {
+          "status": "closed"
+        },
+        "2026-12-26": {
+          "status": "closed"
+        },
+        "2026-12-27": {
+          "status": "closed"
+        },
+        "2026-12-28": {
+          "status": "closed"
+        },
+        "2026-12-29": {
+          "status": "closed"
+        },
+        "2026-12-30": {
+          "status": "closed"
+        },
+        "2026-12-31": {
+          "status": "closed"
+        }
+      },
+      "official_season_source": "https://disfrutalia.tixalia.com/conversionpath?entityId=8qrp56trmd3as&language=en"
+    },
+    "PC015": {
+      "name": "Aquopolis Cartaya",
+      "days": {
+        "2026-10-24": {
+          "status": "closed"
+        },
+        "2026-10-25": {
+          "status": "closed"
+        },
+        "2026-10-26": {
+          "status": "closed"
+        },
+        "2026-10-27": {
+          "status": "closed"
+        },
+        "2026-10-28": {
+          "status": "closed"
+        },
+        "2026-10-29": {
+          "status": "closed"
+        },
+        "2026-10-30": {
+          "status": "closed"
+        },
+        "2026-10-31": {
+          "status": "closed"
+        },
+        "2026-11-01": {
+          "status": "closed"
+        },
+        "2026-11-02": {
+          "status": "closed"
+        },
+        "2026-11-03": {
+          "status": "closed"
+        },
+        "2026-11-04": {
+          "status": "closed"
+        },
+        "2026-11-05": {
+          "status": "closed"
+        },
+        "2026-11-06": {
+          "status": "closed"
+        },
+        "2026-11-07": {
+          "status": "closed"
+        },
+        "2026-11-08": {
+          "status": "closed"
+        },
+        "2026-11-09": {
+          "status": "closed"
+        },
+        "2026-11-10": {
+          "status": "closed"
+        },
+        "2026-11-11": {
+          "status": "closed"
+        },
+        "2026-11-12": {
+          "status": "closed"
+        },
+        "2026-11-13": {
+          "status": "closed"
+        },
+        "2026-11-14": {
+          "status": "closed"
+        },
+        "2026-11-15": {
+          "status": "closed"
+        },
+        "2026-11-16": {
+          "status": "closed"
+        },
+        "2026-11-17": {
+          "status": "closed"
+        },
+        "2026-11-18": {
+          "status": "closed"
+        },
+        "2026-11-19": {
+          "status": "closed"
+        },
+        "2026-11-20": {
+          "status": "closed"
+        },
+        "2026-11-21": {
+          "status": "closed"
+        },
+        "2026-11-22": {
+          "status": "closed"
+        },
+        "2026-11-23": {
+          "status": "closed"
+        },
+        "2026-11-24": {
+          "status": "closed"
+        },
+        "2026-11-25": {
+          "status": "closed"
+        },
+        "2026-11-26": {
+          "status": "closed"
+        },
+        "2026-11-27": {
+          "status": "closed"
+        },
+        "2026-11-28": {
+          "status": "closed"
+        },
+        "2026-11-29": {
+          "status": "closed"
+        },
+        "2026-11-30": {
+          "status": "closed"
+        },
+        "2026-12-01": {
+          "status": "closed"
+        },
+        "2026-12-02": {
+          "status": "closed"
+        },
+        "2026-12-03": {
+          "status": "closed"
+        },
+        "2026-12-04": {
+          "status": "closed"
+        },
+        "2026-12-05": {
+          "status": "closed"
+        },
+        "2026-12-06": {
+          "status": "closed"
+        },
+        "2026-12-07": {
+          "status": "closed"
+        },
+        "2026-12-08": {
+          "status": "closed"
+        },
+        "2026-12-09": {
+          "status": "closed"
+        },
+        "2026-12-10": {
+          "status": "closed"
+        },
+        "2026-12-11": {
+          "status": "closed"
+        },
+        "2026-12-12": {
+          "status": "closed"
+        },
+        "2026-12-13": {
+          "status": "closed"
+        },
+        "2026-12-14": {
+          "status": "closed"
+        },
+        "2026-12-15": {
+          "status": "closed"
+        },
+        "2026-12-16": {
+          "status": "closed"
+        },
+        "2026-12-17": {
+          "status": "closed"
+        },
+        "2026-12-18": {
+          "status": "closed"
+        },
+        "2026-12-19": {
+          "status": "closed"
+        },
+        "2026-12-20": {
+          "status": "closed"
+        },
+        "2026-12-21": {
+          "status": "closed"
+        },
+        "2026-12-22": {
+          "status": "closed"
+        },
+        "2026-12-23": {
+          "status": "closed"
+        },
+        "2026-12-24": {
+          "status": "closed"
+        },
+        "2026-12-25": {
+          "status": "closed"
+        },
+        "2026-12-26": {
+          "status": "closed"
+        },
+        "2026-12-27": {
+          "status": "closed"
+        },
+        "2026-12-28": {
+          "status": "closed"
+        },
+        "2026-12-29": {
+          "status": "closed"
+        },
+        "2026-12-30": {
+          "status": "closed"
+        },
+        "2026-12-31": {
+          "status": "closed"
+        }
+      },
+      "official_season_source": "https://disfrutalia.tixalia.com/aquopoliscartaya"
     },
     "PC016": {
       "name": "Warner Beach",
@@ -733,51 +1637,435 @@
       },
       "official_season_source": "https://parquewarnerbeach.parquewarner.com/"
     },
-    "PC009": {
-      "name": "Tropical Islands",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
+    "PC020": {
+      "name": "Bo Sommerland",
+      "days": {
+        "2026-10-24": {
+          "status": "closed"
+        },
+        "2026-10-25": {
+          "status": "closed"
+        },
+        "2026-10-26": {
+          "status": "closed"
+        },
+        "2026-10-27": {
+          "status": "closed"
+        },
+        "2026-10-28": {
+          "status": "closed"
+        },
+        "2026-10-29": {
+          "status": "closed"
+        },
+        "2026-10-30": {
+          "status": "closed"
+        },
+        "2026-10-31": {
+          "status": "closed"
+        },
+        "2026-11-01": {
+          "status": "closed"
+        },
+        "2026-11-02": {
+          "status": "closed"
+        },
+        "2026-11-03": {
+          "status": "closed"
+        },
+        "2026-11-04": {
+          "status": "closed"
+        },
+        "2026-11-05": {
+          "status": "closed"
+        },
+        "2026-11-06": {
+          "status": "closed"
+        },
+        "2026-11-07": {
+          "status": "closed"
+        },
+        "2026-11-08": {
+          "status": "closed"
+        },
+        "2026-11-09": {
+          "status": "closed"
+        },
+        "2026-11-10": {
+          "status": "closed"
+        },
+        "2026-11-11": {
+          "status": "closed"
+        },
+        "2026-11-12": {
+          "status": "closed"
+        },
+        "2026-11-13": {
+          "status": "closed"
+        },
+        "2026-11-14": {
+          "status": "closed"
+        },
+        "2026-11-15": {
+          "status": "closed"
+        },
+        "2026-11-16": {
+          "status": "closed"
+        },
+        "2026-11-17": {
+          "status": "closed"
+        },
+        "2026-11-18": {
+          "status": "closed"
+        },
+        "2026-11-19": {
+          "status": "closed"
+        },
+        "2026-11-20": {
+          "status": "closed"
+        },
+        "2026-11-21": {
+          "status": "closed"
+        },
+        "2026-11-22": {
+          "status": "closed"
+        },
+        "2026-11-23": {
+          "status": "closed"
+        },
+        "2026-11-24": {
+          "status": "closed"
+        },
+        "2026-11-25": {
+          "status": "closed"
+        },
+        "2026-11-26": {
+          "status": "closed"
+        },
+        "2026-11-27": {
+          "status": "closed"
+        },
+        "2026-11-28": {
+          "status": "closed"
+        },
+        "2026-11-29": {
+          "status": "closed"
+        },
+        "2026-11-30": {
+          "status": "closed"
+        },
+        "2026-12-01": {
+          "status": "closed"
+        },
+        "2026-12-02": {
+          "status": "closed"
+        },
+        "2026-12-03": {
+          "status": "closed"
+        },
+        "2026-12-04": {
+          "status": "closed"
+        },
+        "2026-12-05": {
+          "status": "closed"
+        },
+        "2026-12-06": {
+          "status": "closed"
+        },
+        "2026-12-07": {
+          "status": "closed"
+        },
+        "2026-12-08": {
+          "status": "closed"
+        },
+        "2026-12-09": {
+          "status": "closed"
+        },
+        "2026-12-10": {
+          "status": "closed"
+        },
+        "2026-12-11": {
+          "status": "closed"
+        },
+        "2026-12-12": {
+          "status": "closed"
+        },
+        "2026-12-13": {
+          "status": "closed"
+        },
+        "2026-12-14": {
+          "status": "closed"
+        },
+        "2026-12-15": {
+          "status": "closed"
+        },
+        "2026-12-16": {
+          "status": "closed"
+        },
+        "2026-12-17": {
+          "status": "closed"
+        },
+        "2026-12-18": {
+          "status": "closed"
+        },
+        "2026-12-19": {
+          "status": "closed"
+        },
+        "2026-12-20": {
+          "status": "closed"
+        },
+        "2026-12-21": {
+          "status": "closed"
+        },
+        "2026-12-22": {
+          "status": "closed"
+        },
+        "2026-12-23": {
+          "status": "closed"
+        },
+        "2026-12-24": {
+          "status": "closed"
+        },
+        "2026-12-25": {
+          "status": "closed"
+        },
+        "2026-12-26": {
+          "status": "closed"
+        },
+        "2026-12-27": {
+          "status": "closed"
+        },
+        "2026-12-28": {
+          "status": "closed"
+        },
+        "2026-12-29": {
+          "status": "closed"
+        },
+        "2026-12-30": {
+          "status": "closed"
+        },
+        "2026-12-31": {
+          "status": "closed"
+        }
+      },
+      "official_season_source": "https://www.sommarland.no/"
     },
-    "PC010": {
-      "name": "Blackpool Zoo",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC017": {
-      "name": "Madrid Zoo",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC018": {
-      "name": "Selwo Marina",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC022": {
-      "name": "Bournemouth Oceanarium",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC023": {
-      "name": "Lakes Aquarium",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC024": {
-      "name": "Atlantis Madrid Xanadu",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
+    "PC021": {
+      "name": "Mirabeach",
+      "days": {
+        "2026-10-24": {
+          "status": "closed"
+        },
+        "2026-10-25": {
+          "status": "closed"
+        },
+        "2026-10-26": {
+          "status": "closed"
+        },
+        "2026-10-27": {
+          "status": "closed"
+        },
+        "2026-10-28": {
+          "status": "closed"
+        },
+        "2026-10-29": {
+          "status": "closed"
+        },
+        "2026-10-30": {
+          "status": "closed"
+        },
+        "2026-10-31": {
+          "status": "closed"
+        },
+        "2026-11-01": {
+          "status": "closed"
+        },
+        "2026-11-02": {
+          "status": "closed"
+        },
+        "2026-11-03": {
+          "status": "closed"
+        },
+        "2026-11-04": {
+          "status": "closed"
+        },
+        "2026-11-05": {
+          "status": "closed"
+        },
+        "2026-11-06": {
+          "status": "closed"
+        },
+        "2026-11-07": {
+          "status": "closed"
+        },
+        "2026-11-08": {
+          "status": "closed"
+        },
+        "2026-11-09": {
+          "status": "closed"
+        },
+        "2026-11-10": {
+          "status": "closed"
+        },
+        "2026-11-11": {
+          "status": "closed"
+        },
+        "2026-11-12": {
+          "status": "closed"
+        },
+        "2026-11-13": {
+          "status": "closed"
+        },
+        "2026-11-14": {
+          "status": "closed"
+        },
+        "2026-11-15": {
+          "status": "closed"
+        },
+        "2026-11-16": {
+          "status": "closed"
+        },
+        "2026-11-17": {
+          "status": "closed"
+        },
+        "2026-11-18": {
+          "status": "closed"
+        },
+        "2026-11-19": {
+          "status": "closed"
+        },
+        "2026-11-20": {
+          "status": "closed"
+        },
+        "2026-11-21": {
+          "status": "closed"
+        },
+        "2026-11-22": {
+          "status": "closed"
+        },
+        "2026-11-23": {
+          "status": "closed"
+        },
+        "2026-11-24": {
+          "status": "closed"
+        },
+        "2026-11-25": {
+          "status": "closed"
+        },
+        "2026-11-26": {
+          "status": "closed"
+        },
+        "2026-11-27": {
+          "status": "closed"
+        },
+        "2026-11-28": {
+          "status": "closed"
+        },
+        "2026-11-29": {
+          "status": "closed"
+        },
+        "2026-11-30": {
+          "status": "closed"
+        },
+        "2026-12-01": {
+          "status": "closed"
+        },
+        "2026-12-02": {
+          "status": "closed"
+        },
+        "2026-12-03": {
+          "status": "closed"
+        },
+        "2026-12-04": {
+          "status": "closed"
+        },
+        "2026-12-05": {
+          "status": "closed"
+        },
+        "2026-12-06": {
+          "status": "closed"
+        },
+        "2026-12-07": {
+          "status": "closed"
+        },
+        "2026-12-08": {
+          "status": "closed"
+        },
+        "2026-12-09": {
+          "status": "closed"
+        },
+        "2026-12-10": {
+          "status": "closed"
+        },
+        "2026-12-11": {
+          "status": "closed"
+        },
+        "2026-12-12": {
+          "status": "closed"
+        },
+        "2026-12-13": {
+          "status": "closed"
+        },
+        "2026-12-14": {
+          "status": "closed"
+        },
+        "2026-12-15": {
+          "status": "closed"
+        },
+        "2026-12-16": {
+          "status": "closed"
+        },
+        "2026-12-17": {
+          "status": "closed"
+        },
+        "2026-12-18": {
+          "status": "closed"
+        },
+        "2026-12-19": {
+          "status": "closed"
+        },
+        "2026-12-20": {
+          "status": "closed"
+        },
+        "2026-12-21": {
+          "status": "closed"
+        },
+        "2026-12-22": {
+          "status": "closed"
+        },
+        "2026-12-23": {
+          "status": "closed"
+        },
+        "2026-12-24": {
+          "status": "closed"
+        },
+        "2026-12-25": {
+          "status": "closed"
+        },
+        "2026-12-26": {
+          "status": "closed"
+        },
+        "2026-12-27": {
+          "status": "closed"
+        },
+        "2026-12-28": {
+          "status": "closed"
+        },
+        "2026-12-29": {
+          "status": "closed"
+        },
+        "2026-12-30": {
+          "status": "closed"
+        },
+        "2026-12-31": {
+          "status": "closed"
+        }
+      },
+      "official_season_source": "https://mirabeach.mirabilandia.it/en"
     }
   },
   "matched_and_updated": 5,
-  "official_off_season_parks": 2,
+  "official_off_season_parks": 8,
   "configured_parks": 24,
   "explicit_closed_days": 0,
   "diagnostics": {
@@ -786,7 +2074,10 @@
       "state": "updated",
       "published_open_days": 15,
       "explicit_closed_days": 0,
-      "note": "Unlisted dates are not verified closures"
+      "note": "Unlisted dates are not verified closures",
+      "dated_secondary_closed_days": 2,
+      "dated_source": "https://queue-times.com/parks/298/calendar",
+      "dated_conflicts": []
     },
     "PC002": {
       "name": "Parque de Atracciones Madrid",
@@ -847,28 +2138,49 @@
       "verified_closed_days": 69,
       "conflicts_with_provider": 0,
       "source": "https://villanueva.aquopolis.es/",
-      "evidence": "Official site explicitly states return in 2027",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
       "valid_through": "2026-12-31"
     },
     "PC012": {
       "name": "Aquopolis Costa Dorada",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://costa-dorada.aquopolis.es/",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC013": {
       "name": "Aquopolis Cullera",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://disfrutalia.tixalia.com/aquopoliscullera",
+      "source_type": "ticketing",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC014": {
       "name": "Aquopolis Torrevieja",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://disfrutalia.tixalia.com/conversionpath?entityId=8qrp56trmd3as&language=en",
+      "source_type": "ticketing",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC015": {
       "name": "Aquopolis Cartaya",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://disfrutalia.tixalia.com/aquopoliscartaya",
+      "source_type": "ticketing",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC016": {
       "name": "Warner Beach",
@@ -876,7 +2188,8 @@
       "verified_closed_days": 102,
       "conflicts_with_provider": 0,
       "source": "https://parquewarnerbeach.parquewarner.com/",
-      "evidence": "Official site states season runs until 20 September 2026",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
       "valid_through": "2026-12-31"
     },
     "PC017": {
@@ -896,13 +2209,23 @@
     },
     "PC020": {
       "name": "Bo Sommerland",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://www.sommarland.no/",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC021": {
       "name": "Mirabeach",
-      "state": "not_matched",
-      "message": "No unique provider match; normal weather display retained"
+      "state": "official_off_season",
+      "verified_closed_days": 69,
+      "conflicts_with_provider": 0,
+      "source": "https://mirabeach.mirabilandia.it/en",
+      "source_type": "official",
+      "evidence": "Verified 2026 season-end/2027 return statement",
+      "valid_through": "2026-12-31"
     },
     "PC022": {
       "name": "Bournemouth Oceanarium",
@@ -929,5 +2252,5 @@
     "PC023",
     "PC024"
   ],
-  "interpretation": "Missing dates default to open. Seven user-confirmed year-round parks default open. Only explicit closure records grey out tiles."
+  "interpretation": "Missing dates are UNKNOWN, not OPEN. Seven user-confirmed year-round parks default OPEN. Only explicit verified closure records grey out tiles."
 }
