@@ -133,7 +133,7 @@ def parse_secondary_month(page,year,month):
  # Parse only the section between the requested month heading and its footer.
  section=text.lower().split(title.lower(),1)[1]
  section=re.split(r'days marked|public holidays|holidays in|quietest day|busiest day',section,maxsplit=1)[0]
- day_pat=re.compile(r'\\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\\s+(\\d{1,2})\\b',re.I)
+ day_pat=re.compile(r'\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s+(\d{1,2})\b',re.I)
  markers=list(day_pat.finditer(section));out={}
  for i,m in enumerate(markers):
   day=int(m.group(1))
@@ -141,9 +141,9 @@ def parse_secondary_month(page,year,month):
   date=f'{year:04d}-{month:02d}-{day:02d}'
   if datetime.date(year,month,day).strftime('%a').lower()!=m.group(0).split()[0][:3].lower():continue
   chunk=section[m.end():markers[i+1].start() if i+1<len(markers) else len(section)]
-  if re.search(r'\\bclosed\\b|\\bcerrado\\b|\\bgesloten\\b',chunk,re.I):
+  if re.search(r'\bclosed\b|\bcerrado\b|\bgesloten\b',chunk,re.I):
    out[date]={'status':'closed'}
-  elif re.search(r'\\b\\d{1,2}:\\d{2}\\s*[-–]\\s*\\d{1,2}:\\d{2}\\b',chunk):
+  elif re.search(r'\b\d{1,2}:\d{2}\s*[-–]\s*\d{1,2}:\d{2}\b',chunk):
    out[date]={'status':'open'}
  # Require substantial coverage before trusting any parsed result.
  if len(out)<12 or not any(v['status']=='open' for v in out.values()):return {}
