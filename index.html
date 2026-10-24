@@ -191,6 +191,18 @@ const adversePrior=!!prior&&prior.count>=2&&prior.snapshots.filter(r=>
   (r.dailyRainIcon||r.prob>=55||r.rain>=2)
 ).length>prior.count/2;
 let cls=penalty>=3?'bad':penalty>=1?'mid':optimal&&!adversePrior?'good':'fair';
+const comparison=climateComparison(p,day,{temp,rain,wind,cloud});
+// Adjust only a borderline weather classification, never override safety
+// hazards, severe snowfall, cable-car wind or confirmed access restrictions.
+if(comparison){
+ if(comparison.verdict==='WORSE'){
+  if(cls==='good')cls='fair';
+  else if(cls==='fair')cls='mid';
+ }else if(comparison.verdict==='BETTER'&&cls==='mid'&&penalty<3)cls='fair';
+ reasons.push('Against '+CLIMATE_YEARS+' monthly historical weather: '+comparison.verdict.toLowerCase()+
+  ' for visitor demand at this attraction (directional comparison).');
+}
+
 if(optimal&&adversePrior)reasons.push('Light green: most recorded earlier forecasts were unfavourable for this attraction and may have affected advance planning');
 if(optimal&&!prior?.count)reasons.push('Earlier forecasts unavailable: rated on current conditions without inventing forecast history');
 if(snowSevere)cls='bad';
@@ -207,7 +219,78 @@ for(const event of relevant){
   else if(cls==='good'||cls==='fair')cls='mid';
   reasons.unshift('MADRID ACCESS ALERT: '+event.name+' ('+(event.severity==='bad'?'major verified disruption':'potential disruption')+')');
 }
-return{cls,temp,rain,prob,wind,cloud,weatherCodes,snow,snowDepth,recentSnow,residualSnow,snowConcern,snowSevere,condition,penalty,allDayRainIcon,prior,reasons:reasons.length?reasons:['Conditions broadly favourable for this attraction type'],events:relevant,sharedMadridForecast:madridShared,hours:'10:00–18:00 (indicative only; official hours unverified)'};
+return{cls,comparison,temp,rain,prob,wind,cloud,weatherCodes,snow,snowDepth,recentSnow,residualSnow,snowConcern,snowSevere,condition,penalty,allDayRainIcon,prior,reasons:reasons.length?reasons:['Conditions broadly favourable for this attraction type'],events:relevant,sharedMadridForecast:madridShared,hours:'10:00–18:00 (indicative only; official hours unverified)'};
+}
+// Five complete calendar years of actual historical weather, never forecast history.
+// Archive: Open-Meteo ERA5 daily aggregates (2021–2025); monthly reference by site.
+const CLIMATE_YEARS='2021–2025',CLIMATE_KEY='parkcast-climate-2021-2025-v1';
+let climate={};try{climate=JSON.parse(localStorage.getItem(CLIMATE_KEY)||'{}')||{}}catch(e){}
+function visitorWeatherIndex(p,temp,rain,wind,cloud){
+ // Index is comparative weather suitability, not an attendance prediction.
+ const indoor=p.type==='indoor'||p.type==='aquarium';
+ if(indoor){
+  // Ordinary rain, overcast skies and cooler days support indoor demand.
+  // Extreme snow or high wind are access risks, not demand benefits.
+  return Math.min(5,rain)*0.8+cloud*0.025-Math.max(0,temp-18)*0.32-
+   Math.max(0,wind-65)*0.18;
+ }
+ if(p.type==='water'){
+  const target=['Spain','Italy'].includes(p.country)?31:27;
+  return 12-Math.abs(temp-target)*0.8-Math.min(20,rain)*0.65-
+   Math.max(0,wind-35)*0.1-cloud*0.025;
+ }
+ // Zoo and outdoor theme-park drivers: comfortable temperatures, dry,
+ // moderately bright days; strong winds and precipitation deter visits.
+ const ideal=p.type==='zoo'?22:23;
+ return 12-Math.abs(temp-ideal)*0.35-Math.min(20,rain)*0.55-
+  Math.max(0,wind-40)*0.12-cloud*0.016;
+}
+function climateComparison(p,day,x){
+ const key=p.id==='PC001'?'PC002':p.id;
+ const month=Number(day.slice(5,7));
+ const ref=climate[key]?.months?.[month];
+ if(!ref||ref.count<100)return null;
+ // Forecast is assessed during guest hours; archive daily data are all-day
+ // values. Comparisons are directional rather than exact like-for-like.
+ const forecast=visitorWeatherIndex(p,x.temp,x.rain,x.wind,x.cloud);
+ const baseline=visitorWeatherIndex(p,ref.temp,ref.rain,ref.wind,ref.cloud);
+ const diff=forecast-baseline;
+ const verdict=diff>1.6?'BETTER':diff< -1.6?'WORSE':'SAME';
+ return {verdict,diff,ref,years:CLIMATE_YEARS};
+}
+async function loadClimate(){
+ const missing=parks.filter(p=>!climate[p.id]?.months);
+ if(!missing.length){render();return}
+ // Limit concurrent archive requests; cached data persist on this device.
+ let cursor=0;
+ async function worker(){
+  while(cursor<missing.length){
+   const p=missing[cursor++];
+   try{
+    const url='https://archive-api.open-meteo.com/v1/archive?latitude='+p.lat+
+     '&longitude='+p.lon+'&start_date=2021-01-01&end_date=2025-12-31'+
+     '&daily=temperature_2m_mean,precipitation_sum,wind_gusts_10m_max,cloud_cover_mean'+
+     '&timezone=auto';
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),18000);
+    let response;try{response=await fetch(url,{signal:controller.signal})}finally{clearTimeout(timer)}
+    if(!response.ok)throw Error('Archive HTTP '+response.status);
+    const d=(await response.json()).daily;if(!d?.time?.length)throw Error('Missing daily history');
+    const months={};
+    for(let i=0;i<d.time.length;i++){
+     const m=Number(d.time[i].slice(5,7));
+     const values=['temperature_2m_mean','precipitation_sum','wind_gusts_10m_max','cloud_cover_mean'].map(k=>d[k]?.[i]);
+     if(values.some(v=>!Number.isFinite(v)))continue;
+     const a=months[m]||(months[m]={count:0,temp:0,rain:0,wind:0,cloud:0});
+     a.count++;for(let j=0;j<4;j++)a[['temp','rain','wind','cloud'][j]]+=values[j];
+    }
+    for(const a of Object.values(months))for(const k of ['temp','rain','wind','cloud'])a[k]/=a.count;
+    climate[p.id]={months,source:'Open-Meteo Historical Weather API / ERA5',years:CLIMATE_YEARS};
+    try{localStorage.setItem(CLIMATE_KEY,JSON.stringify(climate))}catch(e){}
+    render();
+   }catch(e){/* Historical reference unavailable: never invent a comparison. */}
+  }
+ }
+ await Promise.all([worker(),worker(),worker()]);
 }
 // Escalation flags are review prompts, not closure recommendations or verified safety limits.
 // Keep them separate from attendance colours and ordinary operational alerts.
@@ -440,6 +523,13 @@ function details(p,d,x){
     const reason=document.createElement('div');reason.textContent=review.reason;
     panel.append(heading,reason);if(review.action){const action=document.createElement('div');action.style.marginTop='5px';action.textContent=review.action;panel.append(action);}el.append(panel);
   }
+  const climateTitle=document.createElement('h3');climateTitle.textContent='VERSUS TYPICAL WEATHER FOR THIS MONTH';climateTitle.style.cssText='font-size:12px;letter-spacing:.06em;color:#9bc8e9;margin:18px 0 4px';el.append(climateTitle);
+  const climateText=document.createElement('p');climateText.style.margin='0 0 8px';
+  if(x.comparison){
+   const c=x.comparison,labels={BETTER:'Better than average',SAME:'About average',WORSE:'Worse than average'};
+   climateText.textContent=labels[c.verdict]+' for visitor demand · '+c.years+' historical monthly weather ('+c.ref.count+' daily observations). Typical daily conditions: '+c.ref.temp.toFixed(1)+'°C, '+c.ref.rain.toFixed(1)+' mm rain, '+Math.round(c.ref.wind)+' km/h peak gust. Comparison accounts for indoor versus outdoor demand. Historical all-day averages versus forecast visiting hours: indicative only.';
+  }else climateText.textContent='Five-year historical weather comparison loading or unavailable; no adjustment applied.';
+  el.append(climateText);
   const explanation=practicalExplanation(p,{...x,day:d});
   const sections=[['WHY THIS COLOUR',explanation.what]];
   if((x.cls==='mid'||x.cls==='bad')&&explanation.why)sections.push(['WHY GUESTS MAY CHANGE THEIR PLANS',explanation.why]);
@@ -492,6 +582,6 @@ async function loadMadrid(){
  }catch(e){madridEvents=[];madridFeed={updated_at:null,sources:{traffic:'unavailable',agenda:'unavailable'},nearby_events:[]}}
  renderEvents();render();
 }
-loadMadrid();loadOpeningCalendars();
+loadMadrid();loadOpeningCalendars();loadClimate();
 for(const id of ['days'])$(id).addEventListener('change',render);$('refresh').addEventListener('click',()=>{load();loadMadrid();loadOpeningCalendars()});render();if(previewMode){$('status').textContent='File preview detected — live weather may be blocked';$('errorbox').style.display='block';$('errorbox').textContent='This is a local file preview, not a hosted website. Live weather requests may be blocked. Upload index.html to an HTTPS web host and open the published URL in Safari.';}load();
 </script></body></html>
