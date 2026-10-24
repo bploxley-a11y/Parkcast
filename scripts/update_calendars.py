@@ -153,7 +153,8 @@ def parse_secondary_month(page,year,month):
  # Require substantial coverage before trusting any parsed result.
  if len(out)<12 or not any(v['status']=='open' for v in out.values()):return {}
  return out
-def apply_secondary_calendars(result,diagnostics,now):
+def apply_secondary_calendars(result,diagnostics,now)
+ apply_verified_halloween_weekends(result,diagnostics,now):
  for pid,url in SECONDARY_CALENDARS.items():
   try:
    req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; ParkCast/1.0)','Accept':'text/html'})
@@ -278,6 +279,18 @@ def apply_slagharen_operating_days(result,diagnostics,now):
  diag=diagnostics.setdefault(pid,{'name':'Slagharen'})
  diag['official_open_days']=sorted(day for day in days if day>=now.date().isoformat())
  diag['official_calendar_url']='https://www.slagharen.com/en/prijzen---openingstijden/openingstijden'
+
+def apply_verified_halloween_weekends(result,diagnostics,now):
+ """Official 2026 Halloween announcements explicitly include 24–25 October."""
+ for pid,name,source in [
+  ('PC007','Tusenfryd','https://www.tusenfryd.no/planlegg-besoket/arstider/halloween'),
+  ('PC008','BonBon-Land','https://www.bonbonland.dk/halloween'),
+ ]:
+  entry=result.setdefault(pid,{'name':name,'days':{}})
+  for day in ('2026-10-24','2026-10-25'):
+   if day>=now.date().isoformat():
+    entry['days'][day]={'status':'open','source':source,'source_type':'official_published_operating_day'}
+  diagnostics.setdefault(pid,{'name':name})['verified_halloween_open_dates']=['2026-10-24','2026-10-25']
 
 def main():
  try:old=json.loads(OUT.read_text())
