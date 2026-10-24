@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-24T12:33:17.515390+00:00",
+  "updated_at": "2026-10-24T12:48:33.382799+00:00",
   "provider": "ThemeParks.wiki",
   "parks": {
     "PC001": {
       "name": "Parque Warner Madrid",
       "source": "https://api.themeparks.wiki/v1/entity/5adbd2f7-3694-4d23-aaec-4037a056573f/schedule",
-      "checked_at": "2026-10-24T12:33:17.515390+00:00",
+      "checked_at": "2026-10-24T12:48:33.382799+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -57,7 +57,7 @@
     "PC002": {
       "name": "Parque de Atracciones Madrid",
       "source": "https://api.themeparks.wiki/v1/entity/1ea86991-e2c2-4771-8a32-c6e14c8298a9/schedule",
-      "checked_at": "2026-10-24T12:33:17.515390+00:00",
+      "checked_at": "2026-10-24T12:48:33.382799+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -100,7 +100,7 @@
     "PC003": {
       "name": "Movie Park Germany",
       "source": "https://api.themeparks.wiki/v1/entity/bb26f3ad-3cad-4565-81b1-1ced1ed802c4/schedule",
-      "checked_at": "2026-10-24T12:33:17.515390+00:00",
+      "checked_at": "2026-10-24T12:48:33.382799+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -143,7 +143,7 @@
     "PC005": {
       "name": "Bobbejaanland",
       "source": "https://api.themeparks.wiki/v1/entity/b4c6ca41-1cf6-465b-9f65-aea736a308cb/schedule",
-      "checked_at": "2026-10-24T12:33:17.515390+00:00",
+      "checked_at": "2026-10-24T12:48:33.382799+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -189,7 +189,7 @@
     "PC006": {
       "name": "Mirabilandia",
       "source": "https://api.themeparks.wiki/v1/entity/8bd6937c-71da-4c56-b780-600de69ba874/schedule",
-      "checked_at": "2026-10-24T12:33:17.515390+00:00",
+      "checked_at": "2026-10-24T12:48:33.382799+00:00",
       "days": {
         "2026-10-24": {
           "status": "open"
@@ -207,48 +207,6 @@
           "status": "open"
         }
       }
-    },
-    "PC009": {
-      "name": "Tropical Islands",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC010": {
-      "name": "Blackpool Zoo",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC017": {
-      "name": "Madrid Zoo",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC018": {
-      "name": "Selwo Marina",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC022": {
-      "name": "Bournemouth Oceanarium",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC023": {
-      "name": "Lakes Aquarium",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
-    },
-    "PC024": {
-      "name": "Atlantis Madrid Xanadu",
-      "source": "user-confirmed year-round operating policy",
-      "days": {},
-      "default_status": "open"
     },
     "PC011": {
       "name": "Aquopolis Villanueva",
@@ -774,6 +732,48 @@
         }
       },
       "official_season_source": "https://parquewarnerbeach.parquewarner.com/"
+    },
+    "PC009": {
+      "name": "Tropical Islands",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC010": {
+      "name": "Blackpool Zoo",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC017": {
+      "name": "Madrid Zoo",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC018": {
+      "name": "Selwo Marina",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC022": {
+      "name": "Bournemouth Oceanarium",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC023": {
+      "name": "Lakes Aquarium",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
+    },
+    "PC024": {
+      "name": "Atlantis Madrid Xanadu",
+      "source": "user-confirmed year-round operating policy",
+      "days": {},
+      "default_status": "open"
     }
   },
   "matched_and_updated": 5,
