@@ -1,0 +1,8 @@
+{
+  "updated_at": null,
+  "sources": {"traffic": "not_yet_run", "agenda": "not_yet_run"},
+  "alerts": [],
+  "nearby_events": [],
+  "method": "Automatic municipal feeds have not yet run. No event-related attendance penalty is inferred.",
+  "licence": "Madrid City Council open data, CC BY 4.0"
+}
