@@ -356,6 +356,16 @@ function visibleManagementReviews(p,x,operatingStatus){
 // Opening status is independent from weather classification. Only explicit dated records are trusted.
 const YEAR_ROUND_OPEN=new Set(['PC009','PC010','PC017','PC018','PC022','PC023','PC024','PC026','PC027']);
 let openingFeed={updated_at:null,parks:{}};
+let mediaWeather={updated_at:null,parks:{}};
+async function loadMediaWeather(){
+ try{
+  const r=await fetch('data/media_weather.json?ts='+Date.now(),{cache:'no-store'});
+  if(!r.ok)return;
+  const d=await r.json();
+  if(d?.parks&&typeof d.parks==='object')mediaWeather=d;
+ }catch(e){mediaWeather={updated_at:null,parks:{}}}
+}
+
 // Seasonal parks with no currently published operating calendar are treated
 // as closed for planning, except where an explicit dated OPEN entry exists.
 // This is an assumption, not a verified official closure.
@@ -591,6 +601,24 @@ function details(p,d,x){
 
   }else climateText.textContent='Comparison unavailable';
   el.append(climateText);
+  // Only surface a section if a recent, attributed weather-media headline
+  // specifically mentions this attraction. Never imply that the story is true
+  // or that its attendance impact is established.
+  const mediaAlerts=(mediaWeather.parks?.[p.id]||[]).filter(a=>{
+   const published=Date.parse(a.published_at),age=Date.now()-published;
+   return Number.isFinite(published)&&age>=0&&age<=72*3600000&&
+    typeof a.url==='string'&&a.url.startsWith('https://');
+  });
+  if(mediaAlerts.length){
+   const h=document.createElement('h3');h.textContent='WEATHER COVERAGE THAT MAY AFFECT VISITOR PERCEPTION';
+   h.style.cssText='font-size:12px;letter-spacing:.06em;color:#9bc8e9;margin:18px 0 4px';el.append(h);
+   for(const alert of mediaAlerts.slice(0,2)){
+    const link=document.createElement('a');link.href=alert.url;link.target='_blank';
+    link.rel='noopener noreferrer';link.textContent=alert.headline;
+    link.style.cssText='color:#b9def7;display:block;margin:4px 0';
+    el.append(link);
+   }
+  }
   const explanation=practicalExplanation(p,{...x,day:d});
   const sections=[['WHY THIS COLOUR',explanation.what]];
   if((x.cls==='mid'||x.cls==='bad')&&explanation.why)sections.push(['WHY GUESTS MAY CHANGE THEIR PLANS',explanation.why]);
@@ -643,6 +671,6 @@ async function loadMadrid(){
  }catch(e){madridEvents=[];madridFeed={updated_at:null,sources:{traffic:'unavailable',agenda:'unavailable'},nearby_events:[]}}
  renderEvents();render();
 }
-loadMadrid();loadOpeningCalendars();loadClimate();
-for(const id of ['days','hideClosedWeek'])$(id).addEventListener('change',render);$('refresh').addEventListener('click',()=>{load();loadMadrid();loadOpeningCalendars()});render();if(previewMode){$('status').textContent='File preview detected — live weather may be blocked';$('errorbox').style.display='block';$('errorbox').textContent='This is a local file preview, not a hosted website. Live weather requests may be blocked. Upload index.html to an HTTPS web host and open the published URL in Safari.';}load();
+loadMadrid();loadOpeningCalendars();loadClimate();loadMediaWeather();
+for(const id of ['days','hideClosedWeek'])$(id).addEventListener('change',render);$('refresh').addEventListener('click',()=>{load();loadMadrid();loadOpeningCalendars();loadMediaWeather()});render();if(previewMode){$('status').textContent='File preview detected — live weather may be blocked';$('errorbox').style.display='block';$('errorbox').textContent='This is a local file preview, not a hosted website. Live weather requests may be blocked. Upload index.html to an HTTPS web host and open the published URL in Safari.';}load();
 </script></body></html>
