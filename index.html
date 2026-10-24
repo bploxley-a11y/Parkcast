@@ -559,17 +559,36 @@ function details(p,d,x){
   const climateText=document.createElement('p');climateText.style.margin='0 0 8px';
   if(x.comparison){
    const labels={BETTER:'Better than average',SAME:'Same as average',WORSE:'Worse than average'};
-   const c=x.comparison,r=c.ref;
-   const changes=[];
-   const add=(label,delta,threshold,unit='')=>{
-    if(Math.abs(delta)>=threshold)changes.push(label+' '+(delta>0?'higher':'lower')+' than usual');
-   };
-   add('Temperature',x.temp-r.temp,3);
-   add('Rainfall',x.rain-r.rain,2);
-   add('Wind',x.wind-r.wind,18);
-   if(x.snow>=2||x.residualSnow>=5)changes.push('Snow expected');
-   add('Cloud cover',x.cloud-r.cloud,25);
-   climateText.textContent=labels[c.verdict]+(changes.length?' · '+changes.slice(0,2).join('; '):' · no major weather differences');
+   const c=x.comparison,r=c.ref,indoor=p.type==='indoor'||p.type==='aquarium';
+   const f=p.forecast?.hourly;
+   const ix=f?.time?.map((t,i)=>t.startsWith(d)?i:-1).filter(i=>i>=0)||[];
+   const avg=k=>ix.length?ix.reduce((sum,i)=>sum+(Number(f[k]?.[i])||0),0)/ix.length:0;
+   const rain=ix.reduce((sum,i)=>sum+(Number(f.precipitation?.[i])||0),0);
+   const wind=Math.max(0,...ix.map(i=>Number(f.wind_gusts_10m?.[i])||0));
+   const temp=avg('temperature_2m'),cloud=avg('cloud_cover');
+   const factors=[];
+   function factor(label,delta,threshold,impact){
+    if(Math.abs(delta)<threshold)return;
+    const effect=impact(delta);
+    if(effect===0)return;
+    factors.push({label,impact:effect,weight:Math.abs(effect)});
+   }
+   factor('temperature',temp-r.temp,2.5,delta=>{
+    if(indoor)return delta<0?1:-1;
+    const ideal=p.type==='water'?(['Spain','Italy'].includes(p.country)?31:27):p.type==='zoo'?22:23;
+    return Math.abs(temp-ideal)<Math.abs(r.temp-ideal)?1:-1;
+   });
+   factor('rain',rain-r.rain,1.5,delta=>indoor?(delta>0?1:-1):(delta<0?1:-1));
+   factor('wind',wind-r.wind,14,delta=>delta<0?1:-1);
+   factor('cloud cover',cloud-r.cloud,20,delta=>indoor?(delta>0?1:-1):(delta<0?1:-1));
+   if(x.snow>=2||x.residualSnow>=5)factors.push({label:'snow',impact:-1,weight:2});
+   // Only name drivers consistent with the overall verdict. Never describe
+   // reduced rainfall as the reason for a worse outdoor-park assessment.
+   const sign=c.verdict==='BETTER'?1:c.verdict==='WORSE'?-1:0;
+   const aligned=factors.filter(q=>q.impact===sign).sort((u,v)=>v.weight-u.weight);
+   const names=aligned.slice(0,2).map(q=>q.label);
+   climateText.textContent=labels[c.verdict]+(names.length?' · Driven by '+names.join(' and '):'');
+
   }else climateText.textContent='Comparison unavailable';
   el.append(climateText);
   const explanation=practicalExplanation(p,{...x,day:d});
