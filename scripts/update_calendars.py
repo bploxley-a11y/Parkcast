@@ -3,7 +3,7 @@
 Only explicit CLOSED entries grey out days; missing dates never mean closed.
 Matches entities by name AND proximity; unknown/unmatched parks remain default-open.
 """
-import json, re, urllib.request, datetime, pathlib, math, sys
+import json, re, urllib.request, datetime, pathlib, math, sys, html
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=ROOT/'data/opening_calendars.json'
 DIAGNOSTICS=ROOT/'data/opening_calendar_diagnostics.json'
@@ -72,6 +72,50 @@ def parse_schedule(data):
    result[date]={'status':'closed'}
  return result
 
+# Strict official-source season checks. A source must explicitly identify the year.
+# Never roll a season boundary forward into a later year.
+OFFICIAL_SEASON_SOURCES={
+ 'PC011':('https://villanueva.aquopolis.es/', 'return_2027'),
+ 'PC016':('https://parquewarnerbeach.parquewarner.com/', 'warner_2026'),
+}
+def official_season(pid,now):
+ if pid not in OFFICIAL_SEASON_SOURCES:return None
+ url,rule=OFFICIAL_SEASON_SOURCES[pid]
+ req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; ParkCast/1.0)','Accept':'text/html'})
+ try:
+  with urllib.request.urlopen(req,timeout=18) as response:
+   raw=response.read(800000).decode('utf-8','replace')
+  clean=html.unescape(re.sub(r'<[^>]+>',' ',raw))
+  clean=re.sub(r'\s+',' ',clean).lower()
+  today=now.date()
+  if rule=='return_2027' and today.year==2026 and re.search(r'(nos vemos en 2027|volvemos en 2027)',clean):
+   return {'from':'2026-10-24','through':'2026-12-31','url':url,'evidence':'Official site explicitly states return in 2027'}
+  if rule=='warner_2026' and today.year==2026 and re.search(r'(hasta el 20 de septiembre|abrimos hasta el 20 de septiembre)',clean):
+   return {'from':'2026-09-21','through':'2026-12-31','url':url,'evidence':'Official site states season runs until 20 September 2026'}
+ except Exception as exc:print('Official season check unavailable:',pid,exc,file=sys.stderr)
+ return None
+
+def apply_official_seasons(result,diagnostics,now):
+ applied=0
+ for row in PARKS:
+  pid,name,*_=row
+  if pid in YEAR_ROUND:continue
+  rule=official_season(pid,now)
+  if not rule:continue
+  start=datetime.date.fromisoformat(rule['from']);end=datetime.date.fromisoformat(rule['through'])
+  entry=result.setdefault(pid,{'name':name,'days':{}})
+  # Explicit daily OPEN from a structured schedule takes precedence: flag any conflict.
+  conflicts=0;day=start
+  while day<=end:
+   date=day.isoformat();existing=entry['days'].get(date)
+   if existing and existing.get('status')=='open':conflicts+=1
+   else:entry['days'][date]={'status':'closed'}
+   day+=datetime.timedelta(days=1)
+  entry['official_season_source']=rule['url']
+  diagnostics[pid]={'name':name,'state':'official_off_season','verified_closed_days':(end-start).days+1-conflicts,'conflicts_with_provider':conflicts,'source':rule['url'],'evidence':rule['evidence'],'valid_through':rule['through']}
+  applied+=1
+ return applied
+
 def main():
  try:old=json.loads(OUT.read_text())
  except Exception:old={'parks':{}}
@@ -113,10 +157,11 @@ def main():
    else:result[pid]['default_status']='open'
   elif pid not in result:
    diagnostics.setdefault(pid,{'name':name,'state':'not_connected'})
- payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'year_round_park_ids':sorted(YEAR_ROUND),'interpretation':'Missing dates default to open. Seven user-confirmed year-round parks default open. Only explicit closure records grey out tiles.'}
+ official_count=apply_official_seasons(result,diagnostics,now)
+ payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'official_off_season_parks':official_count,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'year_round_park_ids':sorted(YEAR_ROUND),'interpretation':'Missing dates default to open. Seven user-confirmed year-round parks default open. Only explicit closure records grey out tiles.'}
  OUT.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
- DIAGNOSTICS.write_text(json.dumps({'updated_at':now.isoformat(),'parks':diagnostics,'provider_matches':checked,'year_round_defaults':len(YEAR_ROUND),'not_connected':len(PARKS)-checked-len(YEAR_ROUND)},indent=2,ensure_ascii=False)+'\n')
- print('Updated',checked,'of',len(PARKS),'parks; explicit closed dates:',explicit_closed)
+ DIAGNOSTICS.write_text(json.dumps({'updated_at':now.isoformat(),'parks':diagnostics,'provider_matches':checked,'official_off_season_parks':official_count,'year_round_defaults':len(YEAR_ROUND),'not_connected':sum(d.get('state') not in ('updated','year_round_default','official_off_season') for d in diagnostics.values())},indent=2,ensure_ascii=False)+'\n')
+ print('Updated',checked,'provider parks; official off-season parks:',official_count,'; provider closed dates:',explicit_closed)
  print('Not connected:',', '.join(r[0] for r in PARKS if diagnostics.get(r[0],{}).get('state')!='updated'))
  return 0
 if __name__=='__main__':sys.exit(main())
