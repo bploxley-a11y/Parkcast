@@ -1,0 +1,50 @@
+name: Validate ParkCast calendar logic
+on:
+  push:
+    branches: [parkcast-v28-calendar-quality]
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/update_calendars.py'
+      - 'tests/test_calendar_safety.py'
+      - '.github/workflows/validate-calendars.yml'
+permissions:
+  contents: read
+jobs:
+  calendar-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run calendar safety tests
+        run: python -m unittest discover -s tests -p 'test_calendar_safety.py' -v
+      - name: Verify Python syntax
+        run: python -m py_compile scripts/update_calendars.py
+      - name: Run full calendar update and verify output
+        run: |
+          python scripts/update_calendars.py
+          python - <<'PY'
+          import json
+          p=json.load(open('data/opening_calendars.json'))['parks']
+          expected={'PC001':{'2026-10-26':'closed','2026-10-27':'closed','2026-10-28':'open'},'PC002':{'2026-10-26':'closed','2026-10-30':'closed'},'PC003':{'2026-10-26':'open','2026-10-30':'open'},'PC005':{'2026-10-26':'closed','2026-10-30':'closed'}}
+          for pid,days in expected.items():
+           for date,status in days.items():
+            actual=p.get(pid,{}).get('days',{}).get(date,{}).get('status')
+            print(pid,date,actual,'expected',status)
+            assert actual==status,(pid,date,actual,status)
+          print('PASS: end-to-end 2026-10-26 to 30 park status assertions')
+          PY
+      - name: Probe live calendar sources without publishing
+        run: |
+          python - <<'PY'
+          import datetime, json
+          from scripts import update_calendars as c
+          now=datetime.datetime.now(datetime.timezone.utc)
+          result={}; diag={}
+          c.apply_secondary_calendars(result,diag,now)
+          dates=['2026-10-26','2026-10-27','2026-10-28','2026-10-29','2026-10-30']
+          for pid in c.SECONDARY_CALENDARS:
+           print(json.dumps({'park':pid,'dates':{d:result.get(pid,{}).get('days',{}).get(d,{}).get('status','unknown') for d in dates},'diagnostics':diag.get(pid,{})}))
+          PY
