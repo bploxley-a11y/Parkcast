@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T13:21:24.996Z",
+  "updated_at": "2026-10-24T13:29:20.602Z",
   "provider": "ThemeParks.wiki",
   "parks": {
     "PC001": {
@@ -2203,11 +2203,62 @@
         }
       },
       "official_season_source": "https://www.bonbonland.dk/halloween"
+    },
+    "PC025": {
+      "name": "Weltvogelpark Walsrode",
+      "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+      "days": {
+        "2026-10-24": {
+          "status": "open",
+          "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+          "source_type": "published_2026_season"
+        },
+        "2026-10-25": {
+          "status": "open",
+          "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+          "source_type": "published_2026_season"
+        },
+        "2026-10-26": {
+          "status": "open",
+          "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+          "source_type": "published_2026_season"
+        },
+        "2026-10-27": {
+          "status": "open",
+          "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+          "source_type": "published_2026_season"
+        },
+        "2026-10-28": {
+          "status": "open",
+          "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+          "source_type": "published_2026_season"
+        },
+        "2026-10-29": {
+          "status": "open",
+          "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+          "source_type": "published_2026_season"
+        },
+        "2026-10-30": {
+          "status": "open",
+          "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+          "source_type": "published_2026_season"
+        },
+        "2026-10-31": {
+          "status": "open",
+          "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+          "source_type": "published_2026_season"
+        },
+        "2026-11-01": {
+          "status": "open",
+          "source": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+          "source_type": "published_2026_season"
+        }
+      }
     }
   },
   "matched_and_updated": 5,
   "official_off_season_parks": 8,
-  "configured_parks": 24,
+  "configured_parks": 25,
   "explicit_closed_days": 0,
   "diagnostics": {
     "PC001": {
@@ -2382,6 +2433,12 @@
       "name": "Atlantis Madrid Xanadu",
       "state": "year_round_default",
       "message": "User-confirmed daily opening; only an explicit verified closure can override"
+    },
+    "PC025": {
+      "name": "Weltvogelpark Walsrode",
+      "state": "published_2026_season",
+      "official_calendar_url": "https://www.weltvogelpark.de/oeffnungszeiten-und-preise/oeffnungszeiten",
+      "note": "Daily operation through 1 November 2026; later dates unknown pending explicit calendar verification"
     }
   },
   "year_round_park_ids": [
