@@ -74,26 +74,58 @@ def parse_schedule(data):
 
 # Strict official-source season checks. A source must explicitly identify the year.
 # Never roll a season boundary forward into a later year.
+# Every rule is scoped to 2026; only current source text authorises the closure.
+# 'From' is conservative (today or the verified start), not a guessed season-end date.
+# Ticketing pages are labelled secondary; they are not represented as official websites.
 OFFICIAL_SEASON_SOURCES={
- 'PC011':('https://villanueva.aquopolis.es/', 'return_2027'),
- 'PC016':('https://parquewarnerbeach.parquewarner.com/', 'warner_2026'),
+ 'PC011':('https://villanueva.aquopolis.es/',r'nos vemos en 2027|volvemos en 2027','official'),
+ 'PC012':('https://costa-dorada.aquopolis.es/',r'nos vemos en 2027','official'),
+ 'PC016':('https://parquewarnerbeach.parquewarner.com/',r'hasta el 20 de septiembre|abrimos hasta el 20 de septiembre','official'),
+ 'PC021':('https://mirabeach.mirabilandia.it/en',r'the season may be over, but the fun isn.t|start dreaming about the 2027 season','official'),
+ 'PC020':('https://www.sommarland.no/',r'planlegg sommeren 2027 allerede n[åa]','official'),
+ 'PC013':('https://disfrutalia.tixalia.com/aquopoliscullera',r'temporada 2026 finalizada','ticketing'),
+ 'PC014':('https://disfrutalia.tixalia.com/conversionpath?entityId=8qrp56trmd3as&language=en',r'temporada 2026 finalizada','ticketing'),
+ 'PC015':('https://disfrutalia.tixalia.com/aquopoliscartaya',r'temporada 2026 finalizada','ticketing'),
 }
 def official_season(pid,now):
- if pid not in OFFICIAL_SEASON_SOURCES:return None
- url,rule=OFFICIAL_SEASON_SOURCES[pid]
+ if pid not in OFFICIAL_SEASON_SOURCES or now.year!=2026:return None
+ url,pattern,source_type=OFFICIAL_SEASON_SOURCES[pid]
  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; ParkCast/1.0)','Accept':'text/html'})
  try:
   with urllib.request.urlopen(req,timeout=18) as response:
-   raw=response.read(800000).decode('utf-8','replace')
+   raw=response.read(900000).decode('utf-8','replace')
   clean=html.unescape(re.sub(r'<[^>]+>',' ',raw))
   clean=re.sub(r'\s+',' ',clean).lower()
-  today=now.date()
-  if rule=='return_2027' and today.year==2026 and re.search(r'(nos vemos en 2027|volvemos en 2027)',clean):
-   return {'from':'2026-10-24','through':'2026-12-31','url':url,'evidence':'Official site explicitly states return in 2027'}
-  if rule=='warner_2026' and today.year==2026 and re.search(r'(hasta el 20 de septiembre|abrimos hasta el 20 de septiembre)',clean):
-   return {'from':'2026-09-21','through':'2026-12-31','url':url,'evidence':'Official site states season runs until 20 September 2026'}
- except Exception as exc:print('Official season check unavailable:',pid,exc,file=sys.stderr)
+  if not re.search(pattern,clean,re.I):return None
+  # Conservative: don't retrospectively claim closure dates without a precise boundary.
+  start='2026-09-21' if pid=='PC016' else now.date().isoformat()
+  return {'from':start,'through':'2026-12-31','url':url,
+          'evidence':'Verified 2026 season-end/2027 return statement',
+          'source_type':source_type}
+ except Exception as exc:print('Season check unavailable:',pid,exc,file=sys.stderr)
  return None
+
+# Explicit, dated secondary-source closures, never extrapolated to other dates/years.
+# Sources: https://queue-times.com/parks/298/calendar (checked 2026-10-24).
+# Official source for independent confirmation: https://www.parquewarner.com/horarios-y-precios/horarios
+VERIFIED_DATED_CLOSURES={
+ 'PC001':{'2026-10-26','2026-10-27'},
+}
+def apply_dated_closures(result,diagnostics):
+ for pid,dates in VERIFIED_DATED_CLOSURES.items():
+  entry=result.setdefault(pid,{'name':next(row[1] for row in PARKS if row[0]==pid),'days':{}})
+  conflicts=[]
+  for date in sorted(dates):
+   existing=entry['days'].get(date)
+   if existing and existing.get('status')=='open':
+    conflicts.append(date)
+    # Never silently override conflicting feed data.
+    continue
+   entry['days'][date]={'status':'closed','source':'https://queue-times.com/parks/298/calendar','source_type':'secondary_dated_calendar'}
+  diag=diagnostics.setdefault(pid,{'name':entry['name']})
+  diag['dated_secondary_closed_days']=len(dates)-len(conflicts)
+  diag['dated_source']='https://queue-times.com/parks/298/calendar'
+  diag['dated_conflicts']=conflicts
 
 def apply_official_seasons(result,diagnostics,now):
  applied=0
@@ -112,7 +144,7 @@ def apply_official_seasons(result,diagnostics,now):
    else:entry['days'][date]={'status':'closed'}
    day+=datetime.timedelta(days=1)
   entry['official_season_source']=rule['url']
-  diagnostics[pid]={'name':name,'state':'official_off_season','verified_closed_days':(end-start).days+1-conflicts,'conflicts_with_provider':conflicts,'source':rule['url'],'evidence':rule['evidence'],'valid_through':rule['through']}
+  diagnostics[pid]={'name':name,'state':'official_off_season','verified_closed_days':(end-start).days+1-conflicts,'conflicts_with_provider':conflicts,'source':rule['url'],'source_type':rule['source_type'],'evidence':rule['evidence'],'valid_through':rule['through']}
   applied+=1
  return applied
 
@@ -148,7 +180,8 @@ def main():
  # Preserve only previously sourced entries for unmatched parks; never synthesize.
  for pid,entry in oldparks.items():
   if pid not in result and entry.get('days'):
-   result[pid]={**entry,'days':{date:{'status':v['status']} for date,v in entry['days'].items() if v.get('status') in ('open','closed')}}
+   retained={date:{'status':v['status']} for date,v in entry['days'].items() if v.get('status')=='open' or (v.get('status')=='closed' and v.get('source_type')=='secondary_dated_calendar')}
+   if retained:result[pid]={**entry,'days':retained}
  for row in PARKS:
   pid,name,*_=row
   if pid in YEAR_ROUND:
@@ -158,7 +191,8 @@ def main():
   elif pid not in result:
    diagnostics.setdefault(pid,{'name':name,'state':'not_connected'})
  official_count=apply_official_seasons(result,diagnostics,now)
- payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'official_off_season_parks':official_count,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'year_round_park_ids':sorted(YEAR_ROUND),'interpretation':'Missing dates default to open. Seven user-confirmed year-round parks default open. Only explicit closure records grey out tiles.'}
+ apply_dated_closures(result,diagnostics)
+ payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'official_off_season_parks':official_count,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'year_round_park_ids':sorted(YEAR_ROUND),'interpretation':'Missing dates are UNKNOWN, not OPEN. Seven user-confirmed year-round parks default OPEN. Only explicit verified closure records grey out tiles.'}
  OUT.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
  DIAGNOSTICS.write_text(json.dumps({'updated_at':now.isoformat(),'parks':diagnostics,'provider_matches':checked,'official_off_season_parks':official_count,'year_round_defaults':len(YEAR_ROUND),'not_connected':sum(d.get('state') not in ('updated','year_round_default','official_off_season') for d in diagnostics.values())},indent=2,ensure_ascii=False)+'\n')
  print('Updated',checked,'provider parks; official off-season parks:',official_count,'; provider closed dates:',explicit_closed)
