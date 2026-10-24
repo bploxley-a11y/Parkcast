@@ -145,7 +145,7 @@ def apply_official_seasons(result,diagnostics,now):
   while day<=end:
    date=day.isoformat();existing=entry['days'].get(date)
    if existing and existing.get('status')=='open':conflicts+=1
-   else:entry['days'][date]={'status':'closed'}
+   else:entry['days'][date]={'status':'closed','source':rule['url'],'source_type':rule['source_type'],'valid_through':rule['through']}
    day+=datetime.timedelta(days=1)
   entry['official_season_source']=rule['url']
   diagnostics[pid]={'name':name,'state':'official_off_season','verified_closed_days':(end-start).days+1-conflicts,'conflicts_with_provider':conflicts,'source':rule['url'],'source_type':rule['source_type'],'evidence':rule['evidence'],'valid_through':rule['through']}
@@ -184,7 +184,9 @@ def main():
  # Preserve only previously sourced entries for unmatched parks; never synthesize.
  for pid,entry in oldparks.items():
   if pid not in result and entry.get('days'):
-   retained={date:{'status':v['status']} for date,v in entry['days'].items() if v.get('status')=='open' or (v.get('status')=='closed' and v.get('source_type')=='secondary_dated_calendar')}
+   # Retain dated records only while their provenance remains identifiable.
+   # Do not silently carry forward stale seasonal rules or unverified closures.
+   retained={date:v for date,v in entry['days'].items() if v.get('status')=='open' or (v.get('status')=='closed' and v.get('source_type')=='secondary_dated_calendar' and v.get('source'))}
    if retained:result[pid]={**entry,'days':retained}
  for row in PARKS:
   pid,name,*_=row
