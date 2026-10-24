@@ -531,7 +531,20 @@ function practicalExplanation(p,x){
   mid:'Weather is likely to hold back some attendance.',
   bad:'Weather is likely to significantly reduce demand.'
  }[x.cls];
- // Prevent a reassuring opening when the rating is red due to an override.
+ // The explanatory copy must not contradict the actual attendance colour.
+ // In particular, rainy/grey conditions are a positive demand driver for
+ // indoor attractions, even when other factors make the overall day marginal.
+ if(indoor&&(x.cls==='mid'||x.cls==='bad')){
+  const favourable=what.filter(t=>/indoor visit more attractive|forecast is broadly/i.test(t));
+  const adverse=what.filter(t=>!/indoor visit more attractive|forecast is broadly/i.test(t));
+  const relevant=adverse.filter(t=>/disruption|snow|wind|travel|access|outdoor alternatives|bright weather|pleasant outdoor/i.test(t));
+  const baseline=x.comparison?.verdict==='WORSE'
+   ?'Compared with typical weather for this month, conditions are less favourable for indoor visitor demand.'
+   :'The overall attendance assessment reflects other weather factors.';
+  const whatText=relevant.length?relevant.join(' '):baseline;
+  const whyText=why.filter(t=>!/weather-proof day out may favour|indoor visit|favour this attraction/i.test(t)).join(' ');
+  return {what:intro+' '+whatText,why:whyText,classification:''};
+ }
  return {what:intro+' '+what.join(' '),why:why.join(' '),classification:''};
 }
 // Operational awareness is distinct from the attendance score. These are
