@@ -177,11 +177,19 @@ def apply_secondary_calendars(result,diagnostics,now):
 # Explicit, dated secondary-source closures, never extrapolated to other dates/years.
 # Sources: https://queue-times.com/parks/298/calendar (checked 2026-10-24).
 # Official source for independent confirmation: https://www.parquewarner.com/horarios-y-precios/horarios
+# Explicit October 2026 closures cross-checked against published park calendars.
+# Mirabilandia 30 Oct is intentionally UNKNOWN: published sources disagree about
+# whether its separately ticketed Halloween night counts as park operation.
+# TusenFryd's published 2026 public season ends 25 October.
 VERIFIED_DATED_CLOSURES={
  'PC001':{'2026-10-26','2026-10-27'},
+ 'PC006':{'2026-10-26','2026-10-27','2026-10-28','2026-10-29'},
+ 'PC007':{'2026-10-26','2026-10-27','2026-10-28','2026-10-29','2026-10-30'},
 }
 DATED_SOURCES={
  'PC001':'https://queue-times.com/parks/298/calendar',
+ 'PC006':'https://www.mirabilandia.it/calendario-e-tariffe/calendario-di-apertura',
+ 'PC007':'https://www.tusenfryd.no/planlegg-besoket/arstider/halloween',
 }
 def apply_dated_closures(result,diagnostics):
  for pid,dates in VERIFIED_DATED_CLOSURES.items():
