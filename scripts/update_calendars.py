@@ -6,6 +6,8 @@ Matches entities by name AND proximity; unknown/unmatched parks remain default-o
 import json, re, urllib.request, datetime, pathlib, math, sys
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=ROOT/'data/opening_calendars.json'
+DIAGNOSTICS=ROOT/'data/opening_calendar_diagnostics.json'
+YEAR_ROUND={'PC009','PC010','PC017','PC018','PC022','PC023','PC024'}
 API='https://api.themeparks.wiki/v1'
 PARKS=[
  ('PC001','Parque Warner Madrid',40.229,-3.593,['parque warner madrid','parque warner']),
@@ -90,7 +92,7 @@ def main():
     diagnostics[pid]={'name':name,'state':'empty_schedule','message':'Provider returned no dated operating records'}
     print(pid,'no explicit schedule records');continue
    # Drop old dates when a successful current schedule supersedes them.
-   result[pid]={'name':name,'source':f'https://api.themeparks.wiki/v1/entity/{eid}/schedule','checked_at':now.isoformat(),'days':days}
+   result[pid]={'name':name,'source':f'https://api.themeparks.wiki/v1/entity/{eid}/schedule','checked_at':now.isoformat(),'days':{date:{'status':v['status']} for date,v in days.items()}}
    checked+=1
    nclosed=sum(d.get('status')=='closed' for d in days.values());explicit_closed+=nclosed
    diagnostics[pid]={'name':name,'state':'updated','published_open_days':sum(d.get('status')=='open' for d in days.values()),'explicit_closed_days':nclosed,'note':'Unlisted dates are not verified closures'}
@@ -101,9 +103,19 @@ def main():
    if previous and previous.get('days'):result[pid]=previous
  # Preserve only previously sourced entries for unmatched parks; never synthesize.
  for pid,entry in oldparks.items():
-  if pid not in result and entry.get('days'):result[pid]=entry
- payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'interpretation':'Missing provider dates are unknown, not closed. Only explicit closure records grey out tiles.'}
+  if pid not in result and entry.get('days'):
+   result[pid]={**entry,'days':{date:{'status':v['status']} for date,v in entry['days'].items() if v.get('status') in ('open','closed')}}
+ for row in PARKS:
+  pid,name,*_=row
+  if pid in YEAR_ROUND:
+   diagnostics[pid]={'name':name,'state':'year_round_default','message':'User-confirmed daily opening; only an explicit verified closure can override'}
+   if pid not in result:result[pid]={'name':name,'source':'user-confirmed year-round operating policy','days':{},'default_status':'open'}
+   else:result[pid]['default_status']='open'
+  elif pid not in result:
+   diagnostics.setdefault(pid,{'name':name,'state':'not_connected'})
+ payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'year_round_park_ids':sorted(YEAR_ROUND),'interpretation':'Missing dates default to open. Seven user-confirmed year-round parks default open. Only explicit closure records grey out tiles.'}
  OUT.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
+ DIAGNOSTICS.write_text(json.dumps({'updated_at':now.isoformat(),'parks':diagnostics,'provider_matches':checked,'year_round_defaults':len(YEAR_ROUND),'not_connected':len(PARKS)-checked-len(YEAR_ROUND)},indent=2,ensure_ascii=False)+'\n')
  print('Updated',checked,'of',len(PARKS),'parks; explicit closed dates:',explicit_closed)
  print('Not connected:',', '.join(r[0] for r in PARKS if diagnostics.get(r[0],{}).get('state')!='updated'))
  return 0
