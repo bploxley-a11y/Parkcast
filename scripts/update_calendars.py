@@ -258,6 +258,27 @@ def apply_walsrode_2026(result,diagnostics):
  diagnostics['PC025']['season_2026_conflicts']=conflicts
  diagnostics['PC025']['calendar_note']='Daily 2026 season through 1 Nov; winter days unknown pending explicit calendar verification'
 
+def apply_slagharen_operating_days(result,diagnostics,now):
+ """Official 2026 Halloween dates plus published weekend operation.
+ Explicit openings override missing-provider-data closure assumptions.
+ """
+ pid='PC004'
+ source='https://www.slagharen.com/halloween'
+ days={'2026-10-24','2026-10-25','2026-10-31'}
+ # Official visitor information confirms weekend operation after 26 October.
+ # Restrict the recurring rule to the 14-day forecast horizon; refresh daily.
+ for offset in range(15):
+  day=(now.date()+datetime.timedelta(days=offset))
+  if day.year==2026 and day>=datetime.date(2026,10,31) and day.weekday()>=5:
+   days.add(day.isoformat())
+ entry=result.setdefault(pid,{'name':'Slagharen','days':{}})
+ for day in sorted(days):
+  if day<now.date().isoformat():continue
+  entry['days'][day]={'status':'open','source':source,'source_type':'official_published_operating_day'}
+ diag=diagnostics.setdefault(pid,{'name':'Slagharen'})
+ diag['official_open_days']=sorted(day for day in days if day>=now.date().isoformat())
+ diag['official_calendar_url']='https://www.slagharen.com/en/prijzen---openingstijden/openingstijden'
+
 def main():
  try:old=json.loads(OUT.read_text())
  except Exception:old={'parks':{}}
@@ -303,6 +324,7 @@ def main():
   elif pid not in result:
    diagnostics.setdefault(pid,{'name':name,'state':'not_connected'})
  official_count=apply_official_seasons(result,diagnostics,now)
+ apply_slagharen_operating_days(result,diagnostics,now)
  # These official calendars are dynamic; do not infer closures from an unparsed page.
  official_calendar_pages={
   'PC004':'https://www.slagharen.com/en/prijzen---openingstijden/openingstijden',
