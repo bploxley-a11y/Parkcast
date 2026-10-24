@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T12:53:44.860698+00:00",
+  "updated_at": "2026-10-24T13:11:31.661Z",
   "provider": "ThemeParks.wiki",
   "parks": {
     "PC001": {
@@ -104,6 +104,31 @@
         },
         "2026-11-22": {
           "status": "open"
+        },
+        "2026-10-26": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/321/calendar",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-27": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/321/calendar",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-28": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/321/calendar",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-29": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/321/calendar",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-30": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/321/calendar",
+          "source_type": "secondary_dated_calendar"
         }
       }
     },
@@ -193,6 +218,31 @@
         },
         "2026-11-15": {
           "status": "open"
+        },
+        "2026-10-26": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/311/calendar",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-27": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/311/calendar",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-28": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/311/calendar",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-29": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/311/calendar",
+          "source_type": "secondary_dated_calendar"
+        },
+        "2026-10-30": {
+          "status": "closed",
+          "source": "https://queue-times.com/parks/311/calendar",
+          "source_type": "secondary_dated_calendar"
         }
       }
     },
