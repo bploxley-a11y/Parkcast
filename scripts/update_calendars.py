@@ -82,7 +82,6 @@ OFFICIAL_SEASON_SOURCES={
  'PC012':('https://costa-dorada.aquopolis.es/',r'nos vemos en 2027','official'),
  'PC016':('https://parquewarnerbeach.parquewarner.com/',r'hasta el 20 de septiembre|abrimos hasta el 20 de septiembre','official'),
  'PC021':('https://mirabeach.mirabilandia.it/en',r'the season may be over, but the fun isn.t|start dreaming about the 2027 season','official'),
- 'PC020':('https://www.sommarland.no/',r'planlegg sommeren 2027 allerede n[åa]','official'),
  'PC013':('https://disfrutalia.tixalia.com/aquopoliscullera',r'temporada 2026 finalizada','ticketing'),
  'PC014':('https://disfrutalia.tixalia.com/conversionpath?entityId=8qrp56trmd3as&language=en',r'temporada 2026 finalizada','ticketing'),
  'PC015':('https://disfrutalia.tixalia.com/aquopoliscartaya',r'temporada 2026 finalizada','ticketing'),
@@ -110,6 +109,13 @@ def official_season(pid,now):
 # Official source for independent confirmation: https://www.parquewarner.com/horarios-y-precios/horarios
 VERIFIED_DATED_CLOSURES={
  'PC001':{'2026-10-26','2026-10-27'},
+ 'PC007':{'2026-10-19','2026-10-20','2026-10-21','2026-10-22'},
+ 'PC008':{'2026-10-19','2026-10-20','2026-10-21','2026-10-22','2026-10-23'},
+}
+DATED_SOURCES={
+ 'PC001':'https://queue-times.com/parks/298/calendar',
+ 'PC007':'https://deeparrival.com/theme-parks/tusenfryd/park-hours/',
+ 'PC008':'https://deeparrival.com/theme-parks/bonbon-land/park-hours/',
 }
 def apply_dated_closures(result,diagnostics):
  for pid,dates in VERIFIED_DATED_CLOSURES.items():
@@ -121,11 +127,12 @@ def apply_dated_closures(result,diagnostics):
     conflicts.append(date)
     # Never silently override conflicting feed data.
     continue
-   entry['days'][date]={'status':'closed','source':'https://queue-times.com/parks/298/calendar','source_type':'secondary_dated_calendar'}
+   entry['days'][date]={'status':'closed','source':DATED_SOURCES[pid],'source_type':'secondary_dated_calendar'}
   diag=diagnostics.setdefault(pid,{'name':entry['name']})
   diag['dated_secondary_closed_days']=len(dates)-len(conflicts)
-  diag['dated_source']='https://queue-times.com/parks/298/calendar'
+  diag['dated_source']=DATED_SOURCES[pid]
   diag['dated_conflicts']=conflicts
+  diag['dated_coverage_only']=True
 
 def apply_official_seasons(result,diagnostics,now):
  applied=0
@@ -191,6 +198,17 @@ def main():
   elif pid not in result:
    diagnostics.setdefault(pid,{'name':name,'state':'not_connected'})
  official_count=apply_official_seasons(result,diagnostics,now)
+ # These official calendars are dynamic; do not infer closures from an unparsed page.
+ official_calendar_pages={
+  'PC004':'https://www.slagharen.com/en/prijzen---openingstijden/openingstijden',
+  'PC007':'https://www.tusenfryd.no/en/apningstider-og-priser/apningstider',
+  'PC008':'https://www.bonbonland.dk/en/billetter-og-saesonkort/normal-billet/select-month',
+  'PC019':'https://www.telefericobenalmadena.com/horarios-y-precios/horarios',
+ }
+ for pid,url in official_calendar_pages.items():
+  diagnostics[pid]['official_calendar_url']=url
+  diagnostics[pid]['automatic_day_by_day_coverage']=False
+ diagnostics['PC020']['source_warning']='Removed incorrect source: sommarland.no belongs to a different Norwegian park, not Bø Sommerland.'
  apply_dated_closures(result,diagnostics)
  payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'official_off_season_parks':official_count,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'year_round_park_ids':sorted(YEAR_ROUND),'interpretation':'Missing dates are UNKNOWN, not OPEN. Seven user-confirmed year-round parks default OPEN. Only explicit verified closure records grey out tiles.'}
  OUT.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
