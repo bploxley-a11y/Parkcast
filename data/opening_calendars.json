@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-24T12:00:08.235354+00:00",
+  "updated_at": "2026-10-24T12:10:11.950140+00:00",
   "provider": "ThemeParks.wiki",
   "parks": {
     "PC001": {
       "name": "Parque Warner Madrid",
       "source": "https://api.themeparks.wiki/v1/entity/5adbd2f7-3694-4d23-aaec-4037a056573f/schedule",
-      "checked_at": "2026-10-24T12:00:08.235354+00:00",
+      "checked_at": "2026-10-24T12:10:11.950140+00:00",
       "days": {
         "2026-10-24": {
           "status": "open",
@@ -72,7 +72,7 @@
     "PC002": {
       "name": "Parque de Atracciones Madrid",
       "source": "https://api.themeparks.wiki/v1/entity/1ea86991-e2c2-4771-8a32-c6e14c8298a9/schedule",
-      "checked_at": "2026-10-24T12:00:08.235354+00:00",
+      "checked_at": "2026-10-24T12:10:11.950140+00:00",
       "days": {
         "2026-10-24": {
           "status": "open",
@@ -127,7 +127,7 @@
     "PC003": {
       "name": "Movie Park Germany",
       "source": "https://api.themeparks.wiki/v1/entity/bb26f3ad-3cad-4565-81b1-1ced1ed802c4/schedule",
-      "checked_at": "2026-10-24T12:00:08.235354+00:00",
+      "checked_at": "2026-10-24T12:10:11.950140+00:00",
       "days": {
         "2026-10-24": {
           "status": "open",
@@ -182,7 +182,7 @@
     "PC005": {
       "name": "Bobbejaanland",
       "source": "https://api.themeparks.wiki/v1/entity/b4c6ca41-1cf6-465b-9f65-aea736a308cb/schedule",
-      "checked_at": "2026-10-24T12:00:08.235354+00:00",
+      "checked_at": "2026-10-24T12:10:11.950140+00:00",
       "days": {
         "2026-10-24": {
           "status": "open",
@@ -241,7 +241,7 @@
     "PC006": {
       "name": "Mirabilandia",
       "source": "https://api.themeparks.wiki/v1/entity/8bd6937c-71da-4c56-b780-600de69ba874/schedule",
-      "checked_at": "2026-10-24T12:00:08.235354+00:00",
+      "checked_at": "2026-10-24T12:10:11.950140+00:00",
       "days": {
         "2026-10-24": {
           "status": "open",
@@ -267,5 +267,139 @@
     }
   },
   "matched_and_updated": 5,
-  "configured_parks": 24
+  "configured_parks": 24,
+  "explicit_closed_days": 0,
+  "diagnostics": {
+    "PC001": {
+      "name": "Parque Warner Madrid",
+      "state": "updated",
+      "published_open_days": 15,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC002": {
+      "name": "Parque de Atracciones Madrid",
+      "state": "updated",
+      "published_open_days": 12,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC003": {
+      "name": "Movie Park Germany",
+      "state": "updated",
+      "published_open_days": 12,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC004": {
+      "name": "Slagharen",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC005": {
+      "name": "Bobbejaanland",
+      "state": "updated",
+      "published_open_days": 13,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC006": {
+      "name": "Mirabilandia",
+      "state": "updated",
+      "published_open_days": 5,
+      "explicit_closed_days": 0,
+      "note": "Unlisted dates are not verified closures"
+    },
+    "PC007": {
+      "name": "Tusenfryd",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC008": {
+      "name": "BonBon-Land",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC009": {
+      "name": "Tropical Islands",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC010": {
+      "name": "Blackpool Zoo",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC011": {
+      "name": "Aquopolis Villanueva",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC012": {
+      "name": "Aquopolis Costa Dorada",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC013": {
+      "name": "Aquopolis Cullera",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC014": {
+      "name": "Aquopolis Torrevieja",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC015": {
+      "name": "Aquopolis Cartaya",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC016": {
+      "name": "Warner Beach",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC017": {
+      "name": "Madrid Zoo",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC018": {
+      "name": "Selwo Marina",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC019": {
+      "name": "Teleferico Benalmadena",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC020": {
+      "name": "Bo Sommerland",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC021": {
+      "name": "Mirabeach",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC022": {
+      "name": "Bournemouth Oceanarium",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC023": {
+      "name": "Lakes Aquarium",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    },
+    "PC024": {
+      "name": "Atlantis Madrid Xanadu",
+      "state": "not_matched",
+      "message": "No unique provider match; normal weather display retained"
+    }
+  },
+  "interpretation": "Missing provider dates are unknown, not closed. Only explicit closure records grey out tiles."
 }
