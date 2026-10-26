@@ -94,6 +94,7 @@ const indices=hourly.time.map((t,i)=>t.startsWith(day)&&Number(t.slice(11,13))>=
 if(!indices.length)return null;
 const avg=k=>indices.reduce((s,i)=>s+(hourly[k]?.[i]??0),0)/indices.length;
 const temp=avg('temperature_2m'),cloud=avg('cloud_cover'),rain=indices.reduce((s,i)=>s+(hourly.precipitation?.[i]??0),0),prob=avg('precipitation_probability'),wind=Math.max(...indices.map(i=>hourly.wind_gusts_10m?.[i]??0));
+const steadyWind=Math.max(0,...indices.map(i=>Number(hourly.wind_speed_10m?.[i])||0));
 const condition=weatherIcon(hourly,indices);
 const weatherCodes=indices.map(i=>Number(hourly.weather_code?.[i])).filter(Number.isFinite);
 // Snowfall is in centimetres; snow_depth is in metres in Open-Meteo.
@@ -236,8 +237,8 @@ if(optimal&&!prior?.count)reasons.push('Earlier forecasts unavailable: rated on 
 if(snowSevere)cls='bad';
 else if(snowConcern&&(cls==='good'||cls==='fair'))cls='mid';
 if(p.id==='PC019'){
-  if(wind>54){cls='bad';reasons.unshift('CABLE CAR WIND ALERT: peak gust exceeds 15 m/s; red operational-disruption risk');}
-  else if(wind>43.2){if(cls==='good'||cls==='fair')cls='mid';reasons.unshift('CABLE CAR WIND ALERT: peak gust exceeds 12 m/s; at least orange operational-disruption risk');}
+ if(wind>=57.6||steadyWind>=64.8){cls='bad';reasons.unshift('TELEFÉRICO WIND LIMIT: gusts ≥16 m/s or sustained wind ≥18 m/s; operation not permitted at these speeds');}
+ else if(wind>=43.2){if(cls==='good'||cls==='fair')cls='mid';reasons.unshift('TELEFÉRICO WIND PRECAUTION: gusts ≥12 m/s require reduced speed and ballasted cabins');}
 }
 // Confirmed Madrid city events can worsen the attendance indicator; never improve it.
 // Park-specific access impacts require further validation; this is a cautious portfolio alert.
@@ -247,7 +248,7 @@ for(const event of relevant){
   else if(cls==='good'||cls==='fair')cls='mid';
   reasons.unshift('MADRID ACCESS ALERT: '+event.name+' ('+(event.severity==='bad'?'major verified disruption':'potential disruption')+')');
 }
-return{cls,comparison,temp,rain,prob,wind,cloud,weatherCodes,snow,snowDepth,recentSnow,residualSnow,snowConcern,snowSevere,condition,penalty,allDayRainIcon,prior,reasons:reasons.length?reasons:['Conditions broadly favourable for this attraction type'],events:relevant,sharedMadridForecast:madridShared,hours:'10:00–18:00 (indicative only; official hours unverified)'};
+return{cls,comparison,temp,rain,prob,wind,steadyWind,cloud,weatherCodes,snow,snowDepth,recentSnow,residualSnow,snowConcern,snowSevere,condition,penalty,allDayRainIcon,prior,reasons:reasons.length?reasons:['Conditions broadly favourable for this attraction type'],events:relevant,sharedMadridForecast:madridShared,hours:'10:00–18:00 (indicative only; official hours unverified)'};
 }
 // Five complete calendar years of actual historical weather, never forecast history.
 // Archive: Open-Meteo ERA5 daily aggregates (2021–2025); monthly reference by site.
@@ -331,7 +332,7 @@ function closureReview(p,x){
  // High-consequence weather: ask the GM to verify actual conditions and park-specific procedures.
  if(outdoor&&thunder)flags.push({kind:'safety',title:'Severe-weather operating review',reason:'Thunderstorms are forecast during the visiting period.',action:'Check official weather alerts, lightning procedures, ride restrictions and evacuation arrangements before opening and throughout the day.'});
  if(outdoor&&x.wind>=75&&p.id!=='PC019')flags.push({kind:'safety',title:'High-wind operating review',reason:'Peak gusts are forecast at '+Math.round(x.wind)+' km/h.',action:'Review ride-by-ride wind limits, tree exposure and outdoor guest areas. Consider partial or full closure only under site-approved procedures.'});
- if(p.id==='PC019'&&x.wind>54)flags.push({kind:'safety',title:'Cable-car operating review',reason:'Forecast gusts exceed 15 m/s ('+(x.wind/3.6).toFixed(1)+' m/s).',action:'Verify measured and forecast winds against the cable-car operating procedures and decide whether service can safely run.'});
+ if(p.id==='PC019'&&(x.wind>=43.2||x.steadyWind>=64.8))flags.push({kind:'safety',title:'Teleférico wind operating review',reason:'Peak gust '+(x.wind/3.6).toFixed(1)+' m/s; peak sustained wind '+(x.steadyWind/3.6).toFixed(1)+' m/s. Site limits: gusts ≥12 m/s = ballast/reduced speed; gusts ≥16 m/s or sustained ≥18 m/s = no operation.',action:'Verify actual measured wind against site operating procedures. Forecast risk is not a confirmed closure.'});
  if(outdoor&&extremeSnow)flags.push({kind:'safety',title:'Snow and access review',reason:'Significant snowfall or modelled snow accumulation is forecast.',action:'Verify local road access, paths, evacuation routes and safe operating conditions with the site team and road authorities.'});
  // Low-demand signals require unusually poor conditions. Weather alone cannot establish
  // whether closing makes financial sense: no budget, booking or attendance inputs exist.
@@ -423,12 +424,12 @@ function practicalExplanation(p,x){
     'Concern about icy or snowy roads may discourage families from travelling. Road conditions have not been confirmed.');
  }
  // Cable car: operational wind exposure is unique and not tied to temperature.
- if(cable&&x.wind>54){
-  add('Forecast wind gusts of '+(x.wind/3.6).toFixed(1)+' m/s exceed the 15 m/s red threshold for the cable car.',
-    'Guests may avoid booking or travelling if they expect the cable car to be suspended. This is a risk indicator, not a confirmed closure.');
- }else if(cable&&x.wind>43.2){
-  add('Forecast wind gusts of '+(x.wind/3.6).toFixed(1)+' m/s exceed the 12 m/s caution threshold for the cable car.',
-    'Uncertainty about whether the cable car will operate may lead guests to postpone their trip.');
+ if(cable&&(x.wind>=57.6||x.steadyWind>=64.8)){
+  add('Forecast gusts '+(x.wind/3.6).toFixed(1)+' m/s and sustained wind '+(x.steadyWind/3.6).toFixed(1)+' m/s. Site no-operation limits: gusts ≥16 m/s or sustained wind ≥18 m/s.',
+   'Guests may postpone if they expect the cable car to suspend operation. Confirm with site measurements.');
+ }else if(cable&&x.wind>=43.2){
+  add('Forecast gusts '+(x.wind/3.6).toFixed(1)+' m/s reach the 12 m/s precaution threshold: ballasted cabins and reduced speed.',
+   'Wind precautions may affect guests’ plans.');
  }else if(x.wind>=65){
   add('Strong gusts of up to '+wind+' are forecast'+(indoor?' and may affect travel.':'.'),
     indoor?'Windy conditions may make the journey less appealing, even though activities are indoors.':
@@ -556,9 +557,9 @@ function operationalAlerts(p,x){
   alerts.push({title:'Potential cold-weather ride restrictions',
    body:'The forecast mean temperature during the assessment window is '+x.temp.toFixed(1)+'°C, below 5°C. Some rides or mechanical systems may have minimum operating-temperature requirements. Individual attractions could be unavailable even if the park remains open. Check each ride’s manufacturer limits and local operating procedures; the forecast mean does not establish the temperature at every ride or hour.'});
  }
- if(rideOrCable&&x.wind>54){
+ if(p.type==='theme'&&x.wind>54){
   alerts.push({title:'Potential wind-related attraction restrictions',
-   body:'Peak forecast gusts reach '+(x.wind/3.6).toFixed(1)+' m/s, exceeding the 15 m/s awareness threshold. Some rides or the cable car may need to suspend operations, depending on equipment-specific limits and measured on-site conditions. This is a risk alert, not a confirmed closure.'});
+   body:'Peak forecast gusts reach '+(x.wind/3.6).toFixed(1)+' m/s, exceeding the 15 m/s awareness threshold. Some rides may need to suspend operations, depending on equipment-specific limits and measured on-site conditions. This is a risk alert, not a confirmed closure.'});
  }
  if(p.id==='PC009'&&x.temp< -2){
   alerts.push({title:'Tropical Islands — indoor climate monitoring',
@@ -655,13 +656,13 @@ function details(p,d,x){
   }
   if(x.events?.length){for(const event of x.events){if(event.source){const a=document.createElement('a');a.href=event.source;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Official access report: '+event.name;el.append(a)}}}
   const m=document.createElement('div');m.className='metrics';m.style.marginTop='18px';
-  const values=[['Conditions',x.condition.symbol+' '+x.condition.label],['Mean temp',x.temp.toFixed(1)+'°C'],['Rain 10–18h',x.rain.toFixed(1)+' mm'],['Rain probability',Math.round(x.prob)+'%'],['Peak gust',Math.round(x.wind)+' km/h'+(p.id==='PC019'?' ('+(x.wind/3.6).toFixed(1)+' m/s)':'')],['Snow 10–18h',x.snow.toFixed(1)+' cm'],['Estimated snow depth',x.residualSnow.toFixed(1)+' cm']];
+  const values=[['Conditions',x.condition.symbol+' '+x.condition.label],['Mean temp',x.temp.toFixed(1)+'°C'],['Rain 10–18h',x.rain.toFixed(1)+' mm'],['Rain probability',Math.round(x.prob)+'%'],['Peak gust',Math.round(x.wind)+' km/h'+(p.id==='PC019'?' ('+(x.wind/3.6).toFixed(1)+' m/s)':'')],...(p.id==='PC019'?[['Peak sustained wind',Math.round(x.steadyWind)+' km/h ('+(x.steadyWind/3.6).toFixed(1)+' m/s)']]:[]),['Snow 10–18h',x.snow.toFixed(1)+' cm'],['Estimated snow depth',x.residualSnow.toFixed(1)+' cm']];
   for(const [label,val] of values){const div=document.createElement('div');div.className='metric';const span=document.createElement('span');span.textContent=label;const strong=document.createElement('strong');strong.textContent=val;div.append(span,strong);m.append(div)}el.append(m);
  }else{const para=document.createElement('p');para.textContent='Weather data unavailable. Try refreshing forecasts.';el.append(para)}
  const caveat=document.createElement('p');caveat.className='note';caveat.textContent='Missing calendar dates have UNKNOWN operating status; weather colours do not imply opening. Weather assessment uses an indicative 10:00–18:00 window; this is not a claim about actual park hours. Snow accumulation is a forecast/model estimate, not verified road access. Operational alerts are advisory, not verified ride limits or confirmed closures. Colours are qualitative attendance indicators. Management-review flags are advisory and never confirm that a park should close.';el.append(caveat);el.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-async function load(){if(loading)return;$('errorbox').style.display='none';loading=true;$('refresh').disabled=true;$('status').textContent='Loading live weather forecasts…';let done=0;const queue=[...parks];async function worker(){while(queue.length){const p=queue.shift();try{const u=new URL('https://api.open-meteo.com/v1/forecast');for(const [k,v] of Object.entries({latitude:p.lat,longitude:p.lon,hourly:'temperature_2m,precipitation_probability,precipitation,wind_gusts_10m,cloud_cover,weather_code,snowfall,snow_depth',daily:'weather_code',forecast_days:14,past_days:2,timezone:'auto'}))u.searchParams.set(k,v);const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),8000);try{const r=await fetch(u,{signal:controller.signal});if(!r.ok)throw Error('HTTP '+r.status);p.forecast=await r.json();p.error=null;saveForecastSnapshot(p)}finally{clearTimeout(timer)}}catch(e){p.error=String(e);p.forecast=null}done++;$('status').textContent=`Forecasts loaded: ${done}/${parks.length} · ${parks.filter(p=>p.forecast).length} successful`;if(done%4===0||done===parks.length)render()}}await Promise.all(Array.from({length:8},worker));loading=false;$('refresh').disabled=false;const success=parks.filter(p=>p.forecast).length;$('status').textContent=success?`Updated ${new Date().toLocaleTimeString()} · ${success}/${parks.length} parks with live weather · Operating status: OPEN / CLOSED / UNKNOWN`:'Live forecasts unavailable in this viewer';if(!success){$('errorbox').style.display='block';$('errorbox').textContent='This file viewer may block external weather requests. To load live forecasts, publish index.html as a website and open its HTTPS address in Safari. Refreshing inside this preview may not help. No weather values have been invented.';}render()}
+async function load(){if(loading)return;$('errorbox').style.display='none';loading=true;$('refresh').disabled=true;$('status').textContent='Loading live weather forecasts…';let done=0;const queue=[...parks];async function worker(){while(queue.length){const p=queue.shift();try{const u=new URL('https://api.open-meteo.com/v1/forecast');for(const [k,v] of Object.entries({latitude:p.lat,longitude:p.lon,hourly:'temperature_2m,precipitation_probability,precipitation,wind_gusts_10m,wind_speed_10m,cloud_cover,weather_code,snowfall,snow_depth',daily:'weather_code',forecast_days:14,past_days:2,timezone:'auto'}))u.searchParams.set(k,v);const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),8000);try{const r=await fetch(u,{signal:controller.signal});if(!r.ok)throw Error('HTTP '+r.status);p.forecast=await r.json();p.error=null;saveForecastSnapshot(p)}finally{clearTimeout(timer)}}catch(e){p.error=String(e);p.forecast=null}done++;$('status').textContent=`Forecasts loaded: ${done}/${parks.length} · ${parks.filter(p=>p.forecast).length} successful`;if(done%4===0||done===parks.length)render()}}await Promise.all(Array.from({length:8},worker));loading=false;$('refresh').disabled=false;const success=parks.filter(p=>p.forecast).length;$('status').textContent=success?`Updated ${new Date().toLocaleTimeString()} · ${success}/${parks.length} parks with live weather · Operating status: OPEN / CLOSED / UNKNOWN`:'Live forecasts unavailable in this viewer';if(!success){$('errorbox').style.display='block';$('errorbox').textContent='This file viewer may block external weather requests. To load live forecasts, publish index.html as a website and open its HTTPS address in Safari. Refreshing inside this preview may not help. No weather values have been invented.';}render()}
 function renderEvents(){
  const list=$('eventList');list.replaceChildren();
  const line=(message)=>{const el=document.createElement('p');el.textContent=message;list.append(el)};
