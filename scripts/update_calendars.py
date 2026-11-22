@@ -260,22 +260,26 @@ def apply_walsrode_2026(result,diagnostics):
  diagnostics['PC025']['calendar_note']='Daily 2026 season through 1 Nov; winter days unknown pending explicit calendar verification'
 
 def apply_slagharen_operating_days(result,diagnostics,now):
- """Official 2026 Halloween dates plus published weekend operation.
- Explicit openings override missing-provider-data closure assumptions.
+ """Official Slagharen weekend schedule for November and Sinterklaas 2026.
+ Only assert dates supported by the park's published visitor information.
  """
  pid='PC004'
- source='https://www.slagharen.com/halloween'
- days={'2026-10-24','2026-10-25','2026-10-31'}
- # Official visitor information confirms weekend operation after 26 October.
- # Restrict the recurring rule to the 14-day forecast horizon; refresh daily.
+ source='https://www.slagharen.com/aanreisinformatie'
+ winter_source='https://www.slagharen.com/winter-slagharen'
+ days={'2026-10-24','2026-10-25','2026-10-31','2026-11-01'}
+ # Official visitor information: from 2 November, park opens Saturday/Sunday,
+ # 10:00–17:00. Limit to published November operating pattern.
  for offset in range(15):
-  day=(now.date()+datetime.timedelta(days=offset))
-  if day.year==2026 and day>=datetime.date(2026,10,31) and day.weekday()>=5:
+  day=now.date()+datetime.timedelta(days=offset)
+  if datetime.date(2026,11,2)<=day<=datetime.date(2026,11,30) and day.weekday()>=5:
    days.add(day.isoformat())
+ # Sinterklaas event dates explicitly advertised by Slagharen.
+ days.update({'2026-12-05'})
  entry=result.setdefault(pid,{'name':'Slagharen','days':{}})
  for day in sorted(days):
   if day<now.date().isoformat():continue
-  entry['days'][day]={'status':'open','source':source,'source_type':'official_published_operating_day'}
+  event_day=day in {'2026-11-21','2026-11-22','2026-11-28','2026-11-29','2026-12-05'}
+  entry['days'][day]={'status':'open','source':winter_source if event_day else source,'source_type':'official_published_operating_day'}
  diag=diagnostics.setdefault(pid,{'name':'Slagharen'})
  diag['official_open_days']=sorted(day for day in days if day>=now.date().isoformat())
  diag['official_calendar_url']='https://www.slagharen.com/en/prijzen---openingstijden/openingstijden'
