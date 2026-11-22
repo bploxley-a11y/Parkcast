@@ -302,7 +302,7 @@ def main():
  oldparks=old.get('parks',{});now=datetime.datetime.now(datetime.timezone.utc)
  try:entities=catalog()
  except Exception as exc:
-  print('Directory unavailable; preserving previous data:',exc,file=sys.stderr);return 0
+  print('ERROR: Directory unavailable; calendar refresh failed:',exc,file=sys.stderr);return 1
  result={};checked=0; diagnostics={}; explicit_closed=0
  for row in PARKS:
   pid,name,*_=row; entity=locate(row,entities)
@@ -357,6 +357,9 @@ def main():
  apply_secondary_calendars(result,diagnostics,now)
  apply_walsrode_2026(result,diagnostics)
  payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'official_off_season_parks':official_count,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'year_round_park_ids':sorted(YEAR_ROUND),'interpretation':'Missing dates are UNKNOWN, not OPEN. Seven user-confirmed year-round parks default OPEN. Only explicit verified closure records grey out tiles.'}
+ if not result or not any(v.get('days') for v in result.values()):
+  print('ERROR: No usable calendar records; refusing to publish an empty refresh',file=sys.stderr)
+  return 1
  OUT.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
  DIAGNOSTICS.write_text(json.dumps({'updated_at':now.isoformat(),'parks':diagnostics,'provider_matches':checked,'official_off_season_parks':official_count,'year_round_defaults':len(YEAR_ROUND),'not_connected':sum(d.get('state') not in ('updated','year_round_default','official_off_season') for d in diagnostics.values())},indent=2,ensure_ascii=False)+'\n')
  print('Updated',checked,'provider parks; official off-season parks:',official_count,'; provider closed dates:',explicit_closed)
