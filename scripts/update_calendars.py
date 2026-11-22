@@ -153,8 +153,7 @@ def parse_secondary_month(page,year,month):
  # Require substantial coverage before trusting any parsed result.
  if len(out)<12 or not any(v['status']=='open' for v in out.values()):return {}
  return out
-def apply_secondary_calendars(result,diagnostics,now)
- apply_verified_halloween_weekends(result,diagnostics,now):
+def apply_secondary_calendars(result,diagnostics,now):
  for pid,url in SECONDARY_CALENDARS.items():
   try:
    req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; ParkCast/1.0)','Accept':'text/html'})
@@ -241,6 +240,20 @@ def apply_official_seasons(result,diagnostics,now):
   diagnostics[pid]={'name':name,'state':'official_off_season','verified_closed_days':(end-start).days+1-conflicts,'conflicts_with_provider':conflicts,'source':rule['url'],'source_type':rule['source_type'],'evidence':rule['evidence'],'valid_through':rule['through']}
   applied+=1
  return applied
+
+def apply_tusenfryd_offseason(result,diagnostics,now):
+ """2026 public season ended 25 October; restrict to remaining 2026."""
+ if now.year!=2026:return
+ pid='PC007'
+ source='https://www.tusenfryd.no/planlegg-besoket/arstider/halloween'
+ entry=result.setdefault(pid,{'name':'Tusenfryd','days':{}})
+ start=max(now.date(),datetime.date(2026,10,26))
+ end=datetime.date(2026,12,31)
+ for offset in range(max(0,(end-start).days+1)):
+  day=(start+datetime.timedelta(days=offset)).isoformat()
+  if entry['days'].get(day,{}).get('status')!='open':
+   entry['days'][day]={'status':'closed','source':source,'source_type':'published_2026_season_end'}
+ diagnostics.setdefault(pid,{'name':'Tusenfryd'})['season_end_2026']='2026-10-25'
 
 def apply_walsrode_2026(result,diagnostics):
  # Published 2026 daily season runs through 1 November. Never infer winter
@@ -342,6 +355,7 @@ def main():
    diagnostics.setdefault(pid,{'name':name,'state':'not_connected'})
  official_count=apply_official_seasons(result,diagnostics,now)
  apply_slagharen_operating_days(result,diagnostics,now)
+ apply_verified_halloween_weekends(result,diagnostics,now)
  # These official calendars are dynamic; do not infer closures from an unparsed page.
  official_calendar_pages={
   'PC004':'https://www.slagharen.com/en/prijzen---openingstijden/openingstijden',
@@ -354,6 +368,7 @@ def main():
   diagnostics[pid]['automatic_day_by_day_coverage']=False
  diagnostics['PC020']['source_note']='Official Bø Sommarland 2026 season boundary checked against published opening-hours page.'
  apply_dated_closures(result,diagnostics)
+ apply_tusenfryd_offseason(result,diagnostics,now)
  apply_secondary_calendars(result,diagnostics,now)
  apply_walsrode_2026(result,diagnostics)
  payload={'updated_at':now.isoformat(),'provider':'ThemeParks.wiki','parks':result,'matched_and_updated':checked,'official_off_season_parks':official_count,'configured_parks':len(PARKS),'explicit_closed_days':explicit_closed,'diagnostics':diagnostics,'year_round_park_ids':sorted(YEAR_ROUND),'interpretation':'Missing dates are UNKNOWN, not OPEN. Seven user-confirmed year-round parks default OPEN. Only explicit verified closure records grey out tiles.'}
