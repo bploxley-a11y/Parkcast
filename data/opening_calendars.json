@@ -2308,6 +2308,31 @@
           "status": "open",
           "source": "https://www.slagharen.com/halloween",
           "source_type": "official_published_operating_day"
+        },
+        "2026-11-21": {
+          "status": "open",
+          "source": "https://www.slagharen.com/winter-slagharen",
+          "source_type": "official_published_operating_day"
+        },
+        "2026-11-22": {
+          "status": "open",
+          "source": "https://www.slagharen.com/winter-slagharen",
+          "source_type": "official_published_operating_day"
+        },
+        "2026-11-28": {
+          "status": "open",
+          "source": "https://www.slagharen.com/winter-slagharen",
+          "source_type": "official_published_operating_day"
+        },
+        "2026-11-29": {
+          "status": "open",
+          "source": "https://www.slagharen.com/winter-slagharen",
+          "source_type": "official_published_operating_day"
+        },
+        "2026-12-05": {
+          "status": "open",
+          "source": "https://www.slagharen.com/winter-slagharen",
+          "source_type": "official_published_operating_day"
         }
       }
     }
@@ -2352,8 +2377,14 @@
         "2026-10-31",
         "2026-11-01",
         "2026-11-07",
-        "2026-11-08"
-      ]
+        "2026-11-08",
+        "2026-11-21",
+        "2026-11-22",
+        "2026-11-28",
+        "2026-11-29",
+        "2026-12-05"
+      ],
+      "note": "November weekends and 5 December confirmed by official visitor and winter pages; other park schedules retain their prior refresh date"
     },
     "PC005": {
       "name": "Bobbejaanland",
