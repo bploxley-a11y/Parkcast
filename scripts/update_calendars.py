@@ -176,7 +176,7 @@ def apply_secondary_calendars(result,diagnostics,now):
     if not current:
      entry['days'][date]={**record,'source':url,'source_type':'secondary_dated_calendar'}
      added+=1
-   diag=diagnostics.setdefault(pid,{'name':entry['name']})
+   diag=diagnostics.setdefault(pid,{'name':entry.get('name',next((row[1] for row in PARKS if row[0]==pid),pid))})
    diag['secondary_calendar_url']=url
    diag['secondary_months_checked']=[f'{year:04d}-{month:02d}' for year,month in months]
    diag['secondary_months_parsed']=[f'{year:04d}-{month:02d}' for year,month in months if any(date.startswith(f'{year:04d}-{month:02d}') for date in days)]
