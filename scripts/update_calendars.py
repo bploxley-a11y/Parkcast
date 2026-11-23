@@ -364,9 +364,9 @@ def main():
   'PC019':'https://www.telefericobenalmadena.com/horarios-y-precios/horarios',
  }
  for pid,url in official_calendar_pages.items():
-  diagnostics[pid]['official_calendar_url']=url
+  diagnostics.setdefault(pid,{'name':next(row[1] for row in PARKS if row[0]==pid)})['official_calendar_url']=url
   diagnostics[pid]['automatic_day_by_day_coverage']=False
- diagnostics['PC020']['source_note']='Official Bø Sommarland 2026 season boundary checked against published opening-hours page.'
+ diagnostics.setdefault('PC020',{'name':'Bo Sommerland'})['source_note']='Official Bø Sommarland 2026 season boundary checked against published opening-hours page.'
  apply_dated_closures(result,diagnostics)
  apply_tusenfryd_offseason(result,diagnostics,now)
  apply_secondary_calendars(result,diagnostics,now)
