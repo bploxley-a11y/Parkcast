@@ -1,7 +1,5 @@
 name: Update ParkCast opening calendars
 on:
-  schedule:
-    - cron: '23 */3 * * *'
   workflow_dispatch:
 permissions:
   contents: write
